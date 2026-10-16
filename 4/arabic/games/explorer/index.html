@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ألعاب لغتي — الصف الرابع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sky:#8ED8F8; --sand:#FFE7B3; --ink:#2B2140; --card:#FFFFFF; --soft:#6B5F80; --chip:#F4F0FA;
+  --red:#D6001C; --green:#0A8F3C; --gold:#FFC83D; --ok:#18A558; --bad:#E5383B;
+  --sc:#27AE60;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --sky:#1C2B4F; --sand:#3A2D4E; --ink:#F4EFFF; --card:#261E38; --soft:#B9ADCF; --chip:#322848; }
+}
+:root[data-theme="dark"]{ --sky:#1C2B4F; --sand:#3A2D4E; --ink:#F4EFFF; --card:#261E38; --soft:#B9ADCF; --chip:#322848; }
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:"Baloo Bhaijaan 2",Tahoma,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0%,var(--sand) 75%) fixed;min-height:100vh;line-height:1.5;overflow-x:hidden}
+button{font-family:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:12px 14px 50px;position:relative;z-index:1}
+.hills{position:fixed;left:0;right:0;bottom:0;height:160px;z-index:0;pointer-events:none;opacity:.55}
+h1,h2,h3{margin:0;line-height:1.2;font-weight:800}
+
+/* home hero */
+.hero{position:relative;height:190px;margin:0 -14px 6px;overflow:hidden}
+.hero svg{position:absolute;inset:0;width:100%;height:100%}
+.eagle{animation:glide 9s ease-in-out infinite}
+@keyframes glide{0%{transform:translate(-60px,40px) rotate(-4deg)}50%{transform:translate(260px,10px) rotate(3deg)}100%{transform:translate(-60px,40px) rotate(-4deg)}}
+.hero .title{position:absolute;right:18px;bottom:16px}
+.hero h1{font-size:clamp(44px,13vw,64px);color:#fff;text-shadow:0 3px 0 var(--red),0 6px 0 rgba(0,0,0,.25)}
+.hero p{margin:0;color:#fff;font-weight:700;font-size:15px;text-shadow:0 2px 4px rgba(0,0,0,.35)}
+.total{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:3px solid var(--ink);border-radius:30px;padding:2px 14px;font-weight:800;box-shadow:0 4px 0 var(--ink);margin:4px 0 16px}
+
+/* trail */
+.trail{position:relative;display:grid;gap:14px;padding-right:34px}
+.trail::before{content:"";position:absolute;right:15px;top:10px;bottom:10px;border-right:4px dashed var(--ink);opacity:.35}
+.stop{position:relative;display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:10px 12px;box-shadow:0 5px 0 var(--ink)}
+.stop:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+.stop::after{content:"";position:absolute;right:-30px;top:50%;width:18px;height:18px;margin-top:-9px;border-radius:50%;background:var(--sc);border:3px solid var(--ink)}
+.stop .em{width:58px;height:58px;border-radius:18px;background:var(--sc);display:grid;place-items:center;font-size:32px;flex:none;border:3px solid var(--ink)}
+.stop .inf{flex:1;min-width:0}
+.stop small{color:var(--soft);font-weight:700;font-size:13px}
+.stop h3{font-size:20px}
+.stop .st{font-size:13px;font-weight:700;color:var(--soft)}
+
+/* bar */
+.bar{display:flex;align-items:center;gap:10px;margin:4px 0 12px}
+.ib{width:46px;height:46px;border-radius:16px;border:3px solid var(--ink);background:var(--card);font-size:20px;display:grid;place-items:center;box-shadow:0 4px 0 var(--ink);flex:none;font-weight:800}
+.ib:active{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.bar .t{flex:1;min-width:0}
+.bar h2{font-size:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar small{color:var(--soft);font-weight:700;font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.band{background:var(--sc);color:#fff;border:3px solid var(--ink);border-radius:24px;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 5px 0 var(--ink);margin-bottom:16px}
+.band .em{font-size:48px}
+.band h2{font-size:26px}
+.band p{margin:0;font-weight:700;opacity:.9}
+.games{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gcard{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:12px 8px;text-align:center;box-shadow:0 5px 0 var(--ink);display:flex;flex-direction:column;align-items:center;gap:2px}
+.gcard:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+.gcard .gi{font-size:40px;line-height:1.1}
+.gcard b{font-size:17px;line-height:1.25}
+.gcard span{font-size:12px;color:var(--soft);font-weight:700}
+.stars{letter-spacing:1px;font-size:16px}
+.stars .off{opacity:.2;filter:grayscale(1)}
+
+/* game */
+.hud{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-weight:800}
+.hearts{font-size:22px;letter-spacing:2px}
+.hearts .lost{opacity:.18;filter:grayscale(1)}
+.pbar{flex:1;height:14px;background:var(--card);border:3px solid var(--ink);border-radius:10px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+.target{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:8px 12px;margin-bottom:10px;font-weight:800;font-size:18px;text-align:center;box-shadow:0 4px 0 var(--ink);min-height:48px}
+.target.flash{animation:fl .5s}
+@keyframes fl{0%{transform:scale(1)}40%{transform:scale(1.05);background:var(--gold)}100%{transform:scale(1)}}
+.arena{position:relative;border:3px solid var(--ink);border-radius:22px;overflow:hidden;box-shadow:0 5px 0 var(--ink);background:var(--card);touch-action:none;user-select:none;-webkit-user-select:none}
+.arena canvas{display:block;width:100%;height:auto}
+.help{text-align:center;color:var(--soft);font-weight:700;font-size:13px;margin-top:8px}
+.shake{animation:sh .35s}
+@keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pop{animation:pp .3s}
+@keyframes pp{50%{transform:scale(1.12)}}
+
+/* overlay start */
+.cover{position:absolute;inset:0;display:grid;place-items:center;background:rgba(43,33,64,.55);z-index:5;padding:16px}
+.cover .box{background:var(--card);border:3px solid var(--ink);border-radius:22px;padding:18px;text-align:center;max-width:320px;box-shadow:0 5px 0 var(--ink)}
+.cover .big{font-size:56px;line-height:1}
+.cover p{margin:6px 0 12px;font-weight:700}
+.go{border:3px solid var(--ink);background:var(--gold);border-radius:16px;padding:8px 26px;font-size:20px;font-weight:800;box-shadow:0 4px 0 var(--ink)}
+.go:active{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+
+/* belt bins */
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.binb{border:3px solid var(--ink);border-radius:18px;padding:12px 6px;font-size:19px;font-weight:800;color:#fff;box-shadow:0 5px 0 var(--ink);min-height:64px}
+.binb:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
+
+/* whack */
+.holes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px;background:linear-gradient(#9BD67A,#6DB54C)}
+.hole{position:relative;height:92px;overflow:hidden;border-radius:0 0 50% 50%/0 0 30% 30%}
+.hole::after{content:"";position:absolute;left:4%;right:4%;bottom:0;height:26px;background:#5A3A22;border-radius:50%;box-shadow:inset 0 5px 0 #3E2716}
+.mole{position:absolute;left:6%;right:6%;bottom:8px;height:74px;transform:translateY(100%);transition:transform .22s cubic-bezier(.3,1.4,.6,1);z-index:1;border:3px solid var(--ink);border-radius:16px 16px 10px 10px;background:#FFF6DD;color:#2B2140;display:grid;place-items:center;font-weight:800;font-size:18px;padding:2px;line-height:1.15;text-align:center}
+.mole.up{transform:translateY(0)}
+.mole.hitok{background:var(--ok);color:#fff}
+.mole.hitbad{background:var(--bad);color:#fff}
+
+/* flip */
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px}
+.fc{perspective:600px;height:92px;border:none;background:none;padding:0}
+.fc .in{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.fc.open .in{transform:rotateY(180deg)}
+.fc .fa,.fc .ba{position:absolute;inset:0;border:3px solid var(--ink);border-radius:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:grid;place-items:center;padding:4px;font-weight:800;line-height:1.15}
+.fc .fa{background:repeating-linear-gradient(45deg,var(--sc),var(--sc) 8px,color-mix(in srgb,var(--sc) 75%,#fff) 8px,color-mix(in srgb,var(--sc) 75%,#fff) 16px);color:#fff;font-size:30px}
+.fc .ba{background:#FFF6DD;color:#2B2140;transform:rotateY(180deg);font-size:15px}
+.fc .ba.small{font-size:12.5px}
+.fc.done .ba{background:var(--ok);color:#fff}
+
+/* train */
+.track{overflow-x:auto;padding:12px 10px 18px;background:linear-gradient(transparent 78%,#8B6B4A 78%,#8B6B4A 82%,transparent 82%)}
+.train{display:flex;gap:6px;align-items:flex-end;min-height:120px;width:max-content;transition:transform 2.2s ease-in}
+.loco{font-size:70px;line-height:1;transform:scaleX(-1)}
+.wagon{position:relative;min-width:96px;max-width:150px;min-height:78px;border:3px solid var(--ink);border-radius:12px 12px 6px 6px;background:var(--sc);color:#fff;padding:6px 8px 16px;font-weight:800;font-size:14px;line-height:1.2;display:grid;place-items:center;text-align:center;animation:join .45s cubic-bezier(.3,1.5,.6,1)}
+.wagon::before,.wagon::after{content:"";position:absolute;bottom:-12px;width:20px;height:20px;border-radius:50%;background:#333;border:3px solid var(--ink)}
+.wagon::before{right:12px}.wagon::after{left:12px}
+@keyframes join{from{transform:translateY(-40px) scale(.7);opacity:0}}
+.yard{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:12px}
+.ycard{border:3px solid var(--ink);background:#FFF6DD;color:#2B2140;border-radius:14px;padding:8px 12px;font-weight:800;font-size:15px;box-shadow:0 4px 0 var(--ink);max-width:100%;line-height:1.3}
+.ycard:active{transform:translateY(2px);box-shadow:0 2px 0 var(--ink)}
+.smoke{position:absolute;font-size:28px;animation:smk 1.2s ease-out forwards;pointer-events:none}
+@keyframes smk{to{transform:translate(20px,-70px) scale(1.8);opacity:0}}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(20,12,35,.6);display:grid;place-items:center;z-index:20;padding:20px}
+.res{background:var(--card);border:3px solid var(--ink);border-radius:28px;padding:22px;text-align:center;max-width:340px;width:100%;box-shadow:0 7px 0 var(--ink);animation:pp .4s}
+.res .big{font-size:50px;letter-spacing:4px}
+.res h2{font-size:30px;margin:4px 0}
+.res p{margin:0 0 14px;color:var(--soft);font-weight:700}
+.res .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{border:3px solid var(--ink);background:var(--card);border-radius:16px;padding:8px 16px;font-size:17px;font-weight:800;box-shadow:0 4px 0 var(--ink)}
+.btn.pri{background:var(--gold);color:#2B2140}
+.combo{font-weight:800;font-size:16px;background:var(--gold);color:#2B2140;border:3px solid var(--ink);border-radius:20px;padding:0 10px;white-space:nowrap}
+.cd{position:absolute;inset:0;display:grid;place-items:center;background:rgba(43,33,64,.45);z-index:6;pointer-events:none}
+.cd span{font-size:110px;font-weight:800;color:#fff;text-shadow:0 5px 0 var(--sc),0 10px 0 rgba(0,0,0,.3);animation:cdp .6s cubic-bezier(.3,1.6,.5,1)}
+.cd span.gow{font-size:64px;color:var(--gold)}
+@keyframes cdp{from{transform:scale(2.4);opacity:0}}
+.res .big .sOn{display:inline-block;animation:sIn .5s cubic-bezier(.3,1.8,.5,1) both}
+@keyframes sIn{from{transform:scale(0) rotate(-90deg);opacity:0}}
+.gcard.phase{grid-column:1/-1;flex-direction:row;text-align:right;gap:12px;padding:12px 14px;position:relative;border-style:dashed}
+.gcard.phase .gi{font-size:44px}
+.gcard.phase .pt{flex:1;display:flex;flex-direction:column;gap:0}
+.gcard.phase .tag{position:absolute;top:-12px;left:14px;background:var(--ph);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:0 10px;font-size:13px;font-weight:800}
+.gcard.pre{--ph:#F2994A;background:color-mix(in srgb,#F2994A 14%,var(--card))}
+.gcard.post{--ph:#8E44AD;background:color-mix(in srgb,#8E44AD 14%,var(--card))}
+.sec-h{font-weight:800;color:var(--soft);font-size:14px;grid-column:1/-1;margin:2px 4px -4px}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:30}
+@media (prefers-reduced-motion: reduce){.eagle,.wagon,.res{animation:none}}
+</style>
+</head>
+<body>
+<svg class="hills" viewBox="0 0 400 160" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 90 L60 40 L110 80 L170 20 L240 85 L300 45 L360 80 L400 55 V160 H0z" fill="#8C7B6B"/>
+  <path d="M0 120 Q80 90 160 115 T320 110 T400 115 V160 H0z" fill="#E8C98A"/>
+</svg>
+<canvas id="fx"></canvas>
+<div class="wrap" id="app"></div>
+<script>
+/* ===== utils ===== */
+const $ = (s, r = document) => r.querySelector(s);
+const AR = "٠١٢٣٤٥٦٧٨٩", ar = n => String(n).replace(/\d/g, d => AR[d]);
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.random() * (i + 1) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const pick = a => a[Math.random() * a.length | 0];
+const h = (tag, at = {}, ...kids) => { const e = document.createElement(tag); for (const k in at) { if (k === "class") e.className = at[k]; else if (k === "html") e.innerHTML = at[k]; else if (k.startsWith("on")) e.addEventListener(k.slice(2), at[k]); else if (k === "style") e.style.cssText = at[k]; else e.setAttribute(k, at[k]); } for (const c of kids.flat()) if (c != null) e.append(c.nodeType ? c : document.createTextNode(c)); return e; };
+const flash = (el, c) => { el.classList.remove(c); void el.offsetWidth; el.classList.add(c); };
+const FONT = '"Baloo Bhaijaan 2", Tahoma, sans-serif';
+
+/* ===== storage ===== */
+const KEY = "arabic4-motion-v1";
+let store = { stars: {}, sound: true };
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (s) store = Object.assign(store, s); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
+
+/* ===== sound ===== */
+let actx, master;
+function ac() { if (!store.sound) return null; try { if (!actx) { actx = new (window.AudioContext || window.webkitAudioContext)(); master = actx.createGain(); master.gain.value = .9; const comp = actx.createDynamicsCompressor(); master.connect(comp); comp.connect(actx.destination); } if (actx.state === "suspended") actx.resume(); return actx; } catch (e) { return null; } }
+function note(f, t0, d, type = "sine", v = .14, slide = 0) { const a = ac(); if (!a) return; const t = a.currentTime + t0, o = a.createOscillator(), g = a.createGain(); o.type = type; o.frequency.setValueAtTime(f, t); if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(30, f * slide), t + d); g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(v, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.connect(g); g.connect(master); o.start(t); o.stop(t + d + .03); }
+let nbuf = null;
+function noise(t0, d, v = .1, freq = 1200, q = 1, type = "bandpass", sweep = 0) { const a = ac(); if (!a) return; if (!nbuf) { nbuf = a.createBuffer(1, a.sampleRate, a.sampleRate); const ch = nbuf.getChannelData(0); for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1; } const t = a.currentTime + t0, s = a.createBufferSource(); s.buffer = nbuf; const f = a.createBiquadFilter(); f.type = type; f.frequency.setValueAtTime(freq, t); if (sweep) f.frequency.exponentialRampToValueAtTime(sweep, t + d); f.Q.value = q; const g = a.createGain(); g.gain.setValueAtTime(v, t); g.gain.exponentialRampToValueAtTime(.0001, t + d); s.connect(f); f.connect(g); g.connect(master); s.start(t); s.stop(t + d + .02); }
+function tone(fs, d = .1, type = "sine", v = .12) { fs.forEach((f, i) => note(f, i * d * .8, d, type, v)); }
+const sfx = {
+  click() { note(1400, 0, .03, "square", .035); note(900, .02, .04, "triangle", .05); },
+  tap() { note(700, 0, .06, "triangle", .08); },
+  swish() { noise(0, .13, .09, 700, .8, "bandpass", 3200); },
+  ok(n = 0) { const k = Math.pow(2, Math.min(n, 9) / 12); note(660 * k, 0, .1, "triangle", .14); note(990 * k, .07, .15, "triangle", .12); note(1320 * k, .14, .14, "sine", .06); },
+  combo(n) { const k = Math.pow(2, Math.min(n, 9) / 12); [1046, 1318, 1568, 2093].forEach((f, i) => note(f * k, .18 + i * .05, .12, "sine", .05)); },
+  bad() { note(190, 0, .24, "sawtooth", .09, .55); note(125, .02, .26, "square", .05, .7); noise(0, .14, .07, 280, 1, "lowpass"); },
+  heart() { note(72, 0, .13, "sine", .38, .8); note(62, .17, .15, "sine", .32, .8); },
+  pop() { note(950, 0, .09, "sine", .16, .3); noise(0, .05, .09, 2600, 2); },
+  boing() { note(260, 0, .22, "triangle", .1, 2.4); },
+  whoosh() { noise(0, .26, .11, 450, .7, "bandpass", 2600); },
+  flip() { noise(0, .08, .08, 2200, 1.2, "highpass"); note(540, 0, .05, "triangle", .05); },
+  match() { [784, 988, 1175, 1568].forEach((f, i) => note(f, i * .06, .2, "sine", .1)); },
+  chug() { noise(0, .07, .13, 380, 1, "lowpass"); noise(.11, .07, .1, 380, 1, "lowpass"); note(110, 0, .1, "square", .04); },
+  toot() { note(392, 0, .35, "sawtooth", .06); note(494, 0, .35, "sawtooth", .05); note(392, .42, .55, "sawtooth", .06); note(494, .42, .55, "sawtooth", .05); },
+  count() { note(660, 0, .16, "square", .07); note(1320, 0, .08, "sine", .04); },
+  go() { [523, 659, 784, 1046].forEach((f, i) => note(f, i * .07, .38, "triangle", .11)); noise(0, .35, .05, 4000, .5, "highpass"); },
+  level() { [523, 784, 1046, 1568].forEach((f, i) => note(f, i * .08, .22, "square", .05)); noise(.3, .3, .04, 6000, .5, "highpass"); },
+  star(i) { const f = [1046, 1318, 1568][i] || 1568; note(f, 0, .4, "triangle", .12); note(f * 2, .05, .32, "sine", .05); noise(0, .2, .03, 7000, .5, "highpass"); },
+  win() { [[523, 0], [659, .12], [784, .24], [1046, .36], [784, .52], [1046, .64]].forEach(([f, t]) => { note(f, t, .22, "triangle", .13); note(f / 2, t, .22, "sine", .06); }); [523, 659, 784, 1046].forEach(f => note(f, .82, 1, "triangle", .07)); noise(.82, .7, .04, 6000, .5, "highpass"); },
+  fail() { [392, 370, 349, 311].forEach((f, i) => note(f, i * .28, i === 3 ? .85 : .3, "sawtooth", .07, i === 3 ? .85 : 1)); },
+  intro() { [392, 523, 659, 784].forEach((f, i) => note(f, i * .09, .22, "triangle", .1)); },
+  open() { note(520, 0, .08, "sine", .08, 1.5); }
+};
+document.addEventListener("pointerdown", e => { if (e.target.closest(".stop,.gcard,.btn,.ib,.go")) sfx.click(); }, true);
+
+function confetti() {
+  const c = $("#fx"), x = c.getContext("2d"); c.width = innerWidth; c.height = innerHeight;
+  const cols = ["#D6001C", "#0A8F3C", "#FFC83D", "#2D9CDB", "#8E44AD", "#fff"];
+  const ps = Array.from({ length: 130 }, () => ({ x: innerWidth / 2, y: innerHeight * .45, vx: (Math.random() - .5) * 15, vy: -Math.random() * 15 - 4, r: Math.random() * 7 + 4, c: pick(cols), a: Math.random() * 6 }));
+  let f = 0; (function L() { x.clearRect(0, 0, c.width, c.height); ps.forEach(p => { p.x += p.vx; p.y += p.vy; p.vy += .38; p.a += .2; x.save(); x.translate(p.x, p.y); x.rotate(p.a); x.fillStyle = p.c; x.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); x.restore(); }); if (++f < 110) requestAnimationFrame(L); else x.clearRect(0, 0, c.width, c.height); })();
+}
+
+/* ===== navigation ===== */
+const app = $("#app");
+let cleanup = [];
+const clean = () => { cleanup.forEach(f => { try { f(); } catch (e) {} }); cleanup = []; };
+function scene() { clean(); document.querySelectorAll(".modal").forEach(m => m.remove()); app.innerHTML = ""; scrollTo(0, 0); }
+const setC = c => document.documentElement.style.setProperty("--sc", c);
+const starsOf = id => store.stars[id] || 0;
+const starEl = n => h("span", { class: "stars" }, ...[1, 2, 3].map(i => h("span", { class: i <= n ? "" : "off" }, "⭐")));
+const ICON = { runner: ["🏃", "سباق الإجابات"], catch: ["🧺", "التقط بالسلة"], bubbles: ["🫧", "فرقع الفقاعات"], whack: ["🔨", "اضرب الكلمة"], belt: ["📦", "سير التصنيف"], flip: ["🃏", "البطاقات المقلوبة"], train: ["🚂", "قطار الترتيب"] };
+
+function bar(title, sub, back) {
+  const snd = h("button", { class: "ib", "aria-label": "الصوت", onclick: () => { store.sound = !store.sound; save(); snd.textContent = store.sound ? "🔊" : "🔈"; } }, store.sound ? "🔊" : "🔈");
+  return h("div", { class: "bar" }, back ? h("button", { class: "ib", "aria-label": "رجوع", onclick: back }, "→") : null, h("div", { class: "t" }, h("h2", {}, title), sub ? h("small", {}, sub) : null), snd);
+}
+
+function home() {
+  scene(); setC("#27AE60");
+  const all = SECTIONS.flatMap(s => s.games.map(g => s.id + "/" + g.id));
+  const got = all.reduce((n, k) => n + starsOf(k), 0);
+  app.append(h("div", { class: "hero", html: `
+   <svg viewBox="0 0 400 190" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <circle cx="330" cy="46" r="26" fill="#FFD24A"/>
+    <path d="M0 150 L50 95 L95 130 L150 70 L205 120 L250 85 L300 125 L350 90 L400 115 V190 H0z" fill="#7A6A5C"/>
+    <path d="M150 70 L165 86 L140 90z M250 85 L262 97 L240 99z" fill="#fff" opacity=".8"/>
+    <path d="M0 170 Q100 150 200 168 T400 165 V190 H0z" fill="#E8C98A"/>
+    <g fill="#2E7D4F"><path d="M40 170 v-22 M40 148 q-10 -6 -18 0 M40 148 q10 -6 18 0 M40 148 q-4 -10 -12 -12 M40 148 q4 -10 12 -12" stroke="#2E7D4F" stroke-width="3" fill="none"/></g>
+    <g class="eagle"><path d="M0 0 q14 -14 30 -4 q6 -2 10 0 q16 -10 30 4 q-18 -2 -30 6 q-4 4 -10 0 q-12 -8 -30 -6z" fill="#3B2A1E"/><circle cx="35" cy="-3" r="3.2" fill="#fff"/><path d="M37 -3 l5 2 l-5 1z" fill="#FFC83D"/></g>
+   </svg>
+   <div class="title"><h1>ألعاب لغتي</h1><p>الصف الرابع، الجزء الأول: في رُبوع وطني</p></div>` }));
+  app.append(h("div", { class: "total" }, "⭐ ", ar(got), ` من ${ar(all.length * 3)} نجمة`));
+  const tr = h("div", { class: "trail" });
+  SECTIONS.forEach((s, i) => {
+    const g = s.games.reduce((n, gm) => n + starsOf(s.id + "/" + gm.id), 0);
+    tr.append(h("button", { class: "stop", style: `--sc:${s.color}`, onclick: () => section(i) },
+      h("div", { class: "em" }, s.emoji),
+      h("div", { class: "inf" }, h("small", {}, s.kind), h("h3", {}, s.title), h("div", { class: "st" }, `${ar(s.games.length)} ألعاب  ⭐ ${ar(g)} / ${ar(s.games.length * 3)}`))));
+  });
+  app.append(tr);
+}
+
+function section(si) {
+  scene(); const s = SECTIONS[si]; setC(s.color);
+  app.append(bar("الرحلة", null, home));
+  app.append(h("div", { class: "band" }, h("div", { class: "em" }, s.emoji), h("div", {}, h("p", {}, s.kind), h("h2", {}, s.title))));
+  const gr = h("div", { class: "games" });
+  s.games.forEach((g, gi) => {
+    const k = s.id + "/" + g.id;
+    if (g.phase) {
+      if (g.phase === "post") gr.append(h("div", { class: "sec-h" }, "بعد الدرس"));
+      gr.append(h("button", { class: "gcard phase " + g.phase, onclick: () => play(si, gi) },
+        h("span", { class: "tag" }, g.phase === "pre" ? "قبل الدرس" : "بعد الدرس"),
+        h("div", { class: "gi" }, g.phase === "pre" ? "🚪" : "🏁"),
+        h("div", { class: "pt" }, h("b", {}, g.title), h("span", {}, g.sub + "  " + ICON[g.type][0] + " " + ICON[g.type][1]), starEl(starsOf(k)))));
+      if (g.phase === "pre") gr.append(h("div", { class: "sec-h" }, "ألعاب الدرس"));
+    } else gr.append(h("button", { class: "gcard", onclick: () => play(si, gi) },
+      h("div", { class: "gi" }, ICON[g.type][0]), h("b", {}, g.title), h("span", {}, ICON[g.type][1]), starEl(starsOf(k))));
+  });
+  app.append(gr);
+}
+
+/* ===== game runner ===== */
+const HEARTED = ["runner", "catch", "bubbles", "whack", "belt"];
+function play(si, gi) {
+  scene(); const S = SECTIONS[si], G = S.games[gi], key = S.id + "/" + G.id; setC(S.color);
+  app.append(bar(G.title, G.phase ? S.title + "  " + G.sub : S.title, () => section(si)));
+  const hearted = HEARTED.includes(G.type);
+  let hearts = 3, mistakes = 0, over = false, streak = 0;
+  const cEl = h("span", { class: "combo", style: "visibility:hidden" }, "");
+  const hEl = h("span", { class: "hearts" }), pb = h("div", { class: "pbar" }, h("i")), mEl = h("span", {});
+  const drawH = () => { hEl.innerHTML = ""; for (let i = 0; i < 3; i++) hEl.append(h("span", { class: i < hearts ? "" : "lost" }, "❤️")); };
+  const hud = h("div", { class: "hud" }, hearted ? hEl : mEl, pb, cEl);
+  const tgt = h("div", { class: "target", "aria-live": "polite" });
+  const arena = h("div", { class: "arena" });
+  app.append(hud, tgt, arena);
+  drawH(); mEl.textContent = "❌ ٠";
+  const api = {
+    target(t) { tgt.textContent = t; flash(tgt, "flash"); },
+    progress(f) { pb.firstChild.style.width = Math.min(100, f * 100) + "%"; },
+    good() { streak++; sfx.ok(streak - 1); if (streak >= 3) { sfx.combo(streak); cEl.textContent = "🔥 ×" + ar(streak); cEl.style.visibility = "visible"; flash(cEl, "pop"); } },
+    hit() { if (over) return false; hearts--; streak = 0; cEl.style.visibility = "hidden"; sfx.bad(); if (hearts === 1) setTimeout(sfx.heart, 300); drawH(); flash(arena, "shake"); if (navigator.vibrate) navigator.vibrate(60); if (hearts <= 0) { over = true; setTimeout(fail, 500); return false; } return true; },
+    mistake() { mistakes++; streak = 0; cEl.style.visibility = "hidden"; sfx.bad(); mEl.textContent = "❌ " + ar(mistakes); },
+    get over() { return over; },
+    win(pairs) {
+      if (over) return; over = true; clean();
+      let st;
+      if (hearted) st = hearts; else if (G.type === "flip") st = mistakes <= pairs / 2 ? 3 : mistakes <= pairs ? 2 : 1; else st = mistakes === 0 ? 3 : mistakes <= 2 ? 2 : 1;
+      if (st > starsOf(key)) { store.stars[key] = st; save(); }
+      sfx.win(); if (st === 3) confetti();
+      const nx = gi + 1 < S.games.length ? () => play(si, gi + 1) : si + 1 < SECTIONS.length ? () => section(si + 1) : home;
+      modal("🏆", ["", "أحسنت!", "رائع جدًّا!", "بطل! علامة كاملة"][st], hearted ? `بقي لك ${ar(hearts)} ${hearts === 1 ? "قلب" : "قلوب"}` : mistakes ? `عدد الأخطاء: ${ar(mistakes)}` : "بلا أي خطأ", st,
+        [["🔁 مرة أخرى", () => play(si, gi)], [gi + 1 < S.games.length ? "اللعبة التالية" : "المحطة التالية", nx, 1]]);
+    },
+    clean(f) { cleanup.push(f); }
+  };
+  function fail() { clean(); sfx.fail(); modal("💔", "انتهت القلوب!", "لا بأس، ركّز وحاول مرة أخرى.", 0, [["🏠 المحطة", () => section(si)], ["🔁 حاول مجددًا", () => play(si, gi), 1]]); }
+  const starter = ENG[G.type](arena, G, api);
+  if (starter) {
+    const cov = h("div", { class: "cover" }, h("div", { class: "box" }, h("div", { class: "big" }, ICON[G.type][0]), h("p", {}, G.how || HOW[G.type]),
+      h("button", { class: "go", onclick: () => { cov.remove(); countdown(arena, starter); } }, "ابدأ ▶")));
+    arena.append(cov); sfx.open();
+  } else setTimeout(sfx.intro, 120);
+}
+function countdown(arena, done) {
+  const ov = h("div", { class: "cd" }); arena.append(ov);
+  const seq = ["٣", "٢", "١", "انطلق!"]; let i = 0, tm;
+  const step = () => { if (!ov.isConnected && i) return; if (i < seq.length) { ov.innerHTML = ""; ov.append(h("span", { class: i === 3 ? "gow" : "" }, seq[i])); i === 3 ? sfx.go() : sfx.count(); i++; tm = setTimeout(step, i === 4 ? 520 : 620); } else { ov.remove(); done(); } };
+  step();
+}
+const HOW = {
+  runner: "اقرأ السؤال، ثم اضغط على المسار الذي فيه الإجابة الصحيحة قبل أن تصل البوابة.",
+  catch: "اسحب السلة يمينًا ويسارًا، والتقط الكلمات الصحيحة فقط.",
+  bubbles: "فرقع الفقاعات التي تحمل الكلمات المطلوبة فقط.",
+  whack: "اضرب الكلمات الصحيحة بسرعة قبل أن تختبئ!",
+  belt: "اختر الصندوق الصحيح للبطاقة الأمامية قبل أن تسقط من السير."
+};
+function modal(icon, title, msg, st, btns) {
+  const m = h("div", { class: "modal" }, h("div", { class: "res" },
+    h("div", { class: "big" }, st ? [1, 2, 3].map(i => h("span", { class: i <= st ? "sOn" : "", style: i <= st ? `animation-delay:${.35 + (i - 1) * .38}s` : "opacity:.18;filter:grayscale(1)" }, "⭐")) : icon),
+    h("h2", {}, title), h("p", {}, msg),
+    h("div", { class: "row" }, btns.map(([t, f, p]) => h("button", { class: "btn" + (p ? " pri" : ""), onclick: () => { m.remove(); f(); } }, t)))));
+  document.body.append(m);
+  if (st) for (let i = 0; i < st; i++) setTimeout(() => sfx.star(i), 350 + i * 380 + 250);
+}
+
+/* ===== canvas helpers ===== */
+function mkCanvas(arena, W, H) {
+  const dpr = Math.min(2, devicePixelRatio || 1);
+  const c = h("canvas", { width: W * dpr, height: H * dpr }); const x = c.getContext("2d"); x.scale(dpr, dpr);
+  arena.append(c);
+  const pos = e => { const r = c.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width * W, y: (e.clientY - r.top) / r.height * H }; };
+  return [c, x, pos];
+}
+function loop(fn, api) { let on = true, last = performance.now(); const f = t => { if (!on) return; const dt = Math.min(3, (t - last) / 16.67); last = t; fn(dt, t); requestAnimationFrame(f); }; requestAnimationFrame(f); api.clean(() => on = false); }
+function wrap(x, text, maxW) {
+  const words = String(text).split(" "); const lines = []; let cur = "";
+  words.forEach(w => { const t = cur ? cur + " " + w : w; if (x.measureText(t).width > maxW && cur) { lines.push(cur); cur = w; } else cur = t; });
+  if (cur) lines.push(cur); return lines;
+}
+function rr(x, X, Y, w, hh, r) { x.beginPath(); x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + hh, r); x.arcTo(X + w, Y + hh, X, Y + hh, r); x.arcTo(X, Y + hh, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath(); }
+function label(x, text, cx, cy, maxW, size, fill, bg, stroke) {
+  x.font = `800 ${size}px ${FONT}`; x.direction = "rtl"; x.textAlign = "center"; x.textBaseline = "middle";
+  const lines = wrap(x, text, maxW - 16), lh = size * 1.2;
+  const w = Math.min(maxW, Math.max(...lines.map(l => x.measureText(l).width)) + 22), hh = lines.length * lh + 14;
+  if (bg) { rr(x, cx - w / 2, cy - hh / 2, w, hh, 12); x.fillStyle = bg; x.fill(); x.lineWidth = 3; x.strokeStyle = stroke || "#2B2140"; x.stroke(); }
+  x.fillStyle = fill; lines.forEach((l, i) => x.fillText(l, cx, cy - hh / 2 + 7 + lh * (i + .5)));
+  return { w, h: hh };
+}
+function burst(parts, X, Y, col, n = 12) { for (let i = 0; i < n; i++) { const a = Math.random() * 6.28, s = 2 + Math.random() * 4; parts.push({ x: X, y: Y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: 1, c: col }); } }
+function drawParts(x, parts, dt) { for (let i = parts.length - 1; i >= 0; i--) { const p = parts[i]; p.x += p.vx * dt; p.y += p.vy * dt; p.vy += .15 * dt; p.life -= .03 * dt; if (p.life <= 0) { parts.splice(i, 1); continue; } x.globalAlpha = p.life; x.fillStyle = p.c; x.beginPath(); x.arc(p.x, p.y, 4, 0, 6.29); x.fill(); } x.globalAlpha = 1; }
+function floatTxt(list, t, X, Y, c) { list.push({ t, x: X, y: Y, life: 1, c }); }
+function drawFloat(x, list, dt) { for (let i = list.length - 1; i >= 0; i--) { const f = list[i]; f.y -= 1.2 * dt; f.life -= .025 * dt; if (f.life <= 0) { list.splice(i, 1); continue; } x.globalAlpha = f.life; x.font = `800 26px ${FONT}`; x.textAlign = "center"; x.fillStyle = f.c; x.fillText(f.t, f.x, f.y); } x.globalAlpha = 1; }
+
+/* ===== backgrounds ===== */
+const SCENES = {
+  mountain: { top: "#9FD8F5", bot: "#CDB590", path: "#B89C74", deco: ["🪨", "⛰️", "🌿", "🌴"] },
+  sky: { top: "#5EB8F0", bot: "#BDE6FF", path: null, deco: ["☁️", "☁️", "🐦"] },
+  village: { top: "#A8E07E", bot: "#7CC35A", path: "#D9C08F", deco: ["🌴", "🌴", "🏠", "🐐"] },
+  desert: { top: "#FFD99A", bot: "#EDB663", path: "#D69B4E", deco: ["🌵", "🐪", "🏜️", "🌴"] },
+  sea: { top: "#6CC6F0", bot: "#1F7FC4", path: null, deco: ["🐟", "⛵", "🐚"] },
+  city: { top: "#B9C6D6", bot: "#8E9AAC", path: "#6D7686", deco: ["🏢", "🕌", "🌳"] }
+};
+function drawBg(x, W, H, sc, off, deco) {
+  const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, sc.top); g.addColorStop(1, sc.bot); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  if (sc.path) { x.fillStyle = sc.path; x.fillRect(24, 0, W - 48, H); }
+  x.font = `30px ${FONT}`; x.textAlign = "center"; x.textBaseline = "middle";
+  deco.forEach(d => { x.globalAlpha = .9; x.fillText(d.e, d.x, d.y); });
+  x.globalAlpha = 1;
+}
+
+/* ===== ENGINES ===== */
+const ENG = {};
+
+/* runner: lanes with answer gates */
+ENG.runner = (arena, G, api) => {
+  const W = 360, H = 520, [c, x, pos] = mkCanvas(arena, W, H);
+  const sc = SCENES[G.scene || "mountain"];
+  const qs = G.shuffle === false ? G.qs : shuffle(G.qs);
+  let qi = -1, gate = null, lane = 1, px = W / 2, t0 = 0, parts = [], fl = [], started = false, n = 3;
+  const deco = Array.from({ length: 6 }, (_, i) => ({ e: pick(sc.deco), x: i % 2 ? 12 : W - 12, y: i * 95 }));
+  const PY = H - 62;
+  function next() {
+    qi++; api.progress(qi / qs.length);
+    if (qi >= qs.length) { setTimeout(() => api.win(), 400); gate = null; return; }
+    const q = qs[qi]; n = q.o.length; const opts = shuffle(q.o.map((t, k) => ({ t, k })));
+    gate = { y: -110, opts, ans: opts.findIndex(o => o.k === 0), done: false, res: null };
+    api.target(q.q);
+    if (lane >= n) lane = n - 1;
+  }
+  const laneX = i => (W - 48) * (i + .5) / n + 24;
+  window.__t = { get gate() { return gate; }, set lane(v) { lane = v; } };
+  c.addEventListener("pointerdown", e => { if (!started) return; const p = pos(e); const nl = Math.max(0, Math.min(n - 1, Math.floor((p.x - 24) / ((W - 48) / n)))); if (nl !== lane) sfx.swish(); else sfx.tap(); lane = nl; });
+  const kd = e => { if (!started) return; if (e.key === "ArrowLeft") lane = Math.max(0, lane - 1); if (e.key === "ArrowRight") lane = Math.min(n - 1, lane + 1); };
+  addEventListener("keydown", kd); api.clean(() => removeEventListener("keydown", kd));
+  let off = 0;
+  loop((dt, t) => {
+    const sp = started && gate ? (1.5 + qi * .09) : .6;
+    off = (off + sp * dt) % 40;
+    deco.forEach(d => { d.y += sp * dt; if (d.y > H + 30) { d.y = -30; d.e = pick(sc.deco); } });
+    drawBg(x, W, H, sc, off, deco);
+    // lane lines
+    x.strokeStyle = "rgba(255,255,255,.7)"; x.lineWidth = 4; x.setLineDash([20, 20]); x.lineDashOffset = -off;
+    for (let i = 1; i < n; i++) { const lx = 24 + (W - 48) * i / n; x.beginPath(); x.moveTo(lx, 0); x.lineTo(lx, H); x.stroke(); }
+    x.setLineDash([]);
+    if (gate) {
+      gate.y += sp * dt * (gate.done ? 1.6 : 1);
+      const bw = (W - 48) / n - 8;
+      gate.opts.forEach((o, i) => {
+        let bg = "#FFF6DD", fg = "#2B2140";
+        if (gate.done) { if (i === gate.ans) { bg = "#18A558"; fg = "#fff"; } else if (i === lane && gate.res === false) { bg = "#E5383B"; fg = "#fff"; } }
+        x.fillStyle = "#6B4A2B"; x.fillRect(laneX(i) - 4, gate.y + 20, 8, 60);
+        label(x, o.t, laneX(i), gate.y, bw, n === 2 ? 18 : 16, fg, bg);
+      });
+      if (!gate.done && gate.y >= PY - 50) {
+        gate.done = true; gate.res = lane === gate.ans;
+        if (gate.res) { api.good(); burst(parts, laneX(lane), PY - 20, "#FFC83D", 16); floatTxt(fl, "+١", laneX(lane), PY - 40, "#18A558"); }
+        else { floatTxt(fl, "✗", laneX(lane), PY - 40, "#E5383B"); api.hit(); }
+      }
+      if (gate.done && gate.y > H + 60 && !api.over) next();
+    }
+    px += (laneX(lane) - px) * Math.min(1, .25 * dt);
+    x.font = `46px ${FONT}`; x.textAlign = "center"; x.textBaseline = "middle";
+    x.fillStyle = "rgba(0,0,0,.2)"; x.beginPath(); x.ellipse(px, PY + 26, 20, 6, 0, 0, 6.29); x.fill();
+    x.fillText(G.hero || "🏃", px, PY + Math.sin(t / 120) * 3);
+    drawParts(x, parts, dt); drawFloat(x, fl, dt);
+  }, api);
+  return () => { started = true; next(); };
+};
+
+/* shared spawner for catch / bubbles / whack */
+function roundMgr(G, api, onRound) {
+  const need = G.need || 6; let r = 0, cnt = 0;
+  const total = G.rounds.length * need;
+  const R = () => G.rounds[r];
+  const draw = () => { const Rr = R(); if (!Rr) return null; const good = Math.random() < .55; return { t: pick(good ? Rr.good : Rr.bad), good }; };
+  return {
+    R, draw, get cnt() { return cnt; },
+    start() { api.target(R().target); api.progress(0); },
+    got() { cnt++; api.progress((r * need + cnt) / total); if (cnt >= need) { r++; cnt = 0; if (r >= G.rounds.length) { setTimeout(() => api.win(), 350); return "end"; } api.target("⭐ " + R().target); sfx.level(); onRound && onRound(); return "round"; } }
+  };
+}
+
+/* catch: basket catches falling words */
+ENG.catch = (arena, G, api) => {
+  const W = 360, H = 480, [c, x, pos] = mkCanvas(arena, W, H), sc = SCENES[G.scene || "desert"];
+  const rm = roundMgr(G, api, () => items.forEach(i => i.dead = true));
+  let items = [], parts = [], fl = [], bx = W / 2, tx = W / 2, started = false, spawnT = 0, dragging = false, lastX = W / 2;
+  const deco = Array.from({ length: 4 }, (_, i) => ({ e: pick(sc.deco), x: i % 2 ? 14 : W - 14, y: 60 + i * 110 }));
+  const mv = e => { tx = Math.max(40, Math.min(W - 40, pos(e).x)); };
+  c.addEventListener("pointerdown", e => { dragging = true; mv(e); c.setPointerCapture && c.setPointerCapture(e.pointerId); });
+  c.addEventListener("pointermove", e => { if (dragging || e.pointerType === "mouse") mv(e); });
+  c.addEventListener("pointerup", () => dragging = false);
+  const kd = e => { if (e.key === "ArrowLeft") tx = Math.max(40, tx - 40); if (e.key === "ArrowRight") tx = Math.min(W - 40, tx + 40); };
+  addEventListener("keydown", kd); api.clean(() => removeEventListener("keydown", kd));
+  const BY = H - 44;
+  window.__t = { get items() { return items; }, set tx(v) { tx = v; } };
+  loop((dt, t) => {
+    drawBg(x, W, H, { ...sc, path: null }, 0, deco);
+    if (started && !api.over) {
+      spawnT -= dt * 16.67;
+      if (spawnT <= 0) { const d = rm.draw() || { t: "", good: false, skip: 1 }; if (d.skip) { spawnT = 1e9; } else { x.font = `800 18px ${FONT}`; const w = Math.min(200, x.measureText(d.t).width + 26); let nx, tries = 0; do { nx = 30 + w / 2 + Math.random() * (W - 60 - w); } while (tries++ < 8 && Math.abs(nx - lastX) < 110); lastX = nx; items.push({ ...d, x: nx, y: -30, v: 1.05 + Math.random() * .25 + rm.cnt * .04, w }); spawnT = 1450 - rm.cnt * 30; } }
+    }
+    bx += (tx - bx) * Math.min(1, .35 * dt);
+    items.forEach(it => {
+      if (it.dead) return; it.y += it.v * dt;
+      label(x, it.t, it.x, it.y, 210, 18, "#2B2140", "#FFFFFF");
+      if (it.y > BY - 34 && it.y < BY + 6 && Math.abs(it.x - bx) < 34 + it.w / 5) {
+        it.dead = true;
+        if (it.good) { api.good(); burst(parts, bx, BY - 20, "#FFC83D"); floatTxt(fl, "+١", bx, BY - 50, "#18A558"); rm.got(); }
+        else { burst(parts, bx, BY - 20, "#E5383B"); floatTxt(fl, "✗", bx, BY - 50, "#E5383B"); api.hit(); }
+      }
+      if (it.y > H + 30) it.dead = true;
+    });
+    items = items.filter(i => !i.dead);
+    x.fillStyle = "rgba(0,0,0,.2)"; x.beginPath(); x.ellipse(bx, BY + 24, 42, 7, 0, 0, 6.29); x.fill();
+    x.font = `60px ${FONT}`; x.textAlign = "center"; x.textBaseline = "middle"; x.fillText(G.basket || "🧺", bx, BY);
+    drawParts(x, parts, dt); drawFloat(x, fl, dt);
+  }, api);
+  return () => { started = true; rm.start(); };
+};
+
+/* bubbles: tap rising bubbles */
+ENG.bubbles = (arena, G, api) => {
+  const W = 360, H = 480, [c, x, pos] = mkCanvas(arena, W, H);
+  const rm = roundMgr(G, api, () => bs.forEach(b => b.dead = true));
+  let bs = [], parts = [], fl = [], started = false, spawnT = 0;
+  c.addEventListener("pointerdown", e => {
+    if (!started || api.over) return; const p = pos(e);
+    let b = null, bd = 1e9; bs.forEach(o => { const d = Math.hypot(p.x - o.cx, p.y - o.y); if (!o.dead && d < o.r + 6 && d / o.r < bd) { bd = d / o.r; b = o; } });
+    if (b) {
+      b.dead = true; sfx.pop();
+      if (b.good) { burst(parts, b.cx, b.y, "#8FE3FF", 16); floatTxt(fl, "+١", b.cx, b.y, "#18A558"); api.good(); rm.got(); }
+      else { burst(parts, b.cx, b.y, "#E5383B", 16); floatTxt(fl, "✗", b.cx, b.y, "#E5383B"); api.hit(); }
+    }
+  });
+  window.__t = { get bs() { return bs; }, c };
+  loop((dt, t) => {
+    const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, "#2E86C1"); g.addColorStop(1, "#1B4F72"); x.fillStyle = g; x.fillRect(0, 0, W, H);
+    x.fillStyle = "rgba(255,255,255,.07)"; for (let i = 0; i < 6; i++) { x.fillRect(i * 70 + Math.sin(t / 900 + i) * 10, 0, 18, H); }
+    if (started && !api.over) { spawnT -= dt * 16.67; if (spawnT <= 0) { const d = rm.draw(); if (!d) { spawnT = 1e9; } else { x.font = `800 18px ${FONT}`; const r = Math.max(40, Math.min(66, x.measureText(d.t).width / 2 + 16)); bs.push({ ...d, x0: r + Math.random() * (W - 2 * r), y: H + r, r, v: .85 + Math.random() * .5 + rm.cnt * .04, ph: Math.random() * 6 }); spawnT = 900; } } }
+    bs.forEach(b => {
+      if (b.dead) return; b.y -= b.v * dt; b.cx = b.x0 + Math.sin(t / 700 + b.ph) * 14;
+      const gr = x.createRadialGradient(b.cx - b.r * .35, b.y - b.r * .35, 4, b.cx, b.y, b.r);
+      gr.addColorStop(0, "rgba(255,255,255,.95)"); gr.addColorStop(.35, "rgba(190,235,255,.55)"); gr.addColorStop(1, "rgba(120,200,255,.35)");
+      x.fillStyle = gr; x.beginPath(); x.arc(b.cx, b.y, b.r, 0, 6.29); x.fill(); x.lineWidth = 2.5; x.strokeStyle = "rgba(255,255,255,.9)"; x.stroke();
+      label(x, b.t, b.cx, b.y, b.r * 2 - 4, 17, "#10324A", null);
+      if (b.y < -b.r) b.dead = true;
+    });
+    bs = bs.filter(b => !b.dead);
+    drawParts(x, parts, dt); drawFloat(x, fl, dt);
+  }, api);
+  return () => { started = true; rm.start(); };
+};
+
+/* whack: words pop out of holes */
+ENG.whack = (arena, G, api) => {
+  const rm = roundMgr(G, api, () => holes.forEach(hd => hide(hd)));
+  const grid = h("div", { class: "holes" }); arena.append(grid);
+  const holes = Array.from({ length: 9 }, () => { const m = h("button", { class: "mole" }); const hl = h("div", { class: "hole" }, m); grid.append(hl); return { m, up: false, d: null, tm: 0 }; });
+  function hide(hd) { hd.up = false; hd.m.classList.remove("up"); clearTimeout(hd.tm); setTimeout(() => { if (!hd.up) hd.m.className = "mole"; }, 250); }
+  holes.forEach(hd => hd.m.addEventListener("pointerdown", () => {
+    if (!hd.up || hd.hit || api.over) return; hd.hit = true;
+    sfx.boing(); if (hd.d.good) { hd.m.classList.add("hitok"); api.good(); rm.got(); } else { hd.m.classList.add("hitbad"); api.hit(); }
+    clearTimeout(hd.tm); hd.tm = setTimeout(() => hide(hd), 380);
+  }));
+  let iv; window.__t = { rm };
+  const tick = () => {
+    if (api.over) return;
+    const free = holes.filter(hd => !hd.up); if (!free.length || holes.filter(hd => hd.up).length >= 3) return;
+    const d0 = rm.draw(); if (!d0) return; const hd = pick(free); hd.d = d0; hd.hit = false; hd.m.className = "mole"; hd.m.textContent = hd.d.t;
+    requestAnimationFrame(() => { hd.up = true; hd.m.classList.add("up"); });
+    hd.tm = setTimeout(() => hide(hd), Math.max(1300, 2200 - rm.cnt * 80));
+  };
+  api.clean(() => { clearInterval(iv); holes.forEach(hd => clearTimeout(hd.tm)); });
+  return () => { rm.start(); tick(); iv = setInterval(tick, 700); };
+};
+
+/* belt: conveyor sorting into two bins */
+ENG.belt = (arena, G, api) => {
+  const W = 360, H = 250, [c, x] = mkCanvas(arena, W, H);
+  const items = shuffle(G.items), total = items.length;
+  let q = [], spawned = 0, done = 0, started = false, parts = [], fl = [], roll = 0, flash = [0, 0, 0, 0];
+  const BY = 92, binX = [W * .75, W * .25], binY = H - 40;
+  const btns = h("div", { class: "bins" }, G.bins.map((b, i) => h("button", { class: "binb", style: `background:${b.c}`, onpointerdown: () => decide(i) }, b.t)));
+  arena.after(btns); api.clean(() => btns.remove());
+  const kd = e => { if (e.key === "ArrowRight") decide(0); if (e.key === "ArrowLeft") decide(1); };
+  addEventListener("keydown", kd); api.clean(() => removeEventListener("keydown", kd));
+  function front() { return q.find(it => !it.res); }
+  window.__t = { front, decide: i => decide(i) };
+  function decide(bi) {
+    if (!started || api.over) return; const it = front(); if (!it || it.x > W - 20) return;
+    it.res = { bi, ok: it.b === bi }; it.tx = binX[bi]; it.ty = binY; sfx.whoosh();
+    if (it.res.ok) { api.good(); flash[bi] = 1; } else { flash[bi] = -1; api.hit(); }
+    fin(it);
+  }
+  function fin(it) { done++; api.progress(done / total); if (done >= total) setTimeout(() => api.win(), 700); }
+  loop(dt => {
+    const sp = started ? .95 + done * .045 : 0;
+    x.fillStyle = "#EAF3F8"; x.fillRect(0, 0, W, H);
+    // belt
+    roll = (roll + sp * dt) % 24;
+    x.fillStyle = "#3C3F4A"; rr(x, -10, BY + 34, W + 20, 26, 13); x.fill();
+    x.fillStyle = "#6E7280"; for (let k = -1; k < W / 24 + 2; k++) { x.fillRect(k * 24 + (24 - roll), BY + 40, 12, 14); }
+    // bins
+    G.bins.forEach((b, i) => {
+      x.fillStyle = b.c; rr(x, binX[i] - 70, binY - 22, 140, 50, 10); x.fill(); x.lineWidth = 3; x.strokeStyle = flash[i] > 0 ? "#18A558" : flash[i] < 0 ? "#E5383B" : "#2B2140"; x.lineWidth = flash[i] ? 6 : 3; x.stroke();
+      x.font = `800 17px ${FONT}`; x.textAlign = "center"; x.textBaseline = "middle"; x.direction = "rtl"; x.fillStyle = "#fff"; x.fillText(b.t, binX[i], binY + 3);
+      flash[i] *= .93; if (Math.abs(flash[i]) < .05) flash[i] = 0;
+    });
+    // spawn
+    if (started && spawned < total && (!q.length || q[q.length - 1].x < W - 190)) { q.push({ ...items[spawned++], x: W + 90, y: BY }); }
+    q.forEach(it => {
+      if (it.res) { it.x += (it.tx - it.x) * .15 * dt; it.y += (it.ty - it.y) * .15 * dt; it.a = (it.a ?? 1) - .03 * dt; }
+      else { it.x -= sp * dt; if (it.x < 30) { it.res = { miss: true }; it.tx = it.x - 40; it.ty = H + 60; floatTxt(fl, "فاتتك!", 90, 50, "#E5383B"); api.hit(); fin(it); } }
+      x.globalAlpha = Math.max(0, Math.min(1, it.a ?? 1));
+      const isF = it === front();
+      label(x, it.t, it.x, it.y, 210, 18, it.res ? (it.res.ok ? "#fff" : it.res.miss ? "#2B2140" : "#fff") : "#2B2140", it.res ? (it.res.ok ? "#18A558" : it.res.miss ? "#FFF6DD" : "#E5383B") : isF ? "#FFE58A" : "#FFFFFF");
+      x.globalAlpha = 1;
+    });
+    q = q.filter(it => (it.a ?? 1) > 0 && it.y < H + 50);
+    if (started && front()) { x.font = `22px ${FONT}`; x.textAlign = "center"; x.fillText("⬇️", front().x, BY - 44 + Math.sin(performance.now() / 150) * 3); }
+    drawParts(x, parts, dt); drawFloat(x, fl, dt);
+  }, api);
+  return () => { started = true; api.target(G.prompt); api.progress(0); };
+};
+
+/* flip: memory pairs */
+ENG.flip = (arena, G, api) => {
+  api.target(G.prompt || "اقلب بطاقتين، وطابق كل كلمة بمعناها");
+  const cards = shuffle(G.pairs.flatMap((p, i) => [{ t: p[0], i }, { t: p[1], i }]));
+  const cols = cards.length <= 8 ? 2 : cards.length <= 12 ? 3 : 4;
+  const grid = h("div", { class: "fgrid", style: `grid-template-columns:repeat(${cols},1fr)` }); arena.append(grid);
+  let open = [], lock = false, left = G.pairs.length;
+  cards.forEach(cd => {
+    const b = h("button", { class: "fc", "aria-label": "بطاقة" }, h("div", { class: "in" }, h("div", { class: "fa" }, "؟"), h("div", { class: "ba" + (cd.t.length > 14 ? " small" : "") }, cd.t)));
+    cd.el = b;
+    b.onclick = () => {
+      if (lock || b.classList.contains("open")) return; b.classList.add("open"); sfx.flip(); open.push(cd);
+      if (open.length === 2) {
+        const [a, c] = open; open = [];
+        if (a.i === c.i) { setTimeout(() => { a.el.classList.add("done"); c.el.classList.add("done"); sfx.match(); api.good(); left--; api.progress(1 - left / G.pairs.length); if (!left) setTimeout(() => api.win(G.pairs.length), 600); }, 350); }
+        else { lock = true; setTimeout(() => { api.mistake(); a.el.classList.remove("open"); c.el.classList.remove("open"); lock = false; }, 900); }
+      }
+    };
+    grid.append(b);
+  });
+  return null;
+};
+
+/* train: attach wagons in order */
+ENG.train = (arena, G, api) => {
+  let r = 0; const total = G.rounds.reduce((n, R) => n + R.items.length, 0); let doneN = 0;
+  function show() {
+    arena.innerHTML = ""; const R = G.rounds[r]; let k = 0;
+    api.target(R.title);
+    const trn = h("div", { class: "train" }, h("div", { class: "loco" }, "🚂"));
+    const track = h("div", { class: "track", style: "position:relative" }, trn);
+    const yard = h("div", { class: "yard" });
+    shuffle(R.items.map((t, i) => ({ t, i }))).forEach(o => {
+      const b = h("button", { class: "ycard" }, o.t);
+      b.onclick = () => {
+        if (o.i !== k) { api.mistake(); flash(b, "shake"); return; }
+        b.remove(); api.good(); sfx.chug(); k++; doneN++; api.progress(doneN / total);
+        trn.append(h("div", { class: "wagon" }, (R.num === false ? "" : ar(k) + ". ") + o.t));
+        track.scrollTo({ left: -trn.scrollWidth, behavior: "smooth" });
+        const sm = h("span", { class: "smoke", style: "right:30px;top:0" }, "💨"); track.append(sm); setTimeout(() => sm.remove(), 1200);
+        if (k === R.items.length) {
+          sfx.toot();
+          setTimeout(() => { trn.style.transform = "translateX(160%)"; }, 500);
+          setTimeout(() => { r++; r < G.rounds.length ? show() : api.win(); }, 2600);
+        }
+      };
+      yard.append(b);
+    });
+    arena.append(track, yard);
+  }
+  show();
+  return null;
+};
+/* ===== content ===== */
+const SECTIONS = [
+{ id: "review", kind: "درس المراجعة", title: "مها والعصافير", emoji: "🐦", color: "#EF8E3B", games: [
+  { id: "r1", type: "runner", title: "رحلة الفهم", hero: "🐦", scene: "sky", how: "طِر بالعصفور إلى البوابة التي تحمل الإجابة الصحيحة.", qs: [
+    { q: "متى حطّت العصافير على حافة الشباك؟", o: ["لمّا أشرقت الشمس", "عند غروب الشمس", "في منتصف الليل"] },
+    { q: "كم عدد العصافير في القصة؟", o: ["ثلاثة", "اثنان", "خمسة"] },
+    { q: "أين كانت مها عندما نظرت العصافير إلى الغرفة؟", o: ["نائمة على السرير", "في المدرسة", "في الحديقة"] },
+    { q: "ماذا فعلت العصافير لتوقظ مها؟", o: ["غرّدت أروع تغريد", "طرقت الباب", "أطفأت المصباح"] },
+    { q: "لماذا لم تذهب مها إلى المدرسة؟", o: ["لأنها في إجازة", "لأنها مريضة", "لأنها كسلى"] },
+    { q: "لماذا خجلت العصافير؟", o: ["لأنها أخطأت في حق مها", "لأنها جائعة", "لأن الشباك مغلق"] },
+    { q: "كيف اعتذرت العصافير لمها؟", o: ["غنّت لها أجمل أغاريدها", "طارت بعيدًا", "نامت معها"] }] },
+  { id: "r2", type: "whack", title: "صيد أقسام الكلمة", need: 5, rounds: [
+    { target: "اضرب الأفعال فقط", good: ["حطّت", "نظرت", "صاح", "قال", "غرّدت", "ضحكت", "أفاقت", "خجلت"], bad: ["العصافير", "الشمس", "الغرفة", "مها", "في", "على", "السرير", "إلى"] },
+    { target: "اضرب الأسماء فقط", good: ["العصافير", "الشمس", "الغرفة", "مها", "السرير", "المدرسة", "شبّاك", "عطلة"], bad: ["حطّت", "نظرت", "في", "على", "من", "قال", "إلى", "ضحكت"] },
+    { target: "اضرب الحروف فقط", good: ["في", "على", "إلى", "من", "عن", "لكن"], bad: ["مها", "صاح", "الشمس", "غرّدت", "الغرفة", "حارت"] }] },
+  { id: "r3", type: "belt", title: "جملة مفيدة؟", prompt: "هل الجملة على السير مفيدة؟", bins: [{ t: "مفيدة ✅", c: "#18A558" }, { t: "غير مفيدة ❌", c: "#E5383B" }], items: [
+    { t: "ردّت العصافير", b: 0 }, { t: "حارت العصافير الثلاثة", b: 0 }, { t: "البنت الصغيرة نائمة", b: 0 }, { t: "أشرقت الشمس", b: 0 }, { t: "مها في إجازة", b: 0 },
+    { t: "على حافة", b: 1 }, { t: "من أغاريد", b: 1 }, { t: "في الغرفة", b: 1 }, { t: "إلى المدرسة", b: 1 }, { t: "العصافير الثلاثة", b: 1 }] },
+  { id: "r4", type: "belt", title: "اسمية أم فعلية؟", prompt: "هل تبدأ الجملة باسم أم بفعل؟", bins: [{ t: "جملة اسمية", c: "#2D9CDB" }, { t: "جملة فعلية", c: "#8E44AD" }], items: [
+    { t: "السرير فارغ", b: 0 }, { t: "النافذة مفتوحة", b: 0 }, { t: "مها تصعد الحافلة", b: 0 }, { t: "البنت نائمة", b: 0 }, { t: "العصافير خجلة", b: 0 },
+    { t: "غادرت مها الغرفة", b: 1 }, { t: "طار العصفور الثاني", b: 1 }, { t: "حطّت العصافير", b: 1 }, { t: "ضحكت مها", b: 1 }, { t: "غنّت العصافير", b: 1 }] },
+  { id: "r5", type: "catch", title: "سلة التاء", need: 5, scene: "sky", rounds: [
+    { target: "التقط الكلمات المنتهية بتاء مربوطة (ة)", good: ["الغرفة", "حافة", "الصغيرة", "نائمة", "مدهوشة", "عطلة", "إجازة", "المدرسة"], bad: ["ضحكت", "قالت", "خجلت", "أخطأت", "نظرات", "بنت", "وقت"] },
+    { target: "التقط الكلمات المنتهية بتاء مفتوحة (ت)", good: ["ضحكت", "قالت", "خجلت", "أخطأت", "نظرات", "بنت", "وقت", "حارت"], bad: ["الغرفة", "حافة", "نائمة", "عطلة", "إجازة", "المدرسة"] }] }
+]},
+{ id: "listen", kind: "استماع", title: "أجمل مكان في الدنيا", emoji: "🦅", color: "#2D9CDB", games: [
+  { id: "l1", type: "runner", title: "طيران النسر", hero: "🦅", scene: "sky", how: "حلّق بالنسر نحو الإجابة الصحيحة.", qs: [
+    { q: "احتضان النسر للصخرة واستنشاقه الهواء بعمق يدل على:", o: ["حبّه لموطنه وحنينه إليه", "خوفه من الطيران", "بحثه عن طعام"] },
+    { q: "أجمل مكان في الدنيا عند النسر هو:", o: ["موطنه الذي نشأ فيه", "قصر الملك", "أي مكان فيه طعام"] },
+    { q: "بِمَ اتصف النسر؟", o: ["الوفاء لوطنه", "الكسل", "الغرور"] },
+    { q: "كيف أعبّر عن حبي لوطني؟", o: ["أحافظ عليه وأجتهد في دراستي", "أرمي النفايات في الطريق", "أكتب على الجدران"] },
+    { q: "ماذا نتعلم من قصة النسر؟", o: ["لا شيء يعدل حب الوطن", "القصور أجمل من الأوطان", "الطيور لا تحب أوطانها"] }] },
+  { id: "l2", type: "bubbles", title: "فقاعات حب الوطن", need: 6, rounds: [
+    { target: "فرقع الأفعال التي تدل على حب الوطن", good: ["أحافظ على النظافة", "أحترم العلم", "أزرع شجرة", "أجتهد في دراستي", "أحمي الممتلكات", "أساعد الآخرين"], bad: ["أرمي النفايات", "أكتب على الجدران", "أهدر الماء", "أكسر المقاعد", "أقطع الأشجار"] }] }
+]},
+{ id: "emblem", kind: "مستند بصري", title: "قراءة شعار", emoji: "🗡️", color: "#D6001C", games: [
+  { id: "e1", type: "catch", title: "أجزاء الشعار", need: 6, scene: "desert", basket: "🧺", rounds: [
+    { target: "التقط ما تراه في الشعار الوطني العماني", good: ["الخنجر", "سيفان متقاطعان", "حزام الخنجر", "الخنجر في الوسط"], bad: ["رمح", "درع", "قوس وسهم", "تاج", "نخلة", "سفينة"] }] },
+  { id: "e2", type: "runner", title: "سباق الشعار", hero: "🏃", scene: "desert", qs: [
+    { q: "ماذا يُسمّى الشكل الذي يضم الخنجر والسيفين؟", o: ["الشعار الوطني لسلطنة عمان", "العلم الوطني", "خريطة عمان"] },
+    { q: "كم سيفًا في الشعار؟", o: ["اثنان", "ثلاثة", "واحد"] },
+    { q: "ما الذي يتوسط الشعار؟", o: ["الخنجر العماني", "النسر", "النخلة"] },
+    { q: "كيف يظهر السيفان في الشعار؟", o: ["متقاطعين", "متوازيين", "مكسورين"] },
+    { q: "الخنجر والسيفان من رموز:", o: ["الأصالة والتراث العماني", "الرياضة الحديثة", "الزراعة"] }] }
+]},
+{ id: "ghumb", kind: "الدرس الأول", title: "مغامرة إلى قرية الغمب", emoji: "⛰️", color: "#27AE60", games: [
+  { id: "g1", type: "runner", title: "صعود الجبل", hero: "🧗", scene: "mountain", how: "تسلّق مع المغامرين، واختر المسار الذي فيه الإجابة الصحيحة.", qs: [
+    { q: "المغامرة إلى قرية الغمب كانت:", o: ["جبلية", "بحرية", "صحراوية"] },
+    { q: "في أي نيابة تقع قرية الغمب؟", o: ["نيابة طيوي", "نيابة مسقط", "نيابة صحار"] },
+    { q: "من كان دليل المغامرة؟", o: ["هاشل", "خالد", "مروان"] },
+    { q: "متى بدأ المغامرون صعود الجبال؟", o: ["التاسعة صباحًا", "الثامنة مساءً", "منتصف الليل"] },
+    { q: "من أين استمد المغامرون طاقتهم؟", o: ["الراحة والماء والتمر", "النوم الطويل", "السيارات"] },
+    { q: "لماذا انفصلت مجموعة من المغامرين؟", o: ["أرادوا الوصول قبل الباقين", "أرادوا العودة للبيت", "خافوا من الطيور"] },
+    { q: "متى وصل المغامرون إلى القرية؟", o: ["الثامنة مساءً", "التاسعة صباحًا", "الظهر"] },
+    { q: "كم كيلومترًا قطع الذين ضلّوا الطريق؟", o: ["٢٧ كيلومترًا", "١٧ كيلومترًا", "٧ كيلومترات"] },
+    { q: "ما الرائحة التي عطّرت نسيم القرية صباحًا؟", o: ["النعناع والليمون", "البخور والعود", "الورد والياسمين"] }] },
+  { id: "g2", type: "flip", title: "معاني الكلمات", prompt: "طابق كل كلمة بمعناها", pairs: [["يقتفي", "يتتبّع"], ["تغمرنا", "تغطّينا"], ["تطوّقنا", "تحيط بنا"], ["مكتسية", "مغطّاة"], ["الشاهقة", "العالية"], ["مغامرة", "حدث فيه مفاجأة وتشويق"]] },
+  { id: "g3", type: "flip", title: "الكلمة وضدها", prompt: "طابق كل كلمة بضدها", pairs: [["تتراءى", "تختفي"], ["الراسيات", "المتحركات"], ["دامس", "مضيء"], ["ثقيلة", "خفيفة"], ["صعود", "نزول"], ["الظلام", "النور"]] },
+  { id: "g4", type: "belt", title: "مبتدأ أم خبر؟", prompt: "الكلمة بين القوسين: مبتدأ أم خبر؟", bins: [{ t: "مبتدأ", c: "#2D9CDB" }, { t: "خبر", c: "#EF8E3B" }], items: [
+    { t: "(المآذن) عالية", b: 0 }, { t: "المآذن (عالية)", b: 1 }, { t: "(الفناء) شاسع", b: 0 }, { t: "الفناء (شاسع)", b: 1 },
+    { t: "(الحديقة) تحيط بالجامع", b: 0 }, { t: "الحديقة (تحيط بالجامع)", b: 1 }, { t: "(البلاط) مصقول", b: 0 }, { t: "البلاط (مصقول)", b: 1 },
+    { t: "(الجبال) شاهقة", b: 0 }, { t: "القطة (فوق السور)", b: 1 }] },
+  { id: "g5", type: "flip", title: "كوّن جملة اسمية", prompt: "طابق كل مبتدأ بالخبر المناسب", pairs: [["الجبال", "شاهقة"], ["مصابيح المغامرين", "تنير الطريق"], ["المغامرون الجدد", "خطواتهم ثقيلة"], ["الطيور", "على شاطئ البحر"], ["لون الوردة", "أحمر"], ["أحمد", "يصلّي في المسجد"]] },
+  { id: "g6", type: "bubbles", title: "همزة القطع والوصل", need: 6, rounds: [
+    { target: "فرقع الكلمات المبدوءة بهمزة قطع (أ / إ)", good: ["أولئك", "أمل", "إلى", "أخرى", "أمورهم", "إذن", "أتوا", "أشعة", "أحمد"], bad: ["انفصلوا", "ابتعادهم", "انطلقنا", "استمد", "اثنان", "ابن", "اسم"] },
+    { target: "فرقع الكلمات المبدوءة بهمزة وصل (ا)", good: ["انفصلوا", "ابتعادهم", "انطلقنا", "استمد", "اثنان", "ابن", "اسم", "الطريق"], bad: ["أولئك", "أمل", "إلى", "أخرى", "إذن", "أحمد"] }] },
+  { id: "g7", type: "train", title: "قطار الخط", rounds: [{ title: "رتّب الكلمات لتكوّن جملة الخط", num: false, items: ["أحبّ", "الإنسان", "المكافح", "لا", "الخامل"] }] }
+]},
+{ id: "bread", kind: "الدرس الثاني", title: "خبز ولبن", emoji: "🫓", color: "#E2A03F", games: [
+  { id: "b1", type: "runner", title: "طريق الفلج", hero: "🧕", scene: "village", how: "امشِ مع سالمة في طريق الفلج، واختر الإجابة الصحيحة.", qs: [
+    { q: "تعيش سالمة في بيئة:", o: ["قروية", "بحرية", "صحراوية"] },
+    { q: "متى تنهض سالمة؟", o: ["مع خيوط الفجر الأولى", "عند الظهر", "بعد غروب الشمس"] },
+    { q: "ماذا تُسمّى الفخاريات المعلّقة التي يُحفظ فيها الماء؟", o: ["الجحال", "الطوبج", "الدريجة"] },
+    { q: "من أين أحضرت سالمة الماء؟", o: ["من الفلج", "من البحر", "من المطر"] },
+    { q: "على ماذا خبزت سالمة الخبز الرقيق؟", o: ["الطوبج", "الهاندوة", "الحصير"] },
+    { q: "ماذا وضعت سالمة فوق رأسها تحت الإناء؟", o: ["الدريجة", "الفانوس", "الجحلة"] },
+    { q: "ماذا ردّد الشيخ تحت الشجرة؟", o: ["دعوات صباحية", "أغنية الحصاد", "قصة قديمة"] }] },
+  { id: "b2", type: "train", title: "قطار الخبز العماني", rounds: [
+    { title: "رتّب مراحل صنع الخبز العماني", items: ["خلطت الطحين بالملح والماء", "قرّبت الطوبج فوق الموقد", "أشعلت النار حتى تلتهب", "مسحت الطوبج بكرة العجين", "رشّت قطرات من الماء", "نضجت الخبزة الرقيقة"] },
+    { title: "رتّب كلمات الحديث الشريف", num: false, items: ["الناس", "سواسية", "كأسنان", "المشط"] }] },
+  { id: "b3", type: "flip", title: "أدوات البيت العماني", prompt: "طابق كل أداة بوصفها", pairs: [["الهاندوة", "إناء معدني ضيّق الفوهة"], ["الطوبج", "صفيحة يُخبز عليها الرقيق"], ["الدريجة", "حلقة من السعف فوق الرأس"], ["الجحال", "فخاريات معلّقة للماء"], ["الفلج", "مجرى ماء يسقي القرية"], ["الحصير", "فراش من سعف النخل"]] },
+  { id: "b4", type: "flip", title: "ضمائر الرفع المتصلة", prompt: "طابق كل ضمير بالفعل المناسب", pairs: [["أنا", "قرأْتُ"], ["أنتَ", "قرأْتَ"], ["أنتِ", "قرأْتِ"], ["نحن", "قرأْنا"], ["أنتما", "قرأْتُما"], ["أنتم", "قرأْتُم"], ["أنتنّ", "قرأْتُنّ"], ["هنّ", "قرأْنَ"]] },
+  { id: "b5", type: "runner", title: "سباق أدوات الربط", hero: "🧕", scene: "village", how: "اختر أداة الربط المناسبة: و، ف، ثمّ", qs: [
+    { q: "سقط الإناء ... انكسر فورًا.", o: ["فـ", "ثمّ", "و"] },
+    { q: "درس خالد في المدرسة سنوات ... دخل الجامعة.", o: ["ثمّ", "فـ", "و"] },
+    { q: "اشترت أمي خبزًا ... لبنًا.", o: ["و", "ثمّ", "فـ"] },
+    { q: "طرق الضيف الباب ... فتحتُ له مباشرة.", o: ["فـ", "ثمّ", "و"] },
+    { q: "أكلنا الطعام، ... بعد ساعة شربنا الشاي.", o: ["ثمّ", "فـ", "و"] },
+    { q: "في الحقل نخيل ... ليمون.", o: ["و", "فـ", "ثمّ"] }] },
+  { id: "b6", type: "belt", title: "الهمزة على ألف أم نبرة؟", prompt: "أين كُتبت الهمزة المتوسطة؟", bins: [{ t: "على ألف (أ)", c: "#27AE60" }, { t: "على نبرة (ئـ)", c: "#8E44AD" }], items: [
+    { t: "فجأة", b: 0 }, { t: "يأس", b: 0 }, { t: "رأس", b: 0 }, { t: "فأر", b: 0 }, { t: "كأس", b: 0 }, { t: "الطمأنينة", b: 0 },
+    { t: "الأفئدة", b: 1 }, { t: "بئر", b: 1 }, { t: "طائرة", b: 1 }, { t: "أسئلة", b: 1 }, { t: "الدقائق", b: 1 }, { t: "ذئب", b: 1 }] }
+]},
+{ id: "oman", kind: "الدرس الثالث", title: "بلادي عمان", emoji: "🇴🇲", color: "#8E44AD", games: [
+  { id: "o1", type: "flip", title: "معاني القصيدة", prompt: "طابق كل كلمة بمعناها", pairs: [["سادوا", "سيطروا"], ["ذُرى", "قِمم"], ["فرقد", "نجم"], ["المدى", "الأفق البعيد"], ["الرُّبا", "ما ارتفع من الأرض"], ["الفؤاد", "القلب"], ["العِدا", "الأعداء"], ["مكين", "ثابت"]] },
+  { id: "o2", type: "runner", title: "جولة في القصيدة", hero: "🧒", scene: "sea", how: "أبحر في معاني القصيدة، واختر الإجابة الصحيحة.", qs: [
+    { q: "كاتبة قصيدة «بلادي عمان» هي:", o: ["نورة البادية", "مها العصافير", "سالمة"] },
+    { q: "وصفت الشاعرة أجدادها بأنهم:", o: ["سادوا البحار", "هجروا البلاد", "خافوا البحر"] },
+    { q: "تحدثت الشاعرة عن حبّها:", o: ["لوطنها عمان", "للمدينة فقط", "للسفر بعيدًا"] },
+    { q: "تتميّز أرض عمان بـ:", o: ["جبال وسهول ورمال وبحار", "الثلوج الدائمة", "الغابات الاستوائية"] },
+    { q: "متى أحبت الشاعرة وطنها؟", o: ["قبل أن تولد", "عندما كبرت فقط", "عندما سافرت"] }] },
+  { id: "o3", type: "whack", title: "أسماء الإشارة للبعيد", need: 5, rounds: [
+    { target: "اضرب أسماء الإشارة للبعيد", good: ["ذلك", "تلك", "أولئك"], bad: ["هذا", "هذه", "هؤلاء", "هنا"] },
+    { target: "اضرب اسم الإشارة للمؤنث البعيد", good: ["تلك"], bad: ["ذلك", "أولئك", "هذه", "هذا"] }] },
+  { id: "o4", type: "runner", title: "أشِر إلى البعيد", hero: "🧒", scene: "desert", how: "اختر اسم الإشارة المناسب للبعيد.", qs: [
+    { q: "تأمّل ... المشاهد البعيدة.", o: ["تلك", "ذلك", "أولئك"] },
+    { q: "... الصيادون يلقون شباكهم في البحر.", o: ["أولئك", "تلك", "ذلك"] },
+    { q: "انظر إلى ... الشاطئ الجميل.", o: ["ذلك", "تلك", "أولئك"] },
+    { q: "... النخلات كنز لا يُفرّط فيه.", o: ["تلك", "ذلك", "أولئك"] },
+    { q: "... الطلاب يصعدون الحافلة.", o: ["أولئك", "ذلك", "تلك"] },
+    { q: "... السائق ماهر في القيادة.", o: ["ذلك", "تلك", "أولئك"] }] },
+  { id: "o5", type: "belt", title: "على واو أم على السطر؟", prompt: "أين كُتبت الهمزة المتوسطة؟", bins: [{ t: "على واو (ؤ)", c: "#2D9CDB" }, { t: "على السطر (ء)", c: "#EF8E3B" }], items: [
+    { t: "المؤمن", b: 0 }, { t: "يؤدّي", b: 0 }, { t: "تؤجّل", b: 0 }, { t: "البؤس", b: 0 }, { t: "سؤال", b: 0 }, { t: "آباؤك", b: 0 }, { t: "الفؤاد", b: 0 },
+    { t: "القراءة", b: 1 }, { t: "براءة", b: 1 }, { t: "تفاءلوا", b: 1 }, { t: "جاءته", b: 1 }, { t: "الإساءة", b: 1 }, { t: "مروءة", b: 1 }] },
+  { id: "o6", type: "catch", title: "تضاريس عمان", need: 6, scene: "desert", basket: "🧺", rounds: [
+    { target: "التقط التضاريس التي تتميّز بها أرض عمان", good: ["جبال", "سهول", "رمال", "بحار", "أودية", "صحراء", "شواطئ"], bad: ["ثلوج دائمة", "براكين نشطة", "أنهار جليدية", "غابات استوائية"] }] },
+  { id: "o7", type: "train", title: "قطار صباح العيد", rounds: [
+    { title: "رتّب أحداث صباح عيد الأضحى", items: ["استيقظ ناصر فرحًا وسلّم على والديه", "ذهب مع أبيه لصلاة الفجر", "رجع إلى البيت يردّد التكبيرات", "اجتمعت العائلة على العرسية", "ذهبوا لصلاة العيد", "استمع ناصر إلى الخطبة", "استقبل أقاربه وهنّأهم بالعيد"] },
+    { title: "رتّب كلمات جملة الخط", num: false, items: ["الصديق", "وقت", "الضيق"] }] }
+]},
+{ id: "anthem", kind: "أنشد وأحفظ", title: "بني وطني", emoji: "🎵", color: "#16A085", games: [
+  { id: "n1", type: "flip", title: "كلمات النشيد", prompt: "طابق كل كلمة بمعناها", pairs: [["وهج", "ضياء ونور"], ["الموّار", "الثائر"], ["الوقد", "الاشتعال"], ["الدُّنا", "جمع دنيا"], ["أعشق", "أحب كثيرًا"], ["تباشير", "بشائر الخير"]] },
+  { id: "n2", type: "bubbles", title: "فقاعات الفخر", need: 6, rounds: [
+    { target: "فرقع الكلمات التي تعبّر عن حب الوطن", good: ["أعشق", "وطني", "حضارتنا", "مجد", "النور", "أحيّي", "نفخر", "العزّة"], bad: ["الكسل", "الخمول", "الإهمال", "الخراب", "اليأس", "الظلام"] }] }
+]},
+{ id: "library", kind: "قراءة حرة", title: "بين رفوف مكتبتي", emoji: "📚", color: "#3D5A80", games: [
+  { id: "k1", type: "catch", title: "بطاقة قصتي", need: 6, scene: "city", basket: "📖", rounds: [
+    { target: "التقط ما أكتبه في بطاقة قصتي", good: ["العنوان", "المؤلف", "الشخصيات", "صفات الشخصيات", "كلمات جديدة", "معاني الكلمات", "رأيي في القصة"], bad: ["رقم الهاتف", "لون الحقيبة", "درجة الحرارة", "اسم البائع", "سعر الحلوى"] }] },
+  { id: "k2", type: "runner", title: "سباق المكتبة", hero: "🧒", scene: "city", qs: [
+    { q: "الشخص الذي يكتب القصة هو:", o: ["المؤلف", "القارئ", "البائع"] },
+    { q: "الأشخاص الذين تدور حولهم أحداث القصة هم:", o: ["الشخصيات", "العناوين", "الصفحات"] },
+    { q: "أين أجد اسم القصة غالبًا؟", o: ["على الغلاف", "في آخر سطر", "على الرف"] },
+    { q: "في المكتبة يجب أن:", o: ["أحافظ على الهدوء", "أرفع صوتي", "أركض بين الرفوف"] },
+    { q: "بعد أن أنتهي من القراءة أعيد الكتاب إلى:", o: ["مكانه في الرف", "الأرض", "حقيبتي دائمًا"] }] }
+]}
+];
+/* ===== النشاط القبلي والنشاط البعدي لكل درس ===== */
+const PREPOST = {
+  review: {
+    pre: { type: "catch", sub: "تهيئة: ذكريات الإجازة", need: 6, scene: "sky", how: "قبل أن نقرأ قصة مها، التقط بالسلة الكلمات التي تذكّرك بالإجازة الصيفية فقط.", rounds: [
+      { target: "التقط كلمات تذكّرك بالإجازة الصيفية", good: ["شاطئ البحر", "رحلة", "طائرة", "حديقة", "أرجوحة", "سباحة", "نزهة", "زيارة الأقارب"], bad: ["واجب مدرسي", "امتحان", "جرس الحصة", "طابور الصباح"] }] },
+    post: { type: "runner", sub: "مراجعة: ماذا تعلّمت؟", hero: "🐦", scene: "sky", how: "راجع ما تعلّمته في درس المراجعة: طِر إلى البوابة الصحيحة.", qs: [
+      { q: "«البنت الصغيرة نائمة» جملة:", o: ["اسمية", "فعلية", "غير مفيدة"] },
+      { q: "كلمة «ضحكت» تنتهي بـ:", o: ["تاء مفتوحة", "تاء مربوطة", "هاء"] },
+      { q: "كلمة «على» من:", o: ["الحروف", "الأسماء", "الأفعال"] },
+      { q: "«على حافة» جملة:", o: ["غير مفيدة", "مفيدة", "اسمية"] },
+      { q: "ماذا نتعلّم من موقف العصافير في القصة؟", o: ["الاعتذار عند الخطأ", "النوم حتى الظهر", "الغضب من الآخرين"] },
+      { q: "من كاتب قصة «مها والعصافير»؟", o: ["زكريا تامر", "خالد العنقودي", "محمود الرحبي"] }] }
+  },
+  listen: {
+    pre: { type: "whack", sub: "تهيئة: تعرّف النسر", need: 5, how: "قبل الاستماع إلى القصة، اضرب الكلمات التي تصف النسر فقط.", rounds: [
+      { target: "اضرب الصفات التي تناسب النسر", good: ["قوي", "حادّ البصر", "يحلّق عاليًا", "جناحاه عريضان", "سريع", "يسكن الجبال"], bad: ["بطيء", "يعيش في الماء", "زاحف", "ضعيف البصر"] }] },
+    post: { type: "belt", sub: "ختام: صواب أم خطأ؟", prompt: "هل العبارة على السير صحيحة؟", how: "بعد الاستماع، أرسل كل عبارة إلى صندوق «صواب» أو «خطأ».", bins: [{ t: "صواب ✅", c: "#18A558" }, { t: "خطأ ❌", c: "#E5383B" }], items: [
+      { t: "نحافظ على نظافة وطننا", b: 0 }, { t: "الكتابة على الجدران حب للوطن", b: 1 }, { t: "احترام العلم الوطني واجب", b: 0 },
+      { t: "إتلاف الحدائق العامة يخدم الوطن", b: 1 }, { t: "أنتبه للمتحدث وأنظر إليه", b: 0 }, { t: "أقاطع المتحدث باستمرار", b: 1 }, { t: "الوطن هو المكان الذي نشأنا فيه", b: 0 }] }
+  },
+  emblem: {
+    pre: { type: "whack", sub: "تهيئة: رموز عُمان", need: 5, how: "قبل قراءة الشعار، اضرب الرموز التي تخص سلطنة عُمان فقط.", rounds: [
+      { target: "اضرب ما يرمز إلى سلطنة عُمان", good: ["الخنجر", "العلم العماني", "النشيد الوطني", "الشعار الوطني", "السيفان"], bad: ["برج إيفل", "الأهرامات", "ساعة بيغ بن", "تمثال الحرية"] }] },
+    post: { type: "flip", sub: "ختام: أجزاء الشعار", prompt: "طابق كل جزء من الشعار بما يناسبه", pairs: [
+      ["الخنجر", "في وسط الشعار"], ["السيفان", "متقاطعان خلف الخنجر"], ["الحزام", "يلتف حول الخنجر"], ["الشعار الوطني", "رمز رسمي للدولة"], ["العلم العماني", "يظهر الشعار في أعلاه"]] }
+  },
+  ghumb: {
+    pre: { type: "catch", sub: "تهيئة: حقيبة المغامر", need: 6, scene: "mountain", basket: "🎒", how: "توقّع ما يحمله المغامرون في حقائبهم: التقط الأشياء المفيدة لرحلة جبلية فقط.", rounds: [
+      { target: "التقط ما يحتاجه المغامر في رحلة جبلية", good: ["قنينة ماء", "تمر", "مصباح", "خريطة", "حبل", "قبعة", "حذاء رياضي"], bad: ["تلفاز", "وسادة كبيرة", "ثلاجة", "مكواة"] }] },
+    post: { type: "belt", sub: "ختام: صواب أم خطأ؟", prompt: "هل العبارة صحيحة بحسب نص المغامرة؟", how: "بعد قراءة الدرس، أرسل كل عبارة إلى صندوق «صواب» أو «خطأ».", bins: [{ t: "صواب ✅", c: "#18A558" }, { t: "خطأ ❌", c: "#E5383B" }], items: [
+      { t: "المغامرة إلى قرية جبلية", b: 0 }, { t: "دليل المغامرة اسمه هاشل", b: 0 }, { t: "قرية الغمب في نيابة طيوي", b: 0 },
+      { t: "بدأوا صعود الجبال مساءً", b: 1 }, { t: "الذين ضلّوا الطريق وصلوا أولًا", b: 1 }, { t: "وصل الجميع في الوقت نفسه", b: 1 }, { t: "في القرية رائحة النعناع والليمون", b: 0 }] }
+  },
+  bread: {
+    pre: { type: "catch", sub: "تهيئة: أكلات عمانية", need: 6, scene: "village", basket: "🧺", how: "قبل قراءة «خبز ولبن»، التقط الأكلات والمشروبات العمانية فقط.", rounds: [
+      { target: "التقط الأكلات العمانية", good: ["خبز رقيق", "عرسية", "هريس", "شواء", "حلوى عمانية", "قهوة عمانية", "تمر"], bad: ["بيتزا", "همبرغر", "سوشي", "نقانق"] }] },
+    post: { type: "runner", sub: "مراجعة: ماذا تعلّمت؟", hero: "🧕", scene: "village", how: "راجع درس «خبز ولبن»: اركض إلى البوابة الصحيحة.", qs: [
+      { q: "«الطوبج» هو:", o: ["صفيحة يُخبز عليها الخبز", "إناء للماء", "حصير من السعف"] },
+      { q: "من أين جلبت سالمة الماء؟", o: ["من الفلج", "من البحر", "من السوق"] },
+      { q: "«حافظتم»: الضمير المتصل هو:", o: ["تُم", "نا", "تِ"] },
+      { q: "الهمزة في «فأس» مكتوبة على:", o: ["ألف", "نبرة", "واو"] },
+      { q: "الهمزة في «بئر» مكتوبة على:", o: ["نبرة", "ألف", "السطر"] },
+      { q: "أداة الربط التي تفيد الترتيب مع المهلة:", o: ["ثمّ", "الفاء", "الواو"] }] }
+  },
+  oman: {
+    pre: { type: "bubbles", sub: "تهيئة: ماذا تعرف عن عُمان؟", need: 6, how: "قبل قراءة القصيدة، فرقع الفقاعات التي تحمل ما تتميز به عُمان.", rounds: [
+      { target: "فرقع ما تتميّز به سلطنة عُمان", good: ["الجبال", "الشواطئ", "الأفلاج", "القلاع", "النخيل", "الصحراء", "الأودية"], bad: ["جليد القطب", "غابات الأمازون", "البراكين الثائرة", "الدببة القطبية"] }] },
+    post: { type: "runner", sub: "مراجعة: ماذا تعلّمت؟", hero: "🧒", scene: "desert", how: "راجع درس «بلادي عمان»: اركض إلى البوابة الصحيحة.", qs: [
+      { q: "«أولئك» اسم إشارة إلى:", o: ["الجمع البعيد", "المفرد القريب", "المؤنث القريب"] },
+      { q: "«تلك» اسم إشارة إلى:", o: ["المؤنث البعيد", "المذكر البعيد", "المؤنث القريب"] },
+      { q: "الهمزة في «مؤمن» مكتوبة على:", o: ["واو", "السطر", "ألف"] },
+      { q: "الهمزة في «قراءة» مكتوبة على:", o: ["السطر", "واو", "نبرة"] },
+      { q: "معنى كلمة «ذُرى»:", o: ["قمم", "أعماق", "شواطئ"] },
+      { q: "كاتبة قصيدة «بلادي عمان»:", o: ["نورة البادية", "سعيد الصقلاوي", "زكريا تامر"] }] }
+  },
+  anthem: {
+    pre: { type: "whack", sub: "تهيئة: كلمات الوطن", need: 5, how: "قبل إنشاد «بني وطني»، اضرب الكلمات التي تعبّر عن الوطن وحبه.", rounds: [
+      { target: "اضرب الكلمات التي تعبّر عن الوطن", good: ["وطني", "بلادي", "العلم", "النشيد", "المجد", "الأرض"], bad: ["الكسل", "الإهمال", "الخراب", "الفوضى"] }] },
+    post: { type: "train", sub: "ختام: كيف أحفظ النشيد؟", rounds: [
+      { title: "رتّب خطوات حفظ النشيد", items: ["أقرأ النشيد قراءة صحيحة", "أفهم معاني الكلمات", "أردّده بصوت واضح", "أحفظه بيتًا بعد بيت", "أنشده كاملًا أمام زملائي"] }] }
+  },
+  library: {
+    pre: { type: "bubbles", sub: "تهيئة: في المكتبة", need: 6, how: "قبل القراءة الحرة، فرقع الفقاعات التي تحمل أشياء تجدها في المكتبة.", rounds: [
+      { target: "فرقع ما تجده في المكتبة", good: ["كتب", "قصص", "رفوف", "مجلات", "أمين المكتبة", "طاولة قراءة"], bad: ["كرة قدم", "فرن", "سرير", "سيارة"] }] },
+    post: { type: "train", sub: "ختام: رحلتي مع القصة", rounds: [
+      { title: "رتّب خطوات قراءة القصة", items: ["أختار قصة من الرف", "أقرأ العنوان واسم المؤلف", "أقرأ القصة بهدوء", "أسجّل الكلمات الجديدة ومعانيها", "أتحدث عن القصة وأبدي رأيي", "أعيد القصة إلى مكانها"] }] }
+  }
+};
+SECTIONS.forEach(s => {
+  const pp = PREPOST[s.id]; if (!pp) return;
+  s.games.unshift({ ...pp.pre, id: "pre", phase: "pre", title: "نشاط قبلي" });
+  s.games.push({ ...pp.post, id: "post", phase: "post", title: "نشاط بعدي" });
+});
+
+home();
+</script>
+<script>window.__NAV={"pre": [], "levels": ["button.stop", "button.gcard"]}</script><script>(function(){var N=window.__NAV,q=new URLSearchParams(location.search).get("go");if(!N||!q)return;
+var P=q.split(".").map(Number);if(P.some(isNaN))return;
+var steps=(N.pre||[]).map(function(p){return{sel:p.sel,idx:p.idx||0}}).concat(P.map(function(v,i){return{sel:N.levels[i],idx:v}}));
+function vis(e){var r=e.getBoundingClientRect(),c=getComputedStyle(e);return r.width>4&&r.height>4&&c.visibility!=="hidden"&&c.display!=="none"}
+function run(i){if(i>=steps.length)return;var s=steps[i],t=0;(function w(){var l=[].filter.call(document.querySelectorAll(s.sel),vis);
+if(l.length>s.idx){l[s.idx].scrollIntoView({block:"center"});l[s.idx].click();setTimeout(function(){run(i+1)},700)}else if(t++<48)setTimeout(w,250)})()}
+function go(){setTimeout(function(){run(0)},900)}if(document.readyState==="complete")go();else addEventListener("load",go)})();</script>
+</body>
+</html>

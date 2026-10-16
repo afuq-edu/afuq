@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مختبر العلوم التفاعلي، الصف السادس، الفصل الأول</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Readex+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --ink:#10324A; --paper:#EEF5F8; --card:#FFFFFF; --line:#D3E2E9; --muted:#587385;
+  --u1:#D9473B; --u2:#22915A; --u3:#6447D1; --sun:#F5B82E; --ok:#1C9A60; --bad:#D23F3F;
+  --soft1:#FCE9E6; --soft2:#E3F4EA; --soft3:#ECE7FB;
+  --display:'Lalezar','Readex Pro',Tahoma,'Segoe UI',sans-serif;
+  --body:'Readex Pro',Tahoma,'Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#E4EEF3; --paper:#0E1C25; --card:#162A35; --line:#294150; --muted:#93AEBD;
+    --u1:#F2695D; --u2:#3FC07C; --u3:#9580F2; --sun:#F7C24A; --ok:#39C485; --bad:#F06464;
+    --soft1:#3A2224; --soft2:#173828; --soft3:#2A2448; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E4EEF3; --paper:#0E1C25; --card:#162A35; --line:#294150; --muted:#93AEBD;
+  --u1:#F2695D; --u2:#3FC07C; --u3:#9580F2; --sun:#F7C24A; --ok:#39C485; --bad:#F06464;
+  --soft1:#3A2224; --soft2:#173828; --soft3:#2A2448; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.75;-webkit-tap-highlight-color:transparent}
+button{font-family:inherit;font-size:inherit;color:inherit}
+button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+img,svg{max-width:100%}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:2px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:12px;min-height:62px}
+.brand{font-family:var(--display);font-size:26px;line-height:1;cursor:pointer;background:none;border:0;padding:6px 0;display:flex;align-items:center;gap:8px}
+.brand svg{width:30px;height:30px}
+.navs{margin-inline-start:auto;display:flex;gap:4px;flex-wrap:nowrap}
+.navs button,.iconbtn{background:none;border:2px solid transparent;border-radius:10px;padding:6px 12px;cursor:pointer;font-weight:600}
+.navs button[aria-current="true"]{border-color:var(--ink)}
+.iconbtn{padding:6px 9px}
+main{padding:22px 0 60px}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.25;margin:0}
+
+/* home */
+.hero{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:center;padding:12px 0 26px}
+.hero h1{font-size:clamp(38px,6vw,64px)}
+.hero p{color:var(--muted);margin:10px 0 18px;max-width:46ch}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.trio button{border:0;border-radius:18px;padding:16px 8px 12px;cursor:pointer;color:#fff;font-family:var(--display);font-size:20px;line-height:1.2;display:flex;flex-direction:column;align-items:center;gap:8px;transition:transform .15s}
+.trio button:hover{transform:translateY(-3px)}
+.trio svg{width:64px;height:64px}
+.unitblock{margin-top:26px;border-top:4px solid var(--u);padding-top:14px}
+.unithead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.unithead .num{font-family:var(--display);font-size:54px;line-height:.9;color:var(--u)}
+.unithead h2{font-size:30px}
+.unithead small{color:var(--muted);margin-inline-start:auto}
+.lrows{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);column-gap:28px}
+.lrows li{border-bottom:1px solid var(--line)}
+.lrows button{width:100%;text-align:start;background:none;border:0;padding:11px 4px;cursor:pointer;display:flex;align-items:center;gap:12px}
+.lrows button:hover .lt{color:var(--u)}
+.lrows .lid{font-family:var(--display);color:var(--u);font-size:20px;min-width:42px}
+.lrows .lt{font-weight:600;flex:1}
+.lrows .dots{display:flex;gap:4px}
+.lrows .dots i{width:9px;height:9px;border-radius:50%;border:2px solid var(--u);display:block}
+.lrows .dots i.on{background:var(--u)}
+
+/* buttons */
+.btn{border:2px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:12px;padding:9px 18px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .1s}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.u{background:var(--u);border-color:var(--u);color:#fff}
+.btn.sm{padding:5px 12px;font-size:15px;border-radius:10px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.seg{display:inline-flex;border:2px solid var(--line);border-radius:12px;overflow:hidden;flex-wrap:wrap}
+.seg button{border:0;background:transparent;padding:7px 14px;cursor:pointer;font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--u,var(--ink));color:#fff}
+
+/* lesson */
+.lhead{display:flex;gap:18px;align-items:center;margin-bottom:16px}
+.lhead .big{white-space:nowrap;direction:ltr;font-family:var(--display);font-size:clamp(64px,11vw,110px);line-height:.8;color:var(--u)}
+.lhead .crumb{color:var(--muted);font-size:15px;background:none;border:0;padding:0;cursor:pointer}
+.lhead h1{font-size:clamp(28px,4.5vw,44px)}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--line);margin-bottom:18px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:4px solid transparent;margin-bottom:-2px;padding:10px 14px;cursor:pointer;font-weight:700;white-space:nowrap;color:var(--muted)}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--u)}
+.ideas{display:grid;grid-template-columns:1fr 280px;gap:26px}
+.ideas ol{margin:0;padding:0;list-style:none;counter-reset:k}
+.ideas li{counter-increment:k;position:relative;padding:12px 52px 12px 0;border-bottom:1px dashed var(--line)}
+.ideas li::before{content:counter(k);position:absolute;right:0;top:12px;width:36px;height:36px;border-radius:50%;background:var(--soft);color:var(--u);font-family:var(--display);font-size:20px;display:grid;place-items:center;line-height:1}
+.vocab{background:var(--soft);border-radius:16px;padding:16px}
+.vocab h3{font-size:22px;margin-bottom:8px;color:var(--u)}
+.vocab span{display:inline-block;background:var(--card);border-radius:999px;padding:3px 12px;margin:3px;font-weight:600;font-size:15px}
+.next-row{display:flex;justify-content:space-between;gap:10px;margin-top:26px;flex-wrap:wrap}
+
+.panel{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px}
+.actpick{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.actpick button{border:2px solid var(--line);background:var(--card);border-radius:12px;padding:8px 14px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:8px}
+.actpick button[aria-pressed="true"]{border-color:var(--u);background:var(--soft)}
+.actpick .ok{color:var(--ok);font-weight:800}
+.prompt{font-weight:700;margin:0 0 12px}
+.hint{color:var(--muted);font-size:15px}
+
+/* engines */
+.chip{border:2px solid var(--line);background:var(--card);border-radius:12px;padding:8px 14px;cursor:pointer;font-weight:600;line-height:1.5;text-align:center;transition:transform .12s,background .15s}
+.chip:hover{border-color:var(--u)}
+.chip.sel{border-color:var(--u);background:var(--soft);transform:translateY(-2px)}
+.chip.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card));cursor:default}
+.chip.badx{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 14%,var(--card))}
+.shake{animation:shake .35s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.match .col{display:flex;flex-direction:column;gap:8px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:48px;padding:10px;border:2px dashed var(--line);border-radius:14px;margin-bottom:14px}
+.buckets{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.bucket{border:2px solid var(--line);border-radius:14px;padding:10px;min-height:110px;cursor:pointer;background:var(--card);display:flex;flex-direction:column;gap:6px}
+.bucket h4{margin:0 0 4px;font-size:17px;text-align:center;color:var(--u)}
+.bucket .chip{font-size:14px;padding:4px 8px;pointer-events:none}
+.bucket.armed{border-color:var(--u);border-style:dashed}
+.slots{display:flex;flex-wrap:wrap;gap:8px;align-items:center;min-height:52px;padding:10px;border:2px solid var(--line);border-radius:14px;margin-bottom:12px;background:var(--paper)}
+.slots .n{font-family:var(--display);color:var(--u);margin-inline-end:2px}
+.tfcard{text-align:center;padding:10px}
+.tfcard .st{font-size:21px;font-weight:600;margin:10px auto 18px;max-width:40ch}
+.tfcard .row{display:flex;gap:12px;justify-content:center}
+.tfbtn{min-width:120px;font-size:20px}
+.feedback{margin-top:14px;padding:12px 14px;border-radius:12px;font-weight:600}
+.feedback.good{background:color-mix(in srgb,var(--ok) 14%,var(--card));border-inline-start:6px solid var(--ok)}
+.feedback.bad{background:color-mix(in srgb,var(--bad) 12%,var(--card));border-inline-start:6px solid var(--bad)}
+.fill p{margin:8px 0;line-height:2.3}
+.blank{display:inline-block;min-width:110px;border-bottom:3px solid var(--line);text-align:center;padding:0 6px;cursor:pointer;font-weight:700;border-radius:6px 6px 0 0}
+.blank.active{border-bottom-color:var(--u);background:var(--soft)}
+.blank.good{border-bottom-color:var(--ok);color:var(--ok)}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);background:var(--card);padding:10px;border:2px solid var(--line);border-radius:14px}
+.done{text-align:center;padding:18px;border-radius:16px;background:var(--soft);margin-top:14px}
+.done b{font-family:var(--display);font-size:30px;font-weight:400;color:var(--u);display:block}
+
+/* sims */
+.sim{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;align-items:start}
+.stage{background:var(--paper);border:2px solid var(--line);border-radius:18px;padding:10px;display:grid;place-items:center;min-height:300px;position:relative;overflow:hidden}
+.stage svg{width:100%;height:auto;max-height:470px}
+.side h3{font-size:24px;color:var(--u);margin-bottom:6px}
+.side .info{background:var(--soft);border-radius:14px;padding:12px 14px;margin:10px 0;min-height:70px}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+[data-part]{cursor:pointer;transition:filter .15s,opacity .2s}
+[data-part]:hover{filter:brightness(1.12) drop-shadow(0 0 4px rgba(0,0,0,.25))}
+[data-part].hl{filter:drop-shadow(0 0 6px var(--sun)) brightness(1.15)}
+[data-part].hit{animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.06)}}
+.score{font-family:var(--display);font-size:22px;color:var(--u)}
+.meter{height:14px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 10px}
+.meter i{display:block;height:100%;background:var(--u);transition:width .4s}
+.kv{display:flex;justify-content:space-between;font-weight:600;font-size:15px}
+.tiles{display:grid;gap:8px}
+.tile{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:8px;cursor:pointer;text-align:center;font-weight:600;font-size:15px;line-height:1.4}
+.tile .e{font-size:34px;display:block;line-height:1.2}
+.tile.used{opacity:.3;cursor:default}
+.tile.good{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.tile.badx,.btn.badx{border-color:var(--bad)!important}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;justify-content:center;min-height:120px;padding:10px;border:2px dashed var(--line);border-radius:16px;margin:12px 0;background:var(--paper)}
+.chain .arr{font-size:26px;color:var(--u);font-weight:800}
+.chain .tile{min-width:86px}
+.role{display:block;font-size:12px;color:var(--u);margin-top:2px}
+table.res{width:100%;border-collapse:collapse;font-size:15px}
+table.res th,table.res td{border-bottom:1px solid var(--line);padding:6px;text-align:center}
+.tablewrap{overflow-x:auto}
+.bars .bar{display:grid;grid-template-columns:110px 1fr 54px;gap:8px;align-items:center;font-size:15px;margin:5px 0}
+.bars .bar i{display:block;height:16px;border-radius:999px;background:var(--u);min-width:4px;transition:width .5s}
+.beat{transform-box:fill-box;transform-origin:center;animation:beat var(--bt,0.8s) ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.09)}30%{transform:scale(.98)}}
+.bigtap{width:170px;height:170px;border-radius:50%;border:0;background:var(--u);color:#fff;font-family:var(--display);font-size:24px;cursor:pointer;box-shadow:0 8px 0 color-mix(in srgb,var(--u) 60%,#000);transition:transform .08s}
+.bigtap:active{transform:translateY(5px);box-shadow:0 3px 0 color-mix(in srgb,var(--u) 60%,#000)}
+
+/* quiz */
+.qlib{display:grid;grid-template-columns:320px 1fr;gap:22px;align-items:start}
+.qscopes{display:flex;flex-direction:column;gap:4px;max-height:70vh;overflow:auto;padding-inline-end:4px}
+.qscopes button{display:flex;justify-content:space-between;gap:8px;text-align:start;border:2px solid transparent;background:none;border-radius:10px;padding:7px 10px;cursor:pointer;font-weight:600}
+.qscopes button[aria-pressed="true"]{border-color:var(--u);background:var(--soft)}
+.qscopes .grp{font-family:var(--display);font-size:20px;color:var(--u);margin:10px 4px 2px}
+.qscopes em{font-style:normal;color:var(--muted);font-size:13px;white-space:nowrap}
+.opt{display:flex;flex-direction:column;gap:6px;margin:14px 0}
+.opt label{font-weight:700}
+.qcard .qtop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-weight:700;color:var(--muted)}
+.qprog{height:8px;background:var(--line);border-radius:999px;overflow:hidden;margin:8px 0 16px}
+.qprog i{display:block;height:100%;background:var(--u);transition:width .3s}
+.qtext{font-size:22px;font-weight:700;margin:6px 0 16px;line-height:1.6}
+.answers{display:grid;gap:10px}
+.ans{border:2px solid var(--line);background:var(--card);border-radius:14px;padding:12px 16px;text-align:start;cursor:pointer;font-weight:600;display:flex;gap:12px;align-items:center}
+.ans .k{width:30px;height:30px;border-radius:50%;background:var(--soft);color:var(--u);display:grid;place-items:center;font-family:var(--display);flex:none}
+.ans:hover:not([disabled]){border-color:var(--u)}
+.ans.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--card))}
+.ans.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--card))}
+.ans.picked{border-color:var(--u);background:var(--soft)}
+.ans[disabled]{cursor:default}
+.timer{font-family:var(--display);font-size:22px;color:var(--u)}
+.result{text-align:center}
+.result .pct{font-family:var(--display);font-size:86px;line-height:1;color:var(--u)}
+.review{margin-top:16px;text-align:start}
+.review .it{border-bottom:1px solid var(--line);padding:10px 0}
+.review .it.x b{color:var(--bad)}
+.review .it .c{color:var(--ok);font-weight:700}
+.toast{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:12px;font-weight:700;z-index:50;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.show{opacity:1}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .lrows{grid-template-columns:1fr}
+  .ideas{grid-template-columns:1fr}
+  .sim{grid-template-columns:1fr}
+  .qlib{grid-template-columns:1fr}
+  .qscopes{max-height:none;flex-direction:row;flex-wrap:wrap}
+  .qscopes .grp{width:100%}
+  .match{grid-template-columns:1fr 1fr;gap:8px}
+  .brand span{font-size:18px;white-space:nowrap}
+  .brand svg{width:24px;height:24px}
+  header.top .wrap{gap:6px;padding:0 10px}
+  .navs button{padding:5px 8px;font-size:15px}
+  .lhead{gap:12px}
+  .lhead .big{font-size:56px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <button class="brand" id="homeBtn" aria-label="الرئيسية"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M15 4h10v3h-2v9l10 17a3 3 0 0 1-2.6 4.5H9.6A3 3 0 0 1 7 33l10-17V7h-2z" fill="var(--u3)"/><path d="M11 27h18l3.5 6a1.5 1.5 0 0 1-1.3 2.2H8.8A1.5 1.5 0 0 1 7.5 33z" fill="var(--sun)"/><circle cx="18" cy="30" r="1.6" fill="#fff"/><circle cx="23" cy="27.5" r="1.1" fill="#fff"/></svg><span>مختبر العلوم</span></button>
+  <nav class="navs" aria-label="التنقل">
+    <button data-go="#/">الدروس</button>
+    <button data-go="#/quiz">مكتبة الاختبارات</button>
+    <button class="iconbtn" id="sndBtn" aria-label="الصوت" title="الصوت">🔊</button>
+  </nav>
+</div></header>
+<main><div class="wrap" id="app"></div></main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const UNITS=[
+ {n:1,t:'جسم الإنسان',c:'var(--u1)',s:'var(--soft1)',d:'أعضاء الجسم وكيف تعمل معًا لتبقينا أحياء وأصحاء'},
+ {n:2,t:'الكائنات الحية في البيئة',c:'var(--u2)',s:'var(--soft2)',d:'السلاسل الغذائية، وكيف يؤثر الإنسان في البيئة وكيف يحميها'},
+ {n:3,t:'تغيرات المادة',c:'var(--u3)',s:'var(--soft3)',d:'التغيرات القابلة وغير القابلة للعكس، والمخاليط والذوبان والمحاليل'}
+];
+const L=[
+{id:'1-1',u:1,t:'أعضاء الجسم',v:['الأعضاء','أجهزة الجسم'],sim:'body',
+k:['الأجزاء الداخلية للجسم تُسمّى الأعضاء، ويقوم كل عضو بوظيفة مختلفة تُبقينا على قيد الحياة وبصحة جيدة.',
+'تعمل الأعضاء المختلفة معًا لتُشكّل أجهزة الجسم.',
+'أعضاء الجسم الرئيسية: الدماغ، والقلب، والرئتان، والمعدة، والأمعاء، والكليتان، والكبد.',
+'الكبد عضو لا يمكننا العيش بدونه، ومن أهم وظائفه تخزين الطاقة وتخليص الجسم من المواد السامة.',
+'بعض الحيوانات مثل قناديل البحر لا تملك أعضاء، وإنما تملك أجزاء بسيطة تؤدي وظائف الجسم.'],
+acts:[
+{type:'match',title:'صِل العضو بوظيفته',pairs:[['القلب','ضخ الدم'],['المعدة والأمعاء','الهضم'],['الرئتان','التنفس'],['الكليتان','الإخراج'],['الدماغ','التحكم'],['الكبد','تخزين الطاقة والتخلص من المواد السامة']]},
+{type:'sort',title:'أين يوجد كل عضو؟',buckets:['الرأس','الصدر','البطن'],items:[['الدماغ',0],['القلب',1],['الرئتان',1],['المعدة',2],['الأمعاء',2],['الكبد',2],['الكليتان',2]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['الأعضاء هي الأجزاء الخارجية للجسم.',false,'الأعضاء هي الأجزاء الداخلية للجسم.'],['تعمل الأعضاء معًا لتشكل أجهزة الجسم.',true,''],['الرئتان والكليتان أعضاء توجد على هيئة زوج.',true,''],['يمكننا العيش بدون الكبد.',false,'الكبد عضو لا يمكننا العيش بدونه.'],['قناديل البحر تملك قلبًا ورئتين مثل الإنسان.',false,'قناديل البحر لا تملك أعضاء، بل أجزاء بسيطة.']]}],
+q:[['ماذا نسمي الأجزاء الداخلية للجسم التي تقوم بوظائف مختلفة؟',['الأعضاء','العظام','الحواس','الجلد'],'الأجزاء الداخلية للجسم يُطلق عليها الأعضاء.'],
+['تعمل الأعضاء المختلفة معًا لتُشكّل:',['أجهزة الجسم','الأوعية الدموية','الضلوع','العضلات فقط'],''],
+['أيّ عضو يوجد في الرأس؟',['الدماغ','القلب','الكبد','المعدة'],''],
+['أيّ الأعضاء الآتية يوجد على هيئة زوج؟',['الرئتان','القلب','الكبد','المعدة'],'الرئتان زوج، والكليتان زوج أيضًا.'],
+['عضو لا يمكن العيش بدونه، من وظائفه تخزين الطاقة وتخليص الجسم من المواد السامة:',['الكبد','الأمعاء','المعدة','الرئتان'],''],
+['أيّ الأعضاء الآتية توجد في الصدر؟',['القلب والرئتان','المعدة والأمعاء','الدماغ والكبد','الكليتان والأمعاء'],''],
+['قناديل البحر:',['لا تملك أعضاء، بل أجزاء بسيطة تؤدي وظائف الجسم','تملك قلبًا ورئتين','تملك دماغًا كبيرًا','تملك جهازًا هضميًّا مثل الإنسان'],''],
+['ما العضو المسؤول عن ضخ الدم في الجسم؟',['القلب','الكليتان','الرئتان','الدماغ'],''],
+['ما الوظيفة الرئيسية للرئتين؟',['التنفس','الهضم','الإخراج','التحكم'],'']]},
+
+{id:'1-2',u:1,t:'القلب',v:['القلب','الأوعية الدموية','الأكسجين','الدورة الدموية','الجهاز الدوري'],sim:'heart',
+k:['القلب عضلة بحجم قبضة يدك تقريبًا، يوجد داخل الصدر جهة اليسار قليلًا، وتحيط به الضلوع لحمايته.',
+'وظيفة القلب ضخ الدم إلى جميع أنحاء الجسم، وتُسمّى هذه العملية الدورة الدموية. في كل مرة تنقبض عضلة القلب تضخ الدم، فتشعر بدقة القلب.',
+'يضخ الجانب الأيسر من القلب الدم المحمّل بالأكسجين إلى جميع أجزاء الجسم، بينما يضخ الجانب الأيمن الدم بدون أكسجين إلى الرئتين.',
+'الدم سائل أحمر يتدفق داخل الأوعية الدموية، يحمل الغذاء والأكسجين إلى أجزاء الجسم، ويحمل الفضلات إلى أعضاء تتخلص منها مثل الكليتين والرئتين.',
+'يُشكّل القلب والأوعية الدموية والدم معًا الجهاز الدوري.'],
+acts:[
+{type:'fill',title:'أكمل الجمل',sents:[['القلب عضلة بحجم ','قبضة اليد',' تقريبًا.'],['يضخ الجانب ','الأيسر',' من القلب الدم المحمّل بالأكسجين إلى أجزاء الجسم.'],['يضخ الجانب الأيمن من القلب الدم بدون أكسجين إلى ','الرئتين','.'],['يتدفق الدم داخل ','الأوعية الدموية','.'],['تُسمّى عملية ضخ الدم إلى جميع أنحاء الجسم ','الدورة الدموية','.'],['القلب والأوعية الدموية والدم تُشكّل ','الجهاز الدوري','.']],extra:['المعدة','الأيمن','الجهاز الهضمي']},
+{type:'tf',title:'صح أم خطأ؟',items:[['يتوقف القلب عن العمل أثناء النوم.',false,'يعمل القلب طوال حياة الإنسان ولا يتوقف أبدًا.'],['الضلوع تحمي القلب.',true,''],['يحمل الدم الفضلات إلى الكليتين والرئتين للتخلص منها.',true,''],['يضخ القلب الدم إلى جميع أجزاء الجسم في أقل من دقيقة.',true,''],['يقع القلب في البطن.',false,'يقع القلب داخل الصدر جهة اليسار قليلًا.']]},
+{type:'order',title:'رتّب رحلة الدم',rounds:[{p:'ابدأ من الجانب الأيمن للقلب ورتّب مسار الدم:',items:['الجانب الأيمن من القلب','الرئتان (يأخذ الدم الأكسجين)','الجانب الأيسر من القلب','أجزاء الجسم (يعطي الدم الأكسجين)']}]}],
+q:[['أين يقع القلب؟',['داخل الصدر جهة اليسار قليلًا','في البطن تحت المعدة','داخل الجمجمة','أسفل الظهر'],''],
+['حجم القلب تقريبًا بحجم:',['قبضة يدك','كرة القدم','حبة الفاصوليا','رأسك'],''],
+['ما الذي يحمي القلب؟',['الضلوع','الجمجمة','الجلد فقط','المعدة'],''],
+['أيّ جانب من القلب يضخ الدم المحمّل بالأكسجين إلى أجزاء الجسم؟',['الجانب الأيسر','الجانب الأيمن','لا يضخ القلب دمًا بالأكسجين','الجانبان إلى الرئتين فقط'],'الجانب الأيسر (الأحمر في الرسم) يضخ الدم المحمّل بالأكسجين إلى الجسم.'],
+['يضخ الجانب الأيمن من القلب الدم بدون أكسجين إلى:',['الرئتين','الدماغ','الكليتين','المعدة'],''],
+['لماذا يضخ القلب الدم إلى الرئتين قبل ضخه إلى أنحاء الجسم؟',['ليحصل الدم على الأكسجين','ليتخلص الدم من الغذاء','ليبرد الدم','ليصنع الدم الطعام'],''],
+['يتكوّن الجهاز الدوري من:',['القلب والأوعية الدموية والدم','القلب والرئتين والقصبة الهوائية','الدماغ والأعصاب','المعدة والأمعاء والمريء'],''],
+['يحمل الدم إلى أجزاء الجسم:',['الغذاء والأكسجين','البول','اللعاب','العصارة الهضمية'],''],
+['تُسمّى عملية ضخ الدم إلى جميع أنحاء الجسم:',['الدورة الدموية','الهضم','الإخراج','التنفس'],'']]},
+
+{id:'1-3',u:1,t:'دقات القلب والنبض',v:['النبض','الضغط'],sim:'pulse',
+k:['يدق قلبك حوالي 90 مرة في الدقيقة، وعندما تكبر في السن سوف يدق حوالي 70 مرة في الدقيقة.',
+'كلما زاد نشاطك زادت دقات قلبك؛ لإمداد جسمك بما يكفي من الغذاء والأكسجين الموجود في الدم.',
+'تحدث دقات القلب نتيجة انقباض عضلة القلب. والنبض هو الضغط الذي يحدثه الدم عندما يضخه القلب إلى باقي أنحاء الجسم.',
+'أفضل مكانين لاستشعار النبض هما جانبا العنق والمعصم، وتشعر به عند الضغط بخفة تحت الجلد.',
+'لا تستخدم إصبع الإبهام لقياس النبض؛ لأن للإبهام نبضه الخاص.',
+'يختلف معدل النبض بين الكائنات: نبض الفيل منخفض جدًّا (نحو 30 نبضة في الدقيقة)، ونبض الفأر مرتفع للغاية (نحو 500 نبضة في الدقيقة).'],
+acts:[
+{type:'order',title:'رتّب خطوات قياس النبض',rounds:[{p:'رتّب خطوات النشاط بالترتيب الصحيح:',items:['تعرّف على نبضك من خلال معصمك أو عنقك','عُدّ النبضات التي تشعر بها في الدقيقة الواحدة','كرّر ذلك ثلاث مرات وسجّل النتائج في جدول','قارن بين قياساتك وقياسات زملائك']}]},
+{type:'tf',title:'صح أم خطأ؟',items:[['يزداد معدل النبض عند ممارسة الرياضة.',true,''],['نستخدم الإبهام لقياس النبض.',false,'لا نستخدم الإبهام لأن له نبضه الخاص.'],['يدق قلب الشخص البالغ نحو 70 مرة في الدقيقة.',true,''],['معدل نبض الفيل أعلى من معدل نبض الفأر.',false,'نبض الفيل نحو 30 ونبض الفأر نحو 500 نبضة في الدقيقة.'],['يمكن استشعار النبض في جانبي العنق.',true,'']]},
+{type:'sort',title:'نبض مرتفع أم منخفض؟',buckets:['نبض أعلى','نبض أقل'],items:[['بعد الجري',0],['أثناء النوم',1],['الفأر',0],['الفيل',1],['بعد صعود الدرج',0],['الجلوس للقراءة',1]]}],
+q:[['كم مرة تقريبًا يدق قلبك في الدقيقة في سنك؟',['90 مرة','30 مرة','500 مرة','10 مرات'],''],
+['يدق قلب الشخص البالغ تقريبًا:',['70 مرة في الدقيقة','150 مرة في الدقيقة','20 مرة في الدقيقة','500 مرة في الدقيقة'],''],
+['ماذا يحدث لدقات القلب عند ممارسة الرياضة؟',['تزداد','تقل','تتوقف','لا تتغير'],''],
+['لماذا تزداد دقات القلب عند زيادة النشاط؟',['لإمداد الجسم بما يكفي من الغذاء والأكسجين','لأن الدم يصبح باردًا','لأن الرئتين تتوقفان','لتقليل الأكسجين في الجسم'],''],
+['النبض هو:',['الضغط الذي يحدثه الدم الذي يضخه القلب','صوت الرئتين','حركة المعدة','صوت الأمعاء'],''],
+['من أفضل الأماكن لاستشعار النبض:',['جانبا العنق والمعصم','الركبة','الأذن','الأنف'],''],
+['لا نستخدم الإبهام لقياس النبض لأن:',['للإبهام نبضه الخاص','الإبهام قصير','الإبهام لا يشعر','الإبهام بعيد عن القلب'],''],
+['أيّ الحيوانين معدل نبضه منخفض جدًّا (نحو 30 نبضة في الدقيقة)؟',['الفيل','الفأر','كلاهما','لا أحد منهما'],''],
+['يصل معدل نبض الفأر إلى نحو:',['500 نبضة في الدقيقة','30 نبضة في الدقيقة','70 نبضة في الدقيقة','5 نبضات في الدقيقة'],''],
+['ما سبب حدوث دقات القلب؟',['انقباض عضلة القلب','دخول الهواء إلى الرئتين','حركة المعدة','عمل الكليتين'],'']]},
+
+{id:'1-4',u:1,t:'الرئتان والتنفس',v:['الرئتان','التنفس','القصبة الهوائية','ثاني أكسيد الكربون','الشهيق','الزفير'],sim:'lungs',
+k:['تقوم الرئتان بعملية التنفس للبقاء على قيد الحياة، من خلال دخول الهواء إلى الرئتين (الشهيق) وخروج الهواء منهما (الزفير).',
+'توجد الرئتان داخل الصدر، وتحيط بهما الضلوع لحمايتهما. وتشبه الرئتان قطعتين من الإسفنج المرن الممتلئتين بالهواء.',
+'يدخل الهواء إلى الجسم عبر الأنف أو الفم، ثم يمر عبر القصبة الهوائية إلى الرئتين.',
+'عند الشهيق تمتلئ الرئتان بالهواء ويزداد حجمهما، وينتقل الأكسجين من الهواء إلى الدم. والدم يحمل الأكسجين إلى باقي أجزاء الجسم.',
+'عند الزفير يصغر حجم الرئتين، ويخرج ثاني أكسيد الكربون الناتج كفضلات من أنحاء الجسم، فيحمله الدم إلى الرئتين ليُطرد خارج الجسم.'],
+acts:[
+{type:'sort',title:'شهيق أم زفير؟',buckets:['الشهيق','الزفير'],items:[['يدخل الهواء إلى الرئتين',0],['يخرج الهواء من الرئتين',1],['يزداد حجم الرئتين',0],['يصغر حجم الرئتين',1],['ينتقل الأكسجين إلى الدم',0],['نتخلص من ثاني أكسيد الكربون',1],['يكبر الصدر',0],['نفخ البالون',1]]},
+{type:'order',title:'رتّب رحلة الهواء',rounds:[{p:'رتّب مسار الهواء عند الشهيق:',items:['الأنف أو الفم','القصبة الهوائية','الرئتان','الأكسجين ينتقل إلى الدم','الدم يحمل الأكسجين إلى أجزاء الجسم']}]},
+{type:'tf',title:'صح أم خطأ؟',items:[['تشبه الرئتان قطعتين من الإسفنج المرن.',true,''],['عند الزفير يزداد حجم الرئتين.',false,'عند الزفير يصغر حجم الرئتين.'],['نتنفس أسرع عند ممارسة الرياضة.',true,'يحتاج الجسم إلى أكسجين أكثر.'],['القصبة الهوائية تنقل الطعام إلى المعدة.',false,'القصبة الهوائية تنقل الهواء إلى الرئتين، والمريء ينقل الطعام.']]}],
+q:[['ما العضو المسؤول عن عملية التنفس؟',['الرئتان','القلب','الكبد','المعدة'],''],
+['يُسمّى دخول الهواء إلى الرئتين:',['الشهيق','الزفير','الهضم','النبض'],''],
+['يُسمّى خروج الهواء من الرئتين:',['الزفير','الشهيق','الإخراج','الدورة الدموية'],''],
+['عند الشهيق يحدث للرئتين أنهما:',['تمتلئان بالهواء ويزداد حجمهما','يصغر حجمهما','تتوقفان عن العمل','تمتلئان بالماء'],''],
+['ما الغاز الذي ينتقل من الهواء إلى الدم عند الشهيق؟',['الأكسجين','ثاني أكسيد الكربون','أول أكسيد الكربون','بخار الماء'],''],
+['نتخلص عند الزفير من غاز:',['ثاني أكسيد الكربون','الأكسجين','النيتروجين فقط','لا نتخلص من أي غاز'],''],
+['يمر الهواء من الأنف أو الفم إلى الرئتين عبر:',['القصبة الهوائية','المريء','الأمعاء','المعدة'],''],
+['تشبه الرئتان:',['قطعتين من الإسفنج المرن الممتلئتين بالهواء','كيسين من الماء','عظمتين صلبتين','حبتي فاصوليا'],''],
+['لماذا نتنفس أسرع عند ممارسة الرياضة؟',['لأن الجسم يحتاج إلى أكسجين أكثر','لأن الجسم يحتاج إلى أكسجين أقل','لأن الرئتين تصغران','لأن القلب يتوقف'],''],
+['ماذا يمثّل نفخ البالون في نشاط التنفس؟',['الزفير','الشهيق','الهضم','النبض'],'نُخرج الهواء من الرئتين إلى البالون.']]},
+
+{id:'1-5',u:1,t:'الجهاز الهضمي',v:['الجهاز الهضمي','الهضم','المعدة','الأمعاء','اللعاب'],sim:'digest',
+k:['يحتاج الجسم إلى الطعام لمساعدته على النمو، كما أن الطعام يمنح الجسم الطاقة.',
+'لا يستطيع الجسم استخدام الطعام بحالته التي نتناوله عليها، ولذلك يقوم الجهاز الهضمي بتفتيته إلى جزيئات صغيرة، ويُطلق على هذه العملية الهضم.',
+'تبدأ رحلة الطعام في الفم: تقطع الأسنان الطعام وتمضغه، ويبدأ اللعاب بهضمه، ثم يُدفع عبر أنبوب يُسمّى المريء إلى المعدة.',
+'في المعدة يمتزج الطعام بالعصارة الهضمية فيتحوّل إلى سائل يشبه العصيدة، ثم تُفتته الأمعاء إلى جزيئات أصغر تنتقل عبر الدم إلى جميع أجزاء الجسم.',
+'المعدة والأمعاء هما العضوان الرئيسيان للجهاز الهضمي، ويتخلص الجسم من بقايا الطعام غير المهضوم في صورة براز عبر نهاية الأمعاء.'],
+acts:[
+{type:'order',title:'رتّب مراحل الهضم',rounds:[{p:'رتّب ما يحدث للطعام من البداية إلى النهاية:',items:['الأسنان تمضغ الطعام واللعاب يبدأ هضمه','المريء يدفع الطعام إلى المعدة','المعدة تمزج الطعام بالعصارة الهضمية','الأمعاء تفتت الطعام إلى جزيئات صغيرة جدًّا','الطعام المهضوم ينتقل عبر الدم','بقايا الطعام تخرج من نهاية الأمعاء']}]},
+{type:'match',title:'صِل الجزء بوظيفته',pairs:[['الفم','مضغ الطعام وبدء الهضم'],['المريء','دفع الطعام إلى المعدة'],['المعدة','مزج الطعام مع العصارة الهضمية'],['الأمعاء','تفتيت الطعام إلى أجزاء صغيرة جدًّا'],['الدم','نقل الطعام المهضوم إلى أجزاء الجسم']]},
+{type:'fill',title:'أكمل الجمل',sents:[['يتم دفع الطعام من ','المريء',' إلى المعدة.'],['في ','الأمعاء',' يتم تفتيت الطعام إلى جزيئات صغيرة جدًّا.'],['يتم مزج الطعام بالعصارة الهضمية داخل ','المعدة','.'],['يتم مضغ الطعام في ','الفم','.'],['تُسمّى عملية تفتيت الطعام إلى جزيئات صغيرة ','الهضم','.']],extra:['الرئتين','الإخراج']}],
+q:[['لماذا نحتاج إلى الطعام؟',['للنمو والحصول على الطاقة','لتبريد الجسم فقط','لصنع الأكسجين','لتقوية الضلوع فقط'],''],
+['يُطلق على عملية تفتيت الطعام إلى جزيئات صغيرة:',['الهضم','التنفس','الإخراج','الترشيح'],''],
+['أين يبدأ هضم الطعام؟',['في الفم','في الأمعاء','في المعدة','في الكليتين'],'تقطع الأسنان الطعام ويبدأ اللعاب بهضمه.'],
+['ينتقل الطعام من الفم إلى المعدة عبر أنبوب يُسمّى:',['المريء','القصبة الهوائية','الوعاء الدموي','الأمعاء'],''],
+['في المعدة يمتزج الطعام بالعصارة الهضمية فيتحوّل إلى:',['سائل يشبه العصيدة','غاز','قطع صلبة كبيرة','بول'],''],
+['العضوان الرئيسيان في الجهاز الهضمي هما:',['المعدة والأمعاء','القلب والرئتان','الدماغ والأعصاب','الكليتان والكبد'],''],
+['كيف يصل الطعام المهضوم إلى جميع أجزاء الجسم؟',['ينتقل من الأمعاء إلى الدم','ينتقل عبر الأعصاب','ينتقل عبر القصبة الهوائية','لا يصل إلى أجزاء الجسم'],''],
+['يتخلص الجسم من بقايا الطعام غير المهضوم في صورة:',['براز عبر نهاية الأمعاء','بول','عرق','لعاب'],''],
+['لماذا يكون طعام الأطفال الصغار مهروسًا وطريًّا؟',['ليسهل مضغه وهضمه','ليصبح أثقل','ليحتوي على أكسجين','لكي لا يُهضم'],'']]},
+
+{id:'1-6',u:1,t:'ما وظيفة الكليتين؟',v:['الكليتان','الإخراج','البول','المرض','غسيل الكلى'],sim:'kidney',
+k:['توجد الكليتان أسفل القفص الصدري في الجزء الخلفي من الجسم، وهما زوج من الأعضاء على شكل حبة الفاصوليا، وتكون الكلية لدى الشخص البالغ بحجم فأرة الحاسوب.',
+'تُنقّي الكليتان الدم من فضلات الطعام والماء الزائد، ويُطلق على عملية تخلص الجسم من فضلاته عملية الإخراج.',
+'تُخرج الكليتان الفضلات والماء الزائد على شكل سائل يُعرف باسم البول.',
+'يمر الدم عبر الكليتين حوالي 40 مرة يوميًّا لإفراز حوالي لتر واحد من البول.',
+'يمكن للإنسان أن يعيش بكلية واحدة سليمة. وإذا توقفت الكليتان عن العمل بسبب المرض يُستخدم جهاز يُنقّي الدم في عملية تُسمّى غسيل الكلى، وقد يحتاج المريض إلى زراعة كلية من متبرع.',
+'اشرب من ستة إلى ثمانية أكواب من الماء يوميًّا للحفاظ على الكليتين بصحة جيدة.'],
+acts:[
+{type:'fill',title:'أكمل الفقرة',sents:[['الكليتان زوج من الأعضاء على شكل ','حبة فاصوليا','.'],['وظيفتهما الأساسية ','تنقية',' الدم للتخلص من الفضلات والماء الزائد.'],['يتخلص الجسم من الفضلات بعمل الكلى على هيئة سائل يُسمّى ','البول','.'],['تُسمّى عملية تخلص الجسم من الفضلات ','الإخراج','.'],['يجب أن نشرب كمية كافية من ','الماء',' يوميًّا للحفاظ على صحة الكلى.'],['يحتاج بعض المرضى إلى جهاز خاص يُسمّى جهاز ','غسيل الكلى','.']],extra:['الهضم','الدم','اللعاب']},
+{type:'tf',title:'صح أم خطأ؟',items:[['توجد الكليتان في الجزء الأمامي من البطن.',false,'توجدان في الجزء الخلفي أسفل القفص الصدري.'],['يمكن العيش بكلية واحدة سليمة.',true,''],['يفرز الجسم حوالي لتر من البول يوميًّا.',true,''],['يمر الدم عبر الكليتين مرة واحدة فقط في اليوم.',false,'يمر حوالي 40 مرة يوميًّا.'],['تستغرق جلسة غسيل الكلى عدة ساعات.',true,'']]}],
+q:[['أين توجد الكليتان؟',['أسفل القفص الصدري في الجزء الخلفي من الجسم','داخل الجمجمة','أمام القلب مباشرة','في الرقبة'],''],
+['شكل الكلية يشبه:',['حبة الفاصوليا','النجمة','الكرة','المثلث'],''],
+['حجم الكلية لدى الشخص البالغ تقريبًا بحجم:',['فأرة الحاسوب','كرة القدم','حبة الأرز','الصدر كله'],''],
+['تُسمّى عملية تخلص الجسم من الفضلات:',['الإخراج','الهضم','الشهيق','الدورة الدموية'],''],
+['تُخرج الكليتان الفضلات والماء الزائد على شكل سائل يُسمّى:',['البول','الدم','اللعاب','العصارة الهضمية'],''],
+['يمر الدم عبر الكليتين يوميًّا حوالي:',['40 مرة','مرة واحدة','1000 مرة','4 مرات'],''],
+['يُفرز الجسم يوميًّا حوالي:',['لترًا واحدًا من البول','10 لترات من البول','ملعقة واحدة من البول','لا يُفرز بولًا'],''],
+['إذا توقفت الكليتان عن العمل يُنقّى الدم بجهاز في عملية تُسمّى:',['غسيل الكلى','التنفس الصناعي','الترشيح الهوائي','الهضم'],''],
+['للحفاظ على صحة الكليتين يُنصح بشرب:',['ستة إلى ثمانية أكواب من الماء يوميًّا','كوب واحد في الأسبوع','الماء مرة واحدة يوميًّا','عصير محلّى بدل الماء'],''],
+['هل يمكن للإنسان أن يعيش بكلية واحدة؟',['نعم، إذا كانت سليمة','لا، يجب وجود كليتين دائمًا','نعم، ولكن ليوم واحد','لا، لأن الكلية لا تعمل وحدها'],'']]},
+
+{id:'1-7',u:1,t:'ما وظيفة الدماغ؟',v:['الدماغ','الأعصاب','الجهاز العصبي','الصور','الأورام'],sim:'brain',
+k:['الدماغ عضو رخو الملمس رمادي اللون مجعّد الشكل، يوجد داخل الجمجمة التي تحميه.',
+'الدماغ مسؤول عن القيام بمهام التعلم والتفكير، ويتحكم أيضًا في جميع العضلات والحواس.',
+'يتصل الدماغ بجميع أجزاء الجسم عن طريق الأعصاب، التي ترسل الرسائل وتستقبلها طوال الوقت بسرعة كبيرة. ويُعرف الدماغ والأعصاب معًا باسم الجهاز العصبي.',
+'لكل جزء من أجزاء الدماغ وظيفة: المخ للتفكير والكلام والحركة وفهم ما نراه ونسمعه، والمخيخ للتوازن، وجذع الدماغ للأشياء التلقائية مثل التنفس ودقات القلب وطرفة العين والعطس.',
+'تُعدّ إصابات الدماغ بالغة الخطورة؛ لأنه مركز التحكم في جميع أجزاء الجسم ولا يمكنه إصلاح نفسه. ومما يؤثر فيه: الأورام، والجراثيم التي تسبب العدوى، ونقص الأكسجين، وإصابات الرأس.'],
+acts:[
+{type:'sort',title:'أيّ جزء من الدماغ يتحكم؟',buckets:['المخ','المخيخ','جذع الدماغ'],items:[['ذكر اسمك',0],['حل مسألة رياضيات',0],['ركل الكرة',0],['الاستماع إلى الموسيقى',0],['الوقوف على ساق واحدة',1],['المشي على خط مستقيم دون أن تقع',1],['التنفس السريع عند الركض',2],['دقات القلب',2],['طرفة العين',2],['العطس',2]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['يتكوّن الجهاز العصبي من الدماغ والأعصاب.',true,''],['يستطيع الدماغ إصلاح نفسه بسهولة بعد الإصابة.',false,'لا يمكن للدماغ إصلاح نفسه.'],['تحمي الجمجمة الدماغ.',true,''],['ترسل الأعصاب الرسائل ببطء شديد.',false,'ترسل الأعصاب الرسائل بسرعة كبيرة.'],['ارتداء الخوذة يحمي الدماغ من إصابات الرأس.',true,'']]}],
+q:[['أين يوجد الدماغ؟',['داخل الجمجمة','داخل القفص الصدري','في البطن','خلف الكليتين'],''],
+['يتصل الدماغ بأجزاء الجسم عن طريق:',['الأعصاب','الأوعية الدموية فقط','القصبة الهوائية','المريء'],''],
+['يتكوّن الجهاز العصبي من:',['الدماغ والأعصاب','القلب والدم','الرئتين والقصبة الهوائية','المعدة والأمعاء'],''],
+['أيّ أجزاء الدماغ يتحكم في التوازن؟',['المخيخ','جذع الدماغ','المخ','الجمجمة'],''],
+['يتحكم جذع الدماغ في الأشياء التي تحدث تلقائيًّا مثل:',['التنفس ودقات القلب','حل مسألة رياضيات','ركل الكرة','قراءة قصة'],''],
+['لماذا تُعدّ إصابات الدماغ بالغة الخطورة؟',['لأنه مركز التحكم في الجسم ولا يمكنه إصلاح نفسه','لأنه عضو لا فائدة له','لأنه يضخ الدم','لأنه يهضم الطعام'],''],
+['من الأشياء التي تسبب عدوى للدماغ:',['الجراثيم','الأكسجين','الماء النظيف','الخوذة'],''],
+['كيف تحمي دماغك عند ركوب الدراجة؟',['بارتداء الخوذة','بشرب العصير','بالسرعة العالية','بإغلاق العينين'],''],
+['الدماغ عضو:',['رخو الملمس رمادي اللون مجعّد الشكل','صلب أحمر أملس','على شكل حبة الفاصوليا','يشبه الإسفنج المملوء بالهواء'],''],
+['لماذا يجب أن تنتقل الرسائل بسرعة بين الدماغ والجسم عند عبور الطريق؟',['لنتحرك بسرعة إذا ظهرت سيارة مسرعة','لكي نشعر بالجوع','لكي نهضم الطعام','لكي تزداد دقات القلب فقط'],'']]},
+
+{id:'2-1',u:2,t:'السلاسل الغذائية في الموطن الطبيعي المحلي',v:['علاقة غذائية','الآفات','سلسلة غذائية','أنواع'],sim:'chain',simArg:'local',
+k:['الموطن الطبيعي هو المكان الذي تعيش فيه الكائنات الحية في البيئة، مثل المزرعة أو حديقة المدرسة.',
+'مزرعة الخضروات موطن طبيعي لكثير من النباتات والحيوانات، وتوجد علاقات غذائية بينها: اليرقات تأكل أوراق السبانخ، والحشرة ثاقبة الذرة تُحدث ثقوبًا في سيقان الذرة.',
+'الحيوانات التي تُتلف المزروعات تُسمّى الآفات، وتساعد حيوانات أخرى في مكافحتها: تأكل الطيور اليرقات، وتأكل السحالي الحشرة ثاقبة الذرة.',
+'نصف العلاقة الغذائية باستخدام السلسلة الغذائية، وهي تُبيّن العلاقة الغذائية بين النبات والحيوان.',
+'السهم في السلسلة الغذائية يعني «يتغذى عليه»، فالسلسلة: السبانخ ← اليرقة تخبرنا أن اليرقة تتغذى على السبانخ.'],
+acts:[
+{type:'match',title:'صِل الكائن بغذائه',pairs:[['اليرقة','أوراق السبانخ'],['الطيور','اليرقات'],['السحالي','الحشرة ثاقبة الذرة'],['الحشرة ثاقبة الذرة','سيقان الذرة'],['البقرة','العشب'],['الدجاجة','بذور الذرة']]},
+{type:'tf',title:'صح أم خطأ؟',items:[['السلسلة الغذائية تبين العلاقة الغذائية بين الكائنات الحية.',true,''],['في السلسلة: العشب ← البقرة، العشب يتغذى على البقرة.',false,'السهم يعني يتغذى عليه، فالبقرة تتغذى على العشب.'],['الطيور في مزرعة محمد تساعد في مكافحة الآفات.',true,'لأنها تأكل اليرقات.'],['الموطن الطبيعي هو المكان الذي تعيش فيه الكائنات الحية.',true,''],['اليرقات مفيدة لمحصول السبانخ.',false,'اليرقات من الآفات لأنها تأكل أوراق السبانخ.']]}],
+q:[['المكان الذي تعيش فيه الكائنات الحية في البيئة يُسمّى:',['الموطن الطبيعي','السلسلة الغذائية','مردم النفايات','الغلاف الجوي'],''],
+['السلسلة الغذائية توضح:',['العلاقة الغذائية بين الكائنات الحية','أعضاء جسم الإنسان','طرق فصل المخاليط','أسباب تلوث الهواء'],''],
+['في السلسلة: السبانخ ← اليرقة، ماذا يعني السهم؟',['اليرقة تتغذى على السبانخ','السبانخ تتغذى على اليرقة','اليرقة تُنتج السبانخ','لا توجد علاقة بينهما'],'السهم يعني «يتغذى عليه».'],
+['ما فائدة الطيور في مزرعة الخضروات؟',['تأكل اليرقات فتساعد في مكافحة الآفات','تأكل أوراق السبانخ','تثقب سيقان الذرة','تروي المزروعات'],''],
+['الحيوانات التي تُتلف المزروعات تُسمّى:',['الآفات','الكائنات المنتجة','الحيوانات الأليفة','النباتات'],''],
+['أيّ الكائنات يأكل الحشرة ثاقبة الذرة في المزرعة؟',['السحالي','البقرة','السبانخ','الدجاجة'],''],
+['أيّ سلسلة غذائية مكتوبة بطريقة صحيحة؟',['العشب ← البقرة','البقرة ← العشب','الدجاجة ← بذور الذرة','اليرقة ← السبانخ'],''],
+['تعيش الكائنات الحية في الموطن الطبيعي:',['معتمدة بعضها على بعض في الغذاء','دون أي علاقة بينها','وكلها تأكل النباتات فقط','وكلها مفترسة'],'']]},
+
+{id:'2-2',u:2,t:'السلاسل الغذائية تبدأ بالنباتات',v:['طاقة','كائن منتج','كائن مستهلك','عامل'],sim:'plant',
+k:['يحتاج الإنسان والحيوانات إلى الطاقة في كل ما يفعله، كالحركة والتنفس والأكل والنوم، ويحصلون عليها من الطعام.',
+'إذا تتبّعنا طعامنا من النباتات أو الحيوانات التي أكلت النباتات، نلاحظ أن السلاسل الغذائية جميعها تبدأ بالنباتات.',
+'النباتات كائنات فريدة لأنها تنتج غذاءها بنفسها، ولهذا تُسمّى كائنات منتجة. أما الإنسان والحيوانات فلا تنتج غذاءها بنفسها، ولذا تُسمّى كائنات مستهلكة.',
+'تصنع النباتات الغذاء في أوراقها باستخدام ثلاثة عوامل: ضوء الشمس والماء وثاني أكسيد الكربون. فإذا نقص أحدها لن يتمكن النبات من إنتاج الغذاء.',
+'تحصل النباتات على الطاقة من الشمس لتحويل الماء وثاني أكسيد الكربون إلى سكر وأكسجين، فيُخزّن السكر في النبات ويُطلق الأكسجين إلى الهواء.',
+'تمتص النباتات أيضًا المغذيات الذائبة في الماء الموجود بالتربة، مثل الحديد والمغنيسيوم، بواسطة جذورها.'],
+acts:[
+{type:'sort',title:'منتج أم مستهلك؟',buckets:['كائن منتج','كائن مستهلك'],items:[['العشب',0],['السبانخ',0],['شجرة النخيل',0],['بذور الذرة',0],['الأرنب',1],['الإنسان',1],['الدجاجة',1],['البقرة',1],['الأسد',1],['اليرقة',1]]},
+{type:'fill',title:'أكمل الجمل',sents:[['تصنع النباتات غذاءها في ','أوراقها','.'],['تحتاج النباتات لصنع غذائها إلى ضوء الشمس والماء و','ثاني أكسيد الكربون','.'],['تُحوّل النباتات الماء وثاني أكسيد الكربون إلى سكر و','الأكسجين','.'],['تمتص النباتات المغذيات من التربة بواسطة ','الجذور','.'],['النباتات كائنات ','منتجة',' لأنها تنتج غذاءها بنفسها.']],extra:['مستهلكة','النيتروجين','الأزهار']},
+{type:'order',title:'رتّب السلاسل الغذائية',rounds:[{p:'رتّب الكائنات لتكوّن سلسلة غذائية:',items:['بذور الذرة','الدجاجة','الإنسان']},{p:'رتّب الكائنات لتكوّن سلسلة غذائية:',items:['العشب','الخروف','الإنسان']},{p:'رتّب الكائنات لتكوّن سلسلة غذائية:',items:['الورقة','اليرقة','الطائر']}]}],
+q:[['النباتات كائنات منتجة لأنها:',['تنتج غذاءها بنفسها','تأكل الحيوانات','تحصل على الغذاء من الإنسان','لا تحتاج إلى غذاء'],''],
+['الإنسان والحيوانات كائنات:',['مستهلكة','منتجة','غير حية','مذيبة'],''],
+['تصنع النباتات غذاءها في:',['أوراقها','أزهارها فقط','ثمارها فقط','التربة'],''],
+['العوامل الثلاثة اللازمة لصنع النبات غذاءه:',['ضوء الشمس والماء وثاني أكسيد الكربون','التربة والهواء البارد والظلام','الأكسجين والسكر والملح','الماء والرمل والحديد'],''],
+['ماذا تنتج النباتات عند صنع غذائها؟',['السكر والأكسجين','ثاني أكسيد الكربون والماء','الملح والرمل','الدم والأكسجين'],''],
+['من أين يحصل النبات على الطاقة لصنع الغذاء؟',['من الشمس','من التربة','من الحيوانات','من الهواء البارد'],''],
+['تمتص النباتات المغذيات الذائبة مثل الحديد والمغنيسيوم بواسطة:',['الجذور','الأوراق','الأزهار','الثمار'],''],
+['في السلسلة: بذور الذرة ← الدجاجة ← الإنسان، الكائن المنتج هو:',['بذور الذرة','الدجاجة','الإنسان','لا يوجد كائن منتج'],''],
+['نبات حصل على ضوء الشمس وثاني أكسيد الكربون لكنه لم يحصل على الماء، فإنه:',['لن يتمكن من إنتاج الغذاء','سينمو أسرع','سينتج أكسجين أكثر','لن يتأثر'],''],
+['تبدأ جميع السلاسل الغذائية بـ:',['النباتات','الحيوانات المفترسة','الإنسان','الحشرات'],'']]},
+
+{id:'2-3',u:2,t:'الكائنات الحية المستهلكة في السلاسل الغذائية',v:['مفترس','الفريسة'],sim:'chain',simArg:'pred',
+k:['تتغذى بعض الحيوانات بشكل أساسي على النباتات، وبعضها الآخر يتغذى على الحيوانات الأخرى.',
+'يُسمّى الحيوان الذي يتغذى على الحيوانات الأخرى مفترسًا، بينما تُسمّى الحيوانات التي تصطادها الحيوانات المفترسة وتتغذى عليها الفريسة.',
+'أمثلة: البومة كائن مفترس والفأر فريسته. والثعابين حيوانات مفترسة يبتلع بعضها الفريسة كاملة. والضفدع مفترس للحشرات يُخرج لسانه اللزج بسرعة ليمسك فريسته.',
+'في بعض السلاسل الغذائية يوجد أكثر من مفترس: يأكل الجراد النباتات، ثم يصبح فريسة للسحلية، ثم تصبح السحلية فريسة للصقر. فالسحلية مفترس وفريسة معًا.',
+'ينمو نبات آكل الحشرات في تربة فقيرة بالمغذيات، فيصطاد الحشرات مثل الذباب ويستفيد من المغذيات الموجودة في أجسامها.'],
+acts:[
+{type:'match',title:'صِل المفترس بفريسته',pairs:[['البومة','الفأر'],['الفهد','الظبي'],['الدب القطبي','الفقمة'],['العنكبوت','الذبابة'],['النورس','السمكة'],['الصقر','السحلية']]},
+{type:'sort',title:'مفترس أم فريسة؟ (في السلسلة: الجراد ← السحلية ← الصقر)',buckets:['فريسة فقط','مفترس وفريسة','مفترس فقط'],items:[['الجراد',0],['السحلية',1],['الصقر',2]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['المفترس حيوان يصطاد الحيوانات الأخرى ويتغذى عليها.',true,''],['الحيوان الواحد لا يمكن أن يكون مفترسًا وفريسة في الوقت نفسه.',false,'السحلية تأكل الجراد ويأكلها الصقر.'],['يصطاد الضفدع الحشرات بلسانه اللزج.',true,''],['نبات آكل الحشرات ينمو في تربة غنية جدًّا بالمغذيات.',false,'ينمو في تربة فقيرة بالمغذيات.'],['الحيوانات المفترسة كائنات منتجة.',false,'الحيوانات كلها كائنات مستهلكة.']]}],
+q:[['الحيوان الذي يصطاد الحيوانات الأخرى ويتغذى عليها يُسمّى:',['مفترسًا','فريسة','منتجًا','نباتًا'],''],
+['الحيوان الذي يتغذى عليه المفترس يُسمّى:',['فريسة','مفترسًا','منتجًا','آفة'],''],
+['البومة تتغذى على الفأر، لذا فإن الفأر:',['فريسة','مفترس','منتج','نبات'],''],
+['في السلسلة: الجراد ← السحلية ← الصقر، السحلية تكون:',['مفترسًا وفريسة معًا','منتجًا فقط','فريسة فقط','مفترسًا فقط'],''],
+['كيف يصطاد الضفدع الحشرات؟',['يُخرج لسانه اللزج بسرعة','يغطس في الماء','يطاردها في الهواء','بمخالبه'],''],
+['تبتلع بعض الثعابين فريستها:',['كاملة','بعد طهيها','على شكل سائل','بعد دفنها'],''],
+['لماذا يصطاد نبات آكل الحشرات الذباب؟',['ليحصل على المغذيات لأنه ينمو في تربة فقيرة بها','لأنه لا يحتاج إلى ضوء الشمس','لكي يطير','لأنه حيوان مفترس'],''],
+['أيّ زوج يمثل مفترسًا وفريسته؟',['الفهد والظبي','العشب والبقرة','الذرة والسبانخ','الماء والملح'],''],
+['الحيوانات المفترسة كائنات:',['مستهلكة تأكل الحيوانات الأخرى','منتجة تصنع غذاءها','لا تتغذى','تتغذى على ضوء الشمس'],'']]},
+
+{id:'2-4',u:2,t:'السلاسل الغذائية في المواطن الطبيعية المختلفة',v:['الاستوائية','الصحراوية','السافانا','العوالق'],sim:'chain',simArg:'habitats',
+k:['توجد مواطن طبيعية عديدة على كوكب الأرض بسبب وجود مناخات متعددة، مما يؤدي إلى نمو نباتات مختلفة تجذب حيوانات مختلفة، لذا نجد سلاسل غذائية متنوعة.',
+'تنمو الغابات الاستوائية في المناخ الحار الرطب، بينما لا ينمو إلا القليل من النباتات الصحراوية في المناخ الحار الجاف.',
+'السافانا مساحة كبيرة في أفريقيا، الجو فيها حار طوال العام وممطر في الصيف، وتنمو فيها الأعشاب والأشجار المتفرقة. تتغذى عليها حيوانات مثل الحمار الوحشي والزرافة والثور البري، وتتغذى على هذه الحيوانات مفترسات مثل الأسد والفهد والكلب البري.',
+'تغطي المحيطات نحو ثلاثة أرباع مساحة الأرض. ومعظم نباتاتها وحيواناتها صغيرة جدًّا يصعب رؤيتها بالعين المجردة وتُسمّى العوالق.',
+'تتغذى بعض الحيوانات البحرية على العوالق فقط، مثل القرش المتشمّس الذي يصل طوله إلى 8 أمتار، بينما يأكل بعضها الآخر الحيوانات.'],
+acts:[
+{type:'sort',title:'في أيّ موطن يعيش؟',buckets:['السافانا','المحيط'],items:[['الأسد',0],['الزرافة',0],['الحمار الوحشي',0],['الكلب البري',0],['الثور البري',0],['العوالق',1],['القرش المتشمّس',1],['الفقمة',1],['السمك الصغير',1],['الفهد',0]]},
+{type:'order',title:'رتّب السلاسل الغذائية',rounds:[{p:'سلسلة غذائية في السافانا:',items:['العشب','الحمار الوحشي','الأسد']},{p:'سلسلة غذائية في المحيط:',items:['العوالق','سمك صغير','فقمة','قرش']},{p:'سلسلة غذائية في المحيط:',items:['العوالق','سمكة','نورس']}]},
+{type:'tf',title:'صح أم خطأ؟',items:[['تنمو الغابات الاستوائية في المناخ الحار الجاف.',false,'تنمو في المناخ الحار الرطب.'],['العوالق كائنات صغيرة جدًّا يصعب رؤيتها بالعين المجردة.',true,''],['تغطي المحيطات نحو ربع مساحة الأرض.',false,'تغطي نحو ثلاثة أرباع مساحة الأرض.'],['يتغذى القرش المتشمّس على العوالق فقط.',true,''],['الجو في السافانا حار طوال العام وممطر في الصيف.',true,'']]}],
+q:[['لماذا توجد مواطن طبيعية عديدة على كوكب الأرض؟',['لوجود مناخات متعددة تنمو فيها نباتات مختلفة','لأن الحيوانات تبني بيوتها','بسبب إعادة التدوير','لأن جميع المناخات متشابهة'],''],
+['تنمو الغابات الاستوائية في المناخ:',['الحار الرطب','البارد الجاف','الحار الجاف','المتجمد'],''],
+['تنمو النباتات الصحراوية في المناخ:',['الحار الجاف','الحار الرطب','البارد الممطر','الثلجي'],''],
+['الجو في السافانا:',['حار طوال العام وممطر في الصيف','بارد طوال العام','ممطر طوال العام','متجمد شتاءً'],''],
+['الكائنات المنتجة في السافانا:',['الأعشاب والأشجار المتفرقة','الأسد والفهد','الحمار الوحشي','الكلب البري'],''],
+['أيّ سلسلة غذائية من السافانا صحيحة؟',['العشب ← الحمار الوحشي ← الأسد','الأسد ← العشب ← الحمار الوحشي','الحمار الوحشي ← العشب ← الأسد','الأسد ← الحمار الوحشي ← العشب'],''],
+['تغطي المحيطات تقريبًا:',['ثلاثة أرباع مساحة الأرض','ربع مساحة الأرض','نصف مساحة الأرض','عُشر مساحة الأرض'],''],
+['النباتات والحيوانات الصغيرة جدًّا في المحيط تُسمّى:',['العوالق','الشعاب','الحيتان','الطحالب الكبيرة'],''],
+['ماذا قد يحدث للمفترسات في السافانا إذا ماتت كل الأعشاب؟',['تقل فرائسها وقد تموت جوعًا','تزداد أعدادها','لن تتأثر','تتحول إلى كائنات منتجة'],'تموت الحيوانات التي تأكل العشب، فلا تجد المفترسات غذاءً.'],
+['يصل طول القرش المتشمّس إلى 8 أمتار ويتغذى على:',['العوالق فقط','الأسماك الكبيرة','الفقمات','النورس'],'']]},
+
+{id:'2-5',u:2,t:'إزالة الغابات',v:['إزالة الغابات','سلبية','البيئة','الاحتباس الحراري','غازات دفيئة','يحفظ'],sim:'forest',
+k:['يتم قطع أشجار الغابات المطيرة بمعدل مساحة ملعب كرة قدم كل ثانية، وهذا ما يُسمّى إزالة الغابات.',
+'أسباب إزالة الغابات: جمع الخشب لصناعة الأثاث، وجمع الخشب لحرقه كوقود، وإخلاء الأرض للزراعة والسكن والصناعة.',
+'لإزالة الغابات آثار سلبية على البيئة: تستغرق الأشجار نحو 100 عام لتنمو من جديد، والتربة لا تتلقى الأوراق المتحللة فتصبح فقيرة، فتختفي النباتات والحيوانات من الغابة.',
+'تمتص الأشجار ثاني أكسيد الكربون من الهواء لصنع غذائها، فتساعد على تقليل الغازات الدفيئة التي ترفع درجة حرارة الأرض (الاحتباس الحراري)، كما تطلق الأكسجين الذي يحتاجه الإنسان والحيوان.',
+'الغابات مهمة: فهي موطن لعدد كبير من الكائنات (في 6 كيلومترات مربعة يمكن أن يوجد 1500 نوع من النباتات و400 نوع من الطيور و150 نوعًا من الفراشات و100 نوع من الزواحف)، ومنها نصنع الكثير من الأدوية.'],
+acts:[
+{type:'sort',title:'سبب أم أثر؟',buckets:['أسباب إزالة الغابات','آثار إزالة الغابات'],items:[['جمع الخشب لصناعة الأثاث',0],['حرق الخشب كوقود',0],['إخلاء الأرض للزراعة',0],['إخلاء الأرض للسكن والصناعة',0],['فقر التربة',1],['اختفاء النباتات والحيوانات',1],['زيادة ثاني أكسيد الكربون في الهواء',1],['زيادة الاحتباس الحراري',1]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['تحتاج الأشجار نحو 100 عام لتنمو من جديد بعد قطعها.',true,''],['تطلق الأشجار ثاني أكسيد الكربون وتمتص الأكسجين لصنع غذائها.',false,'تمتص ثاني أكسيد الكربون وتطلق الأكسجين.'],['الغازات الدفيئة تحبس الحرارة حول الأرض.',true,''],['يمكن صناعة كثير من الأدوية من نباتات الغابات.',true,''],['زراعة الأشجار تزيد الاحتباس الحراري.',false,'زراعة الأشجار تقلل ثاني أكسيد الكربون.']]}],
+q:[['يتم قطع الغابات المطيرة بمعدل مساحة:',['ملعب كرة قدم كل ثانية','غرفة صغيرة كل سنة','شجرة واحدة كل شهر','مدينة كاملة كل ثانية'],''],
+['من أسباب إزالة الغابات:',['إخلاء الأرض للزراعة والسكن والصناعة','زراعة أشجار جديدة','تنظيف الأنهار','إعادة تدوير الورق'],''],
+['كم تستغرق الأشجار تقريبًا لتنمو من جديد بعد قطع الغابة؟',['100 عام','عامًا واحدًا','10 أيام','5 أعوام'],''],
+['لماذا تصبح التربة فقيرة بعد إزالة الغابة؟',['لأنها لا تتلقى الأوراق المتحللة من الأشجار','لأن الأمطار تزيد','لأن الحيوانات تكثر','لأن الشمس تختفي'],''],
+['تمتص الأشجار من الهواء غازًا لصنع غذائها هو:',['ثاني أكسيد الكربون','الأكسجين','أول أكسيد الكربون','النيتروجين'],''],
+['الغازات التي تحبس الحرارة مثل ثاني أكسيد الكربون تُسمّى:',['الغازات الدفيئة','غازات الطهي','الغازات الباردة','غازات التنفس'],''],
+['ارتفاع درجة حرارة كوكب الأرض بسبب الغازات الدفيئة يُسمّى:',['الاحتباس الحراري','الأمطار الحمضية','التبخر','الترشيح'],''],
+['من أهمية الغابات:',['موطن لعدد كبير من الكائنات ومصدر للأدوية','مصدر لأول أكسيد الكربون','مكان لرمي النفايات','تزيد التلوث'],''],
+['في 6 كيلومترات مربعة من الغابات المطيرة يمكن أن يوجد نحو:',['1500 نوع من النباتات','15 نوعًا من النباتات','5 أنواع من النباتات','نوع واحد من النباتات'],''],
+['كيف تساعد زراعة الأشجار في الحفاظ على البيئة؟',['تمتص ثاني أكسيد الكربون وتطلق الأكسجين','تزيد الغازات الدفيئة','تسبب الأمطار الحمضية','تزيد تلوث التربة'],'']]},
+
+{id:'2-6',u:2,t:'تلوث الهواء',v:['الغلاف الجوي','الملوثات','تلوث','الالتهاب الشعبي','الربو','مثل'],sim:'air',
+k:['يتكوّن الغلاف الجوي من غازين أساسيين هما النيتروجين والأكسجين، وكميات قليلة من ثاني أكسيد الكربون وبخار الماء، وهذه الغازات ليست مضرة، لكن البشر يلوثون البيئة بغازات أخرى.',
+'أول أكسيد الكربون غاز سام يخرج من عوادم السيارات. والسيارات الجديدة تُسبب تلوثًا أقل؛ لأنها مزوّدة بجهاز يغير غازات العادم إلى ثاني أكسيد الكربون.',
+'حرق الفحم والنفط لإنتاج الطاقة يُسبب التلوث، ويُطلق غاز ثاني أكسيد الكبريت وأكسيد النيتروجين من المصانع. أما طاقة الرياح والطاقة الشمسية والطاقة المائية فلا تُسبب التلوث، لكنها أكثر تكلفة.',
+'تنتشر الملوثات بفعل الرياح، ويكون الهواء الملوث عادة فوق المدن.',
+'يترك التلوث آثارًا سلبية على النباتات والحيوانات، وكثيرًا ما يصاب الأشخاص في المناطق الملوثة بالالتهاب الشعبي والربو.'],
+acts:[
+{type:'sort',title:'هل يلوث الهواء؟',buckets:['يلوث الهواء','لا يلوث الهواء'],items:[['حرق الفحم',0],['حرق النفط',0],['عوادم السيارات القديمة',0],['دخان المصانع',0],['طاقة الرياح',1],['الطاقة الشمسية',1],['الطاقة المائية',1],['ركوب الدراجة الهوائية',1]]},
+{type:'fill',title:'أكمل الجمل',sents:[['يتكوّن الغلاف الجوي من غازين أساسيين هما النيتروجين و','الأكسجين','.'],['غاز سام يخرج من عوادم السيارات هو ','أول أكسيد الكربون','.'],['تنتشر الملوثات من مكان إلى آخر بفعل ','الرياح','.'],['من الأمراض التي يسببها تلوث الهواء الالتهاب الشعبي و','الربو','.'],['ينبعث من المصانع التي تحرق الفحم ثاني أكسيد الكبريت و','أكسيد النيتروجين','.']],extra:['الهيليوم','الأمطار','السكر']}],
+q:[['يتكوّن الغلاف الجوي من غازين أساسيين هما:',['النيتروجين والأكسجين','ثاني أكسيد الكبريت والأكسجين','أول أكسيد الكربون والنيتروجين','الأكسجين وبخار الماء فقط'],''],
+['أول أكسيد الكربون غاز سام ينبعث من:',['عوادم السيارات','أوراق الأشجار','الشلالات','الألواح الشمسية'],''],
+['لماذا تُسبب السيارات الجديدة تلوثًا أقل؟',['لأنها مزودة بجهاز يغير غازات العادم إلى ثاني أكسيد الكربون','لأنها لا تحتاج إلى وقود','لأنها أصغر حجمًا','لأنها تسير ببطء'],''],
+['أيّ مصادر الطاقة الآتية لا يُسبب تلوث الهواء؟',['طاقة الرياح','حرق الفحم','حرق النفط','عوادم السيارات'],''],
+['ينبعث ثاني أكسيد الكبريت وأكسيد النيتروجين من:',['حرق الفحم والنفط في المصانع','الأشجار','البحيرات','الطاقة الشمسية'],''],
+['من الأمراض التي تصيب الأشخاص في المناطق الملوثة:',['الالتهاب الشعبي والربو','كسر العظام','تسوس الأسنان','قصر النظر'],''],
+['تنتشر الملوثات من مكان إلى آخر بفعل:',['الرياح','الصخور','الضوء','الصوت'],''],
+['لماذا لا تعتمد دول كثيرة على الطاقة الشمسية بدل الفحم والنفط؟',['لأنها أكثر تكلفة','لأنها تلوث الهواء','لأنها تسبب الربو','لأنها تُطلق أول أكسيد الكربون'],''],
+['يكون الهواء الملوث عادة:',['فوق المدن','فوق الغابات','فوق الصحاري الخالية','فوق المحيطات البعيدة'],'']]},
+
+{id:'2-7',u:2,t:'الأمطار الحمضية',v:['الأمطار الحمضية'],sim:'acid',
+k:['عند حرق الفحم والنفط والغاز الطبيعي ينبعث ثاني أكسيد الكبريت وأكسيد النيتروجين.',
+'تتفاعل هذه الغازات مع بخار الماء في الجو لتكوّن حمض الكبريتيك وحمض النيتريك، فتتحول الأمطار إلى أمطار حمضية، وتكون حمضيتها غالبًا أقل من حمضية عصير الليمون.',
+'تتسرب الأمطار الحمضية إلى البحيرات وتجعل المياه فيها حمضية، فتدمر البيض وتقتل الحشرات، مما يؤدي إلى تناقص عدد الضفادع التي تتغذى عليها.',
+'تُفقد الأمطار الحمضية التربة جزءًا من المغذيات، فتضعف النباتات ويبطؤ نموها وتتساقط أوراقها. وحتى الأشجار الكبيرة تضعف فتتعرض للآفات وقد تموت.',
+'تُدمّر الأمطار الحمضية المباني الحجرية لأنها تسبب تآكل الصخور.'],
+acts:[
+{type:'order',title:'كيف تتكوّن الأمطار الحمضية؟',rounds:[{p:'رتّب الخطوات:',items:['حرق الفحم والنفط والغاز الطبيعي','انبعاث ثاني أكسيد الكبريت وأكسيد النيتروجين','تفاعل الغازات مع بخار الماء في الجو','تكوّن حمض الكبريتيك وحمض النيتريك','سقوط الأمطار الحمضية','تضرر النباتات والبحيرات والمباني']}]},
+{type:'tf',title:'صح أم خطأ؟',items:[['حمضية الأمطار الحمضية غالبًا أكبر بكثير من حمضية عصير الليمون.',false,'غالبًا أقل من حمضية عصير الليمون.'],['تُفقد الأمطار الحمضية التربة جزءًا من المغذيات.',true,''],['الأمطار الحمضية تفيد الضفادع.',false,'تقتل الحشرات وتدمر البيض فيتناقص عدد الضفادع.'],['تسبب الأمطار الحمضية تآكل الصخور في المباني.',true,''],['تقليل حرق الفحم والنفط يقلل الأمطار الحمضية.',true,'']]}],
+q:[['تتكوّن الأمطار الحمضية عندما تتفاعل غازات مع بخار الماء، هذه الغازات هي:',['ثاني أكسيد الكبريت وأكسيد النيتروجين','الأكسجين والنيتروجين','بخار الماء فقط','الهيليوم والنيون'],''],
+['ينبعث ثاني أكسيد الكبريت وأكسيد النيتروجين عند حرق:',['الفحم والنفط والغاز الطبيعي','أوراق الشجر الخضراء','الورق المعاد تدويره','السماد'],''],
+['تتحوّل الغازات في الجو إلى:',['حمض الكبريتيك وحمض النيتريك','ماء نقي','سكر','ملح'],''],
+['حمضية الأمطار الحمضية غالبًا:',['أقل من حمضية عصير الليمون','أكبر بكثير من حمضية عصير الليمون','مثل الماء النقي تمامًا','مثل الحليب'],''],
+['كيف تؤثر الأمطار الحمضية في التربة؟',['تُفقدها جزءًا من المغذيات','تزيد المغذيات فيها','تجعلها أكثر خصوبة','لا تؤثر فيها'],''],
+['ماذا يحدث للنباتات بسبب الأمطار الحمضية؟',['تضعف ويبطؤ نموها وتتساقط أوراقها','تنمو أسرع','تُزهر أكثر','تنتج سكرًا أكثر'],''],
+['تدمّر الأمطار الحمضية البيض وتقتل الحشرات في البحيرات، مما يؤدي إلى:',['تناقص عدد الضفادع','زيادة عدد الضفادع','زيادة الحشرات','تحسّن مياه البحيرات'],''],
+['كيف تؤثر الأمطار الحمضية في المباني الحجرية؟',['تسبب تآكل الصخور','تجعلها أقوى','تجعلها تلمع','لا تؤثر فيها'],''],
+['أفضل طريقة لتقليل الأمطار الحمضية:',['تقليل حرق الفحم والنفط','زيادة عدد المصانع','قطع الأشجار','زيادة السيارات القديمة'],'']]},
+
+{id:'2-8',u:2,t:'إعادة التدوير',v:['التخلص من النفايات','مردم النفايات','تقليل','إيجابي','السماد','إعادة التدوير'],sim:'recycle',
+k:['يُعدّ التخلص من النفايات تحديًا كبيرًا، إذ يتم نقل أغلب القمامة إلى مرادم النفايات، وهي أكوام ضخمة من القمامة تشغل أراضي ثمينة يمكن استخدامها في أشياء أخرى.',
+'إعادة التدوير هي عدم رمي الأشياء، وإنما معالجتها لتصبح منتجًا جديدًا يمكن استخدامه، فنقلل كمية القمامة ونُسهم في حماية البيئة.',
+'الورق: يتم قطع ملايين الأشجار لصناعة الورق من لب الخشب، فإذا أعدنا تدوير الورق نقطع أشجارًا أقل.',
+'الزجاج: تُجمع الأوعية الزجاجية وتُصهر ويُعاد تشكيلها، ويظل الزجاج محافظًا على قوته. وعلب الألومنيوم: استخراج الألومنيوم من الصخور يحتاج إلى طاقة كبيرة، بينما إعادة تدويره تستهلك طاقة أقل.',
+'البلاستيك لا يتحلل، وإعادة تدويره ممكنة لكنها مكلفة، لذلك من الأفضل التقليل من استخدامه. ويمكن تحويل مخلفات الحديقة وقشور الخضروات والفاكهة إلى سماد مفيد للتربة.'],
+acts:[
+{type:'sort',title:'ضع كل شيء في الحاوية الصحيحة',buckets:['ورق','زجاج','معادن','بلاستيك','سماد'],items:[['صحيفة قديمة',0],['صندوق كرتون',0],['دفتر مستعمل',0],['قارورة زجاجية',1],['برطمان زجاجي',1],['علبة مشروب ألومنيوم',2],['علبة طعام معدنية',2],['كيس بلاستيكي',3],['قارورة ماء بلاستيكية',3],['قشر موز',4],['أوراق شجر متساقطة',4],['قشور خضروات',4]]},
+{type:'match',title:'صِل المادة بفائدة إعادة تدويرها',pairs:[['الورق','قطع أشجار أقل'],['الزجاج','يُصهر ويُعاد تشكيله ويحافظ على قوته'],['علب الألومنيوم','استهلاك طاقة أقل من استخراجه من الصخور'],['البلاستيك','الأفضل التقليل من استخدامه'],['مخلفات الحديقة','سماد مفيد للتربة']]}],
+q:[['إعادة التدوير هي:',['عدم رمي الأشياء ومعالجتها لتصبح منتجًا جديدًا','رمي النفايات في المردم','حرق النفايات','قطع الأشجار'],''],
+['مرادم النفايات:',['أكوام ضخمة من القمامة تشغل أراضي ثمينة','مصانع لإعادة التدوير','حدائق عامة','مصادر للمياه'],''],
+['إعادة تدوير الورق تعني:',['قطع أشجار أقل','قطع أشجار أكثر','زيادة القمامة','استخدام أكياس أكثر'],''],
+['ماذا يحدث للزجاج عند إعادة تدويره؟',['يُصهر ويُعاد تشكيله ويظل محافظًا على قوته','يتحلل في التربة','يتحول إلى ورق','يصبح ضعيفًا جدًّا'],''],
+['لماذا نعيد تدوير علب الألومنيوم؟',['لأن استخراج الألومنيوم من الصخور يحتاج إلى طاقة كبيرة','لأنها تتحلل بسرعة','لأنها تصنع الورق','لأنها سماد للتربة'],''],
+['البلاستيك:',['لا يتحلل، وإعادة تدويره مكلفة، لذا نقلل استخدامه','يتحلل في يوم واحد','يُصنع من لب الخشب','مفيد للتربة كسماد'],''],
+['يُصنع السماد من:',['مخلفات الحديقة وقشور الخضروات والفاكهة','الزجاج والمعادن','الأكياس البلاستيكية','علب الألومنيوم'],''],
+['أيّ مما يأتي مثال على إعادة الاستخدام؟',['استخدام برطمان زجاجي فارغ لحفظ الأقلام','رمي الكيس بعد استعماله مرة','حرق الورق','ترك الأنوار مضاءة'],''],
+['السماد:',['مفيد للتربة ويساعد النباتات على النمو بشكل أفضل','يلوث المياه','يقتل النباتات','يزيد النفايات'],'']]},
+
+{id:'2-9',u:2,t:'الاعتناء بالبيئة',v:['مصدر','تفريغ'],sim:'house',
+k:['يمكن لكل فرد العناية ببيئته باستهلاك القليل من الطاقة والماء، ويساعد ذلك في الحفاظ على كل مصدر.',
+'نحافظ على الماء إذا: استحممنا بالرشاش بدلًا من ملء حوض الاستحمام، وعالجنا تسرب الماء وأحكمنا غلق الصنبور، وجمعنا مياه الأمطار في خزان لاستخدامها في الغسيل وري النباتات.',
+'نحافظ على الطاقة إذا: أطفأنا الكهرباء عندما لا نستخدمها، واستخدمنا مصابيح موفرة للطاقة، ومشينا أو ركبنا الدراجة بدلًا من السيارة أو الحافلة، واستخدمنا مصابيح الطاقة الشمسية لإنارة الحدائق لأنها قليلة التكلفة وصديقة للبيئة.',
+'القمامة تُشوّه المظهر ولها رائحة كريهة، وتأوي الحشرات والحيوانات التي تنقل الأمراض.',
+'تأكل السلاحف الأكياس البلاستيكية لاعتقادها أنها قناديل البحر، ويبقى البلاستيك في معدتها فيضرها؛ لذلك يجب ألّا نلقي القمامة في البيئة.'],
+acts:[
+{type:'sort',title:'عادة صديقة للبيئة أم ضارة؟',buckets:['صديقة للبيئة','ضارة بالبيئة'],items:[['إغلاق الصنبور بإحكام',0],['الاستحمام بالرشاش',0],['جمع مياه الأمطار لري النباتات',0],['إطفاء الأنوار عند مغادرة الغرفة',0],['المشي أو ركوب الدراجة',0],['ترك التلفاز يعمل دون أحد',1],['ملء حوض الاستحمام يوميًّا',1],['رمي الأكياس في البحر',1],['ترك الصنبور يقطر',1],['إلقاء القمامة على الشاطئ',1]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['المصابيح الموفرة تساعد على الحفاظ على الطاقة.',true,''],['تأكل السلاحف الأكياس البلاستيكية لأنها مفيدة لها.',false,'تأكلها لاعتقادها أنها قناديل البحر.'],['القمامة تأوي الحشرات والحيوانات.',true,''],['مصابيح الطاقة الشمسية مكلفة وضارة بالبيئة.',false,'قليلة التكلفة وصديقة للبيئة.']]}],
+q:[['من طرق الحفاظ على الماء:',['الاستحمام بالرشاش بدلًا من ملء حوض الاستحمام','ترك الصنبور مفتوحًا','غسل السيارة يوميًّا بالخرطوم','ترك الماء يتسرب'],''],
+['من طرق تقليل استهلاك الكهرباء:',['إطفاء الكهرباء إذا كنت لا تستخدمها','ترك التلفاز يعمل','إبقاء الأنوار مضاءة نهارًا','فتح الثلاجة كثيرًا'],''],
+['استخدام المصابيح الموفرة يساعد على:',['الحفاظ على الطاقة','زيادة استهلاك الماء','تلوث الهواء','زيادة القمامة'],''],
+['لماذا يُفضّل المشي أو ركوب الدراجة بدل السيارة؟',['لتقليل استهلاك الطاقة','لأن السيارة أسرع','لزيادة الدخان','لاستهلاك وقود أكثر'],''],
+['مصابيح الطاقة الشمسية لإنارة الحدائق:',['قليلة التكلفة وصديقة للبيئة','تلوث الهواء','تحتاج إلى فحم','تستهلك ماءً كثيرًا'],''],
+['لماذا تُعدّ القمامة مشكلة؟',['تُشوّه المظهر ولها رائحة كريهة وتأوي الحشرات','لأنها مفيدة للحيوانات','لأنها تنظف البيئة','لأنها تصنع الأكسجين'],''],
+['لماذا تأكل السلاحف الأكياس البلاستيكية في البحر؟',['لاعتقادها أنها قناديل البحر','لأنها لذيذة','لأنها تحتاج إلى البلاستيك','لأنها تساعدها على السباحة'],''],
+['جمع مياه الأمطار في خزان واستخدامها في الغسيل وري النباتات طريقة لـ:',['الحفاظ على الماء','زيادة التلوث','إهدار الطاقة','قطع الأشجار'],'']]},
+
+{id:'3-1',u:3,t:'التغيرات القابلة للعكس وغير القابلة للعكس',v:['قابل للعكس','غير قابل للعكس'],sim:'heat',
+k:['يتحوّل الثلج من الحالة الصلبة إلى الحالة السائلة عندما يتعرض للحرارة، وعند وضع السائل مرة أخرى في الثلاجة يتحوّل إلى الحالة الصلبة مجددًا.',
+'التغيرات التي يمكن فيها إعادة المادة إلى حالتها الأولى تُسمّى تغيرات قابلة للعكس، مثل انصهار الثلج وتجمده.',
+'الحرارة تُسبّب تغيرات في المادة. وعندما يفقد الماء حرارته ويصل إلى درجة حرارة محددة يتحوّل إلى الحالة الصلبة.',
+'بعض المواد تتغير عند تعرضها للحرارة ولا يمكن إعادتها إلى حالتها السابقة، وتُسمّى هذه التغيرات غير قابلة للعكس، مثل احتراق عود الثقاب.',
+'التغيرات غير القابلة للعكس تتسبب في تحويل المادة إلى مادة مختلفة تمامًا؛ فعند احتراق عود الثقاب يتحوّل الخشب إلى مادة سوداء اللون تُسمّى الكربون.'],
+acts:[
+{type:'sort',title:'قابل للعكس أم غير قابل للعكس؟',buckets:['قابل للعكس','غير قابل للعكس'],items:[['انصهار الثلج',0],['تجمّد الماء',0],['ذوبان الشوكولاتة',0],['انصهار الشمع',0],['احتراق عود الثقاب',1],['سلق البيضة',1],['قلي البيضة',1],['احتراق الخشب',1],['فرقعة حبيبات الذرة (الفشار)',1],['خبز الكعكة',1]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['التغيرات غير القابلة للعكس تنتج عنها مادة جديدة.',true,''],['يمكن إعادة عود الثقاب المحترق إلى حالته الأولى.',false,'احتراق الثقاب تغيّر غير قابل للعكس.'],['الحرارة تسبب تغيرات في المادة.',true,''],['تجمد الماء في الثلاجة تغيّر غير قابل للعكس.',false,'يمكن أن يذوب الثلج مرة أخرى، فهو قابل للعكس.'],['عند احتراق الخشب يتحوّل إلى كربون أسود اللون.',true,'']]}],
+q:[['ذوبان الثلج تحت أشعة الشمس ثم تجمده في الثلاجة مرة أخرى مثال على تغيّر:',['قابل للعكس','غير قابل للعكس','ينتج مادة جديدة','لا يحدث'],''],
+['احتراق عود الثقاب تغيّر:',['غير قابل للعكس','قابل للعكس','مؤقت','يعود بالتبريد'],''],
+['عند احتراق الخشب يتحوّل إلى مادة سوداء اللون تُسمّى:',['الكربون','الثلج','السكر','الزجاج'],''],
+['ما الذي يُسبب التغيرات في المادة في هذا الدرس؟',['الحرارة','الصوت','الضوء','المغناطيس'],''],
+['التغيرات غير القابلة للعكس:',['تنتج عنها مادة جديدة','يمكن فيها إعادة المادة إلى حالتها الأولى','لا يحدث فيها أي تغيّر','تحدث للثلج فقط'],''],
+['أيّ مما يأتي تغيّر غير قابل للعكس؟',['سلق البيضة','ذوبان الشوكولاتة','تجمد الماء','انصهار الثلج'],''],
+['أيّ مما يأتي تغيّر قابل للعكس؟',['انصهار الشمع ثم تجمده','حرق الورق','خبز الكعكة','احتراق الخشب'],''],
+['عندما يفقد الماء حرارته ويصل إلى درجة حرارة محددة:',['يتحوّل إلى الحالة الصلبة','يحترق','يتحوّل إلى كربون','يتحوّل إلى ملح'],''],
+['تسخين حبيبات الذرة حتى تتحوّل إلى فشار تغيّر:',['غير قابل للعكس','قابل للعكس','لا يُعدّ تغيّرًا','يحدث بالتبريد فقط'],'لا يمكن إعادة الفشار إلى حبيبات ذرة، وقد نتجت مادة جديدة.']]},
+
+{id:'3-2',u:3,t:'خلط المواد الصلبة وفصلها',v:['مخلوط','يفصل','فرز','يتفاعل','غربال'],sim:'sep',simArg:'solid',
+k:['يتكوّن المخلوط من مادتين أو أكثر تمتزجان معًا، والمواد التي تمتزج مع بعضها البعض دون تدخل كيميائي يكون من السهل فصلها.',
+'قد تكون المخاليط مواد صلبة أو سائلة أو غازية؛ فالهواء نفسه مخلوط من ثلاثة غازات أساسية هي النيتروجين والأكسجين وثاني أكسيد الكربون.',
+'لا تتغير حالة المادة في المخلوط عند تحريكها، ويمكن القول إن المكونات لم تتفاعل مع بعضها البعض.',
+'يمكن فصل مكونات المخلوط بطرق مختلفة: إذا كان لديك مخلوط من حبات الفول السوداني وحبات الزبيب فإنه يمكن فصلها بسهولة بالفرز (باليد).',
+'يستخدم المزارع الغربال لفصل الحصى عن التربة؛ فالغربال يسمح للجزيئات الصغيرة بالمرور ويحجز الكبيرة.'],
+acts:[
+{type:'sort',title:'اختر أفضل طريقة للفصل',buckets:['الفرز باليد','الغربال'],items:[['فول سوداني وزبيب',0],['حبات فاصوليا وخرز ملون',0],['حصى وتربة',1],['أرز ودقيق',1],['بازلاء ودقيق',1],['أقلام وممحاة',0]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['المخلوط يتكوّن من مادتين أو أكثر.',true,''],['الهواء مخلوط من غازات.',true,'النيتروجين والأكسجين وثاني أكسيد الكربون.'],['عند خلط الأرز مع الدقيق تتكوّن مادة جديدة.',false,'المكونات لا تتفاعل، ويمكن فصلها.'],['يُستخدم الغربال لفصل الحصى عن التربة.',true,''],['المخاليط تكون صلبة فقط.',false,'قد تكون صلبة أو سائلة أو غازية.']]}],
+q:[['المخلوط هو:',['مادتان أو أكثر تمتزجان دون تدخل كيميائي','مادة واحدة نقية','مادة جديدة ناتجة عن الاحتراق','سائل فقط'],''],
+['الهواء مخلوط من غازات أساسية هي:',['النيتروجين والأكسجين وثاني أكسيد الكربون','الأكسجين فقط','الهيليوم والنيون','أول أكسيد الكربون فقط'],''],
+['لماذا نقول إن مكونات المخلوط لم تتفاعل مع بعضها؟',['لأن حالة المواد لا تتغير عند تحريكها','لأنها تتحوّل إلى مادة جديدة','لأنها تحترق','لأنها تختفي'],''],
+['أفضل طريقة لفصل مخلوط من حبات الفول السوداني والزبيب:',['الفرز باليد','الترشيح','الإذابة في الماء','التسخين'],''],
+['يستخدم المزارع أداة لفصل الحصى عن التربة هي:',['الغربال','ورقة الترشيح','الملعقة','الكأس'],''],
+['أفضل طريقة لفصل حبيبات البازلاء عن الدقيق:',['الغربال','الترشيح','الإذابة','التسخين'],''],
+['يمكن أن تكون المخاليط:',['صلبة أو سائلة أو غازية','صلبة فقط','سائلة فقط','غازية فقط'],''],
+['نستخدم الفرز باليد عندما تكون مكونات المخلوط:',['كبيرة ويمكن رؤيتها بسهولة','صغيرة جدًّا لا تُرى','ذائبة في الماء','غازية'],'']]},
+
+{id:'3-3',u:3,t:'المواد القابلة للذوبان والمواد غير القابلة للذوبان',v:['يذوب','قابل للذوبان','غير قابل للذوبان','محلول معلق'],sim:'dissolve',
+k:['بعض المواد الصلبة مثل السكر يمكن أن تذوب في السوائل؛ فالسكر يذوب في الماء ولذلك يُسمّى مادة قابلة للذوبان.',
+'بعض المواد الصلبة لا تذوب في السوائل، مثل الرمل؛ فهو لا يذوب في الماء ولذلك يُسمّى مادة غير قابلة للذوبان.',
+'المواد القابلة للذوبان تمتزج تمامًا مع السوائل لدرجة أننا لا نتمكن من رؤيتها، فيكون المخلوط شفافًا.',
+'عند خلط مادة صلبة غير قابلة للذوبان بسائل، تظل المادة الصلبة مرئية ولا تمتزج تمامًا مع السائل، فيتكوّن محلول معلق (مخلوط ضبابي).',
+'لكي يكون الاستقصاء عادلًا نستخدم نفس الكمية من الماء ونفس الكمية من المادة الصلبة في كل كأس.'],
+acts:[
+{type:'sort',title:'قابلة للذوبان في الماء أم غير قابلة؟',buckets:['قابلة للذوبان','غير قابلة للذوبان'],items:[['السكر',0],['الملح',0],['مسحوق المشروب البارد',0],['القهوة سريعة الذوبان',0],['الرمل',1],['الحصى',1],['الدقيق (الطحين)',1],['الطباشير',1]]},
+{type:'fill',title:'أكمل الجمل',sents:[['المادة التي تذوب في السائل تُسمّى مادة ','قابلة للذوبان','.'],['الرمل في الماء مادة ','غير قابلة للذوبان','.'],['عند خلط مادة غير قابلة للذوبان مع سائل يتكوّن ','محلول معلق','.'],['المخلوط الذي ذابت فيه المادة الصلبة يكون ','شفافًا','.']],extra:['ملونًا دائمًا','مادة نقية']}],
+q:[['المادة التي تذوب في السائل تُسمّى:',['مادة قابلة للذوبان','مادة غير قابلة للذوبان','محلولًا معلقًا','مرشحًا'],''],
+['أيّ المواد الآتية قابلة للذوبان في الماء؟',['السكر','الرمل','الحصى','الطباشير'],''],
+['الرمل في الماء:',['مادة غير قابلة للذوبان','مادة قابلة للذوبان','يكوّن محلولًا شفافًا','مادة مذيبة'],''],
+['عند خلط مادة غير قابلة للذوبان بسائل يتكوّن:',['محلول معلق','محلول شفاف','مادة نقية','غاز'],''],
+['المخلوط الذي تذوب فيه المادة الصلبة يكون:',['شفافًا ولا نرى المادة الصلبة فيه','ضبابيًّا دائمًا','مليئًا بالحبيبات المرئية','صلبًا'],''],
+['لماذا نستخدم نفس كمية الماء ونفس كمية المادة في كل كأس؟',['ليكون الاختبار عادلًا','لكي ينتهي بسرعة','لأن الماء قليل','لا أهمية لذلك'],''],
+['ماذا يحدث للسكر عندما نحركه في الماء؟',['يذوب ولا نتمكن من رؤيته','يطفو على السطح','يتحوّل إلى رمل','يحترق'],''],
+['الدقيق في الماء يكوّن مخلوطًا:',['ضبابيًّا (محلولًا معلقًا)','شفافًا تمامًا','مادة نقية','غازيًّا'],'']]},
+
+{id:'3-4',u:3,t:'فصل المواد غير القابلة للذوبان',v:['الترشيح','المرشح','الأرض الرطبة'],sim:'sep',simArg:'liquid',
+k:['الترشيح طريقة تُستخدم لفصل المخاليط المكونة من مادة صلبة غير قابلة للذوبان ومادة سائلة.',
+'يعمل المرشح مثل الغربال؛ فهو يحتوي على ثقوب دقيقة جدًّا تسمح بمرور الجزيئات الصغيرة وتمنع مرور الجزيئات الكبيرة.',
+'يمر السائل والمواد القابلة للذوبان الذائبة فيه عبر الثقوب، أما المواد غير القابلة للذوبان فتكون جزيئاتها كبيرة فتترسب خلف المرشح، مثل ورقة الترشيح في صنع القهوة.',
+'تُستخدم مرشحات الرمل المكونة من الحصى والرمال الناعمة لتنقية الماء. وفي الطبيعة تمثل الأراضي الرطبة نموذجًا للمرشحات، فعندما يمر الماء عبرها يصبح أنقى.',
+'تُميّز طيور الفلامنجو بمناقيرها التي تعمل كمرشحات، فتلتقط الطعام مثل الطحالب والأسماك الصغيرة عن طريق ترشيح الماء.'],
+acts:[
+{type:'order',title:'رتّب خطوات الترشيح',rounds:[{p:'رتّب خطوات نشاط فصل المخاليط بالترشيح:',items:['ضع 100 مل من الماء في الكأس','أضف ملعقة صغيرة من المادة الصلبة وحرّك المزيج','ضع ورقة الترشيح داخل القمع فوق كأس فارغة','اسكب المخلوط ببطء في القمع','لاحظ ما بقي على ورقة الترشيح وما مرّ إلى الكأس']}]},
+{type:'tf',title:'صح أم خطأ؟',items:[['يمكن فصل الرمل عن الماء بالترشيح.',true,''],['يبقى السكر الذائب على ورقة الترشيح.',false,'السكر الذائب يمر مع الماء عبر المرشح.'],['الأراضي الرطبة تعمل كمرشح طبيعي.',true,''],['يحتوي المرشح على ثقوب كبيرة تمرر الحصى.',false,'ثقوبه دقيقة جدًّا تمنع مرور الجزيئات الكبيرة.'],['تلتقط طيور الفلامنجو طعامها بترشيح الماء بمناقيرها.',true,'']]}],
+q:[['الترشيح طريقة لفصل المخاليط المكونة من:',['مادة صلبة غير قابلة للذوبان ومادة سائلة','غازين','مادتين صلبتين كبيرتين','ملح ذائب في الماء'],''],
+['يحتوي المرشح على:',['ثقوب دقيقة جدًّا تسمح بمرور الجزيئات الصغيرة وتمنع الكبيرة','ثقوب كبيرة تمرر الحصى','مغناطيس','طبقة من الزيت'],''],
+['عند ترشيح مخلوط الرمل والماء فإن الرمل:',['يبقى على ورقة الترشيح','يمر مع الماء','يذوب في الماء','يختفي'],''],
+['هل يمكن فصل الملح الذائب في الماء بالترشيح؟',['لا، لأن الملح الذائب يمر عبر المرشح مع الماء','نعم، يبقى الملح على ورقة الترشيح','نعم، يطفو الملح فوق المرشح','لا، لأن الملح يحترق'],''],
+['من أمثلة المرشحات في البيت:',['ورقة الترشيح في صنع القهوة','الملعقة','الكأس الزجاجية','الثلاجة'],''],
+['تُستخدم مرشحات الرمل المكونة من الحصى والرمال الناعمة لـ:',['تنقية الماء','صنع السكر','تسخين الماء','تبريد الهواء'],''],
+['الأراضي الرطبة تعمل في الطبيعة مثل:',['مرشح طبيعي يجعل الماء أنقى','مصنع للتلوث','مردم للنفايات','غربال للحصى'],''],
+['كيف تلتقط طيور الفلامنجو طعامها؟',['بترشيح الماء بمناقيرها','بالغطس العميق','بمخالبها','بأكل الحصى'],''],
+['كيف تفصل مخلوطًا من الملح والرمل؟',['أضيف الماء فيذوب الملح، ثم أرشّح فيبقى الرمل','أرشّحه دون إضافة ماء','أستخدم الغربال الكبير','أتركه في الشمس'],'']]},
+
+{id:'3-5',u:3,t:'المحاليل',v:['المحلول','المادة المذابة','المادة المذيبة','متجانس'],sim:'particles',
+k:['تذوب بعض المواد في الماء أو السوائل الأخرى، وتكوّن المواد القابلة للذوبان محلولًا عندما تذوب في الماء.',
+'يتكوّن المحلول دائمًا من جزأين: المادة التي تعرضت للذوبان وتُسمّى المادة المذابة، والسائل الذي ذابت فيه المادة ويُسمّى المادة المذيبة.',
+'ماء البحر محلول: الملح هو المادة المذابة، والماء هو المادة المذيبة.',
+'عند ذوبان المادة تتحرك جزيئاتها بين جزيئات المادة المذيبة، لذلك لا نتمكن من رؤيتها، ويكون للمحلول مظهر متجانس فيبدو بنفس الشكل في جميع أجزائه.',
+'تتكوّن المادة النقية من جزيئات مادة واحدة فقط مثل السكر، أما المخاليط فتتكوّن من جزيئات مواد مختلفة، ويمكن فصل معظم المخاليط بسهولة بخلاف المواد النقية.'],
+acts:[
+{type:'match',title:'حدّد المادة المذابة في كل محلول',pairs:[['ماء البحر','الملح'],['الشاي المحلّى','السكر'],['المشروب البارد','المسحوق'],['القهوة','حبيبات القهوة سريعة الذوبان']]},
+{type:'fill',title:'أكمل الجمل',sents:[['يتكوّن المحلول من مادة مذابة و','مادة مذيبة','.'],['في ماء البحر الماء هو ','المادة المذيبة','.'],['في ماء البحر الملح هو ','المادة المذابة','.'],['يكون للمحلول مظهر ','متجانس',' في جميع أجزائه.'],['السكر مثال على مادة ','نقية','.']],extra:['معلق','غربال']},
+{type:'tf',title:'صح أم خطأ؟',items:[['المحلول يتكوّن دائمًا من مادة مذابة ومادة مذيبة.',true,''],['نستطيع رؤية جزيئات الملح الذائب في ماء البحر.',false,'تتحرك جزيئاته بين جزيئات الماء فلا نراها.'],['المادة النقية تتكوّن من جزيئات مادة واحدة فقط.',true,''],['يسهل فصل المواد النقية مثل المخاليط.',false,'يمكن فصل معظم المخاليط بسهولة بخلاف المواد النقية.']]}],
+q:[['يتكوّن المحلول من:',['مادة مذابة ومادة مذيبة','مادة مذابة فقط','مادتين صلبتين','غاز وصخر'],''],
+['في ماء البحر، المادة المذابة هي:',['الملح','الماء','الرمل','الهواء'],''],
+['في ماء البحر، المادة المذيبة هي:',['الماء','الملح','الصخور','السمك'],''],
+['السائل الذي تذوب فيه المادة يُسمّى:',['المادة المذيبة','المادة المذابة','المرشح','المحلول المعلق'],''],
+['لماذا لا نرى المادة المذابة في المحلول؟',['لأن جزيئاتها تتحرك بين جزيئات المذيب','لأنها تختفي من الوجود','لأنها تطفو','لأنها تترسب في القاع'],''],
+['المحلول متجانس، أي أنه:',['يبدو بنفس الشكل في جميع أجزائه','يحتوي على طبقات','له ألوان مختلفة في كل جزء','فيه حبيبات مرئية'],''],
+['المادة النقية:',['تتكوّن من جزيئات مادة واحدة فقط مثل السكر','تتكوّن من مواد مختلفة','تكون دائمًا محلولًا','يسهل فصلها دائمًا'],''],
+['في المشروب البارد المصنوع من المسحوق والماء، المادة المذيبة هي:',['الماء','المسحوق','الكأس','الملعقة'],''],
+['ما الفرق بين المخاليط والمواد النقية؟',['يمكن فصل معظم المخاليط بسهولة بخلاف المواد النقية','المواد النقية تتكوّن من عدة مواد','المخاليط لا يمكن فصلها أبدًا','لا يوجد فرق'],'']]},
+
+{id:'3-6',u:3,t:'كيف نجعل المواد الصلبة تذوب أسرع؟',v:['معدل','يستنتج'],sim:'rate',simArg:'stirtemp',
+k:['يكوّن السكر مع الشاي محلولًا، ويذوب السكر أسرع إذا حرّكنا المحلول.',
+'التحريك طريقة تجعل المادة المذابة تذوب أسرع؛ إذ يجعل جزيئات المادة المذابة تنتشر في الفراغات الموجودة بين جزيئات المادة المذيبة على نحو أسرع. لذلك نقول إن التحريك يزيد معدل ذوبان المادة المذابة.',
+'تتحرك جزيئات المادة بشكل مستمر، وعندما نرفع درجة حرارة المادة فإن الحرارة تُكسب الجزيئات طاقة فتتحرك بصورة أسرع.',
+'تتحرك جزيئات المادة المذابة في المادة المذيبة الساخنة أسرع منها في المادة المذيبة الباردة، مما يسمح لها بالانتشار خلال المحلول بسهولة، ومن ثم تذوب أسرع.',
+'لنتأكد أن الاختبار عادل نُغيّر عاملًا واحدًا فقط ونُثبّت باقي العوامل، ونستخدم ساعة إيقاف لقياس زمن الذوبان.'],
+acts:[
+{type:'sort',title:'يذوب أسرع أم أبطأ؟',buckets:['يذوب أسرع','يذوب أبطأ'],items:[['سكر في ماء ساخن',0],['سكر في ماء بارد',1],['سكر مع التحريك',0],['سكر دون تحريك',1],['شاي ساخن محرّك',0],['ماء مثلج دون تحريك',1]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['التحريك يزيد معدل الذوبان.',true,''],['الحرارة تجعل الجزيئات تتحرك ببطء.',false,'الحرارة تُكسب الجزيئات طاقة فتتحرك أسرع.'],['يذوب السكر في الماء الساخن أسرع من الماء البارد.',true,''],['في الاختبار العادل نغيّر كل العوامل معًا.',false,'نغيّر عاملًا واحدًا فقط.'],['معدل الذوبان يعني سرعة ذوبان المادة.',true,'']]}],
+q:[['يذوب السكر أسرع إذا:',['حرّكنا المحلول','تركناه دون تحريك','وضعناه في ماء مثلج','استخدمنا مكعبات كبيرة'],''],
+['لماذا يجعل التحريك المادة تذوب أسرع؟',['تنتشر جزيئات المادة المذابة في الفراغات بين جزيئات المذيب بسرعة','لأنه يبرّد الماء','لأنه يكبّر الحبيبات','لأنه يقلل كمية الماء'],''],
+['يذوب السكر في الماء الساخن:',['أسرع منه في الماء البارد','أبطأ منه في الماء البارد','بنفس السرعة','لا يذوب'],''],
+['لماذا تزيد الحرارة سرعة الذوبان؟',['تُكسب الجزيئات طاقة فتتحرك بصورة أسرع','تجعل الجزيئات تتوقف','تحوّل السكر إلى رمل','تقلل الفراغات بين الجزيئات'],''],
+['لماذا يكون الشاي مرًّا رغم إضافة السكر إذا لم يُحرَّك؟',['لأن السكر لم يذب وينتشر في الشاي','لأن السكر تحوّل إلى ملح','لأن الشاي بارد جدًّا','لأن الكوب صغير'],''],
+['المقصود بمعدل الذوبان:',['سرعة ذوبان المادة في السائل','كمية الماء','لون المحلول','وزن الكأس'],''],
+['لاختبار تأثير الحرارة على سرعة الذوبان اختبارًا عادلًا نغيّر:',['درجة حرارة الماء فقط ونثبّت باقي العوامل','كمية السكر وكمية الماء معًا','كل العوامل معًا','لا شيء'],''],
+['ما الأداة التي نحتاجها لقياس زمن الذوبان؟',['ساعة إيقاف','مسطرة','غربال','ورقة ترشيح'],'']]},
+
+{id:'3-7',u:3,t:'كيف يؤثر حجم الحبيبات على الذوبان؟',v:['حجم الحبيبات','اختبار عادل'],sim:'rate',simArg:'grain',
+k:['يؤثر حجم حبيبات المادة المذابة على معدل ذوبانها في السائل.',
+'تتكوّن الحُبيبة الصغيرة من عدد قليل من الجزيئات مقارنة بالحُبيبة الكبيرة.',
+'تذوب الجزيئات الخارجية للحبيبات أولًا لأنها تكون أكثر اتصالًا بالسائل، وبعد ذوبانها تصبح الجزيئات الأخرى متصلة بالسائل وتذوب.',
+'تستغرق الحبيبات الكبيرة ذات الجزيئات الكثيرة وقتًا أطول حتى تتصل جميع الجزيئات بالسائل وتذوب، لذلك تذوب الحبيبات الصغيرة أسرع من الحبيبات الكبيرة.',
+'لتخطيط استقصاء عادل: حدّد العوامل التي ستستبدلها، واكتب العوامل التي ستظل كما هي دون تغيير، ودوّن النتائج في جدول، ومثّلها بالأعمدة.'],
+acts:[
+{type:'order',title:'رتّب خطوات الاستقصاء',rounds:[{p:'رتّب خطوات الاستقصاء العلمي (هل يذوب الرمل في الماء؟):',items:['أسأل سؤالًا: هل يذوب الرمل في الماء؟','أتنبأ: الرمل لا يذوب في الماء','أحدد الأدوات والمواد المطلوبة','أضع كمية من الماء في الكأس','أضع ملعقة صغيرة من الرمل في الماء وأحرّكه','أنتظر 10 دقائق فتتكوّن طبقة من الرمل في قاع الكأس','أستنتج أن الرمل لا يذوب في الماء']}]},
+{type:'sort',title:'في اختبار تأثير حجم الحبيبات: ماذا نغيّر وماذا نثبّت؟',buckets:['نغيّره','نثبّته'],items:[['حجم حبيبات السكر',0],['كمية الماء',1],['درجة حرارة الماء',1],['كمية السكر',1],['عدد مرات التحريك',1],['نوع الكأس',1]]},
+{type:'tf',title:'صح أم خطأ؟',items:[['الحبيبات الصغيرة تذوب أسرع من الكبيرة.',true,''],['مكعب السكر يذوب أسرع من السكر الناعم.',false,'السكر الناعم حبيباته صغيرة فيذوب أسرع.'],['تذوب الجزيئات الخارجية للحبيبات أولًا.',true,''],['الحُبيبة الصغيرة تتكوّن من جزيئات أكثر من الحُبيبة الكبيرة.',false,'تتكوّن من عدد أقل من الجزيئات.']]}],
+q:[['أيّ الحبيبات تذوب أسرع؟',['الحبيبات الصغيرة','الحبيبات الكبيرة','المكعبات','لا فرق بينها'],''],
+['لماذا تذوب الحبيبات الصغيرة أسرع؟',['لأن جزيئاتها قليلة وتتصل بالسائل بسرعة','لأنها أثقل','لأنها ساخنة','لأنها لا تتصل بالسائل'],''],
+['أيهما يذوب أسرع في الشاي؟',['السكر الناعم','مكعب السكر','حجر كبير من السكر','لا فرق'],''],
+['في الاختبار العادل لدراسة تأثير حجم الحبيبات نغيّر:',['حجم الحبيبات فقط','درجة الحرارة وحجم الحبيبات','كمية الماء','كل العوامل'],''],
+['من العوامل التي تؤثر في سرعة الذوبان:',['التحريك ودرجة الحرارة وحجم الحبيبات','لون الكأس','شكل الملعقة','اسم الطالب'],''],
+['لدينا ملح خشن وملح ناعم ونفس كمية الماء الساخن مع التحريك، أيهما يذوب أولًا؟',['الملح الناعم','الملح الخشن','يذوبان معًا','لا يذوب أيٌّ منهما'],''],
+['تستغرق الحبيبات الكبيرة وقتًا أطول للذوبان لأن:',['جزيئاتها الداخلية لا تتصل بالسائل إلا بعد ذوبان الخارجية','جميع جزيئاتها تتصل بالسائل فورًا','لأنها ساخنة','لأنها خفيفة'],''],
+['تريد أن يذوب السكر بأسرع ما يمكن، فأيّ الطرق أفضل؟',['سكر ناعم في ماء ساخن مع التحريك','مكعبات سكر في ماء بارد دون تحريك','مكعبات سكر في ماء ساخن دون تحريك','سكر ناعم في ماء بارد دون تحريك'],''],
+['كيف نمثّل نتائج زمن الذوبان لعدة حبيبات بطريقة واضحة؟',['بالتمثيل البياني بالأعمدة','برسم قصة','بكتابة قصيدة','لا نحتاج إلى تمثيلها'],'']]}
+];
+
+/* ---------- utilities ---------- */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const AR='٠١٢٣٤٥٦٧٨٩';
+const unitOf=l=>UNITS[l.u-1];
+const LBY=Object.fromEntries(L.map(l=>[l.id,l]));
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('show'),1600)}
+const KEY='sci6-term1-v1';
+let store={done:{},best:{},snd:true};
+try{const s=localStorage.getItem(KEY);if(s)store=Object.assign(store,JSON.parse(s))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}}
+/* sound */
+let AC=null;
+function tone(f,d,t='sine',v=.08,delay=0){if(!store.snd)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=t;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);const s=AC.currentTime+delay;g.gain.setValueAtTime(v,s);g.gain.exponentialRampToValueAtTime(.0001,s+d);o.start(s);o.stop(s+d)}catch(e){}}
+const sfx={ok(){tone(660,.12);tone(880,.16,'sine',.08,.1)},bad(){tone(200,.25,'square',.04)},win(){[523,659,784,1046].forEach((f,i)=>tone(f,.2,'triangle',.08,i*.12))},tap(){tone(520,.05,'sine',.05)}};
+function markDone(lid,key){const k=lid+':'+key;if(!store.done[k]){store.done[k]=1;save()}}
+function lessonDots(l){const n=l.acts.length+2;let c=0;const keys=['sim',...l.acts.map((a,i)=>'a'+i),'quiz'];keys.forEach(k=>{if(store.done[l.id+':'+k])c++});return{c,n,keys}}
+
+/* ---------- icons ---------- */
+const ICON={
+1:'<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 56S8 41 8 23a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 18-24 33-24 33z" fill="#fff"/><path d="M14 30h10l4-8 6 16 4-8h12" fill="none" stroke="var(--u1)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+2:'<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M12 52C10 26 28 10 54 10c2 26-14 44-42 42z" fill="#fff"/><path d="M14 50C24 38 34 28 46 20" stroke="var(--u2)" stroke-width="4" stroke-linecap="round" fill="none"/></svg>',
+3:'<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M24 6h16v4h-3v14l15 24a5 5 0 0 1-4 8H16a5 5 0 0 1-4-8l15-24V10h-3z" fill="#fff"/><path d="M18 40h28l5 8a3 3 0 0 1-2.5 4.5h-33A3 3 0 0 1 13 48z" fill="var(--u3)" opacity=".6"/><circle cx="28" cy="44" r="2.5" fill="#fff"/><circle cx="36" cy="40" r="1.8" fill="#fff"/></svg>'};
+
+/* ---------- router ---------- */
+function go(h){if(location.hash===h)render();else location.hash=h}
+window.addEventListener('hashchange',render);
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){e.preventDefault();go(g.dataset.go)}});
+$('#homeBtn').onclick=()=>go('#/');
+$('#sndBtn').onclick=()=>{store.snd=!store.snd;save();$('#sndBtn').textContent=store.snd?'🔊':'🔇';toast(store.snd?'الصوت مفعّل':'الصوت متوقف')};
+$('#sndBtn').textContent=store.snd?'🔊':'🔇';
+let cleanup=[];
+function addCleanup(f){cleanup.push(f)}
+function render(){
+  cleanup.forEach(f=>{try{f()}catch(e){}});cleanup=[];
+  const h=location.hash||'#/';const app=$('#app');app.removeAttribute('style');
+  const parts=h.slice(2).split('/');
+  $$('.navs [data-go]').forEach(b=>b.setAttribute('aria-current',String((b.dataset.go==='#/quiz')===(parts[0]==='quiz'))));
+  if(parts[0]==='l'&&LBY[parts[1]])renderLesson(app,LBY[parts[1]],parts[2]||'k');
+  else if(parts[0]==='quiz')renderQuizLib(app);
+  else renderHome(app);
+  window.scrollTo(0,0);
+}
+
+/* ---------- home ---------- */
+function renderHome(app){
+  document.documentElement.style.removeProperty('--u');
+  const total=L.length;const started=L.filter(l=>lessonDots(l).c>0).length;
+  app.innerHTML=`<section class="hero">
+   <div><h1>مختبر العلوم التفاعلي</h1>
+   <p>الصف السادس، الفصل الدراسي الأول. شرح مبسّط ومحاكاة وألعاب لكل درس من دروس كتاب الطالب، ومكتبة اختبارات للمراجعة.</p>
+   <div class="cta"><button class="btn" data-go="#/l/1-1">ابدأ من الدرس الأول</button><button class="btn ghost" data-go="#/quiz">مكتبة الاختبارات</button></div>
+   <p class="hint" style="margin-top:12px">بدأت ${started} من ${total} درسًا</p></div>
+   <div class="trio">${UNITS.map(u=>`<button style="background:${u.c}" onclick="document.getElementById('unit${u.n}').scrollIntoView({behavior:'smooth'})">${ICON[u.n]}<span>الوحدة ${u.n}<br>${u.t}</span></button>`).join('')}</div>
+  </section>
+  ${UNITS.map(u=>`<section class="unitblock" id="unit${u.n}" style="--u:${u.c};--soft:${u.s}">
+    <div class="unithead"><span class="num">${u.n}</span><h2>${u.t}</h2><small>${u.d}</small></div>
+    <ul class="lrows">${L.filter(l=>l.u===u.n).map(l=>{const d=lessonDots(l);return`<li><button data-go="#/l/${l.id}"><span class="lid">${l.id}</span><span class="lt">${l.t}</span><span class="dots" title="أنجزت ${d.c} من ${d.n}">${d.keys.map(k=>`<i class="${store.done[l.id+':'+k]?'on':''}"></i>`).join('')}</span></button></li>`}).join('')}
+    <li><button data-go="#/quiz/u${u.n}"><span class="lid">✓</span><span class="lt">اختبار الوحدة ${u.n} (تحقق من تقدمك)</span></button></li></ul>
+  </section>`).join('')}`;
+}
+
+/* ---------- lesson ---------- */
+const TABS=[['k','الفكرة'],['sim','المختبر'],['play','الألعاب'],['quiz','اختبر نفسك']];
+function renderLesson(app,l,tab){
+  const u=unitOf(l);
+  document.documentElement.style.setProperty('--u',u.c);
+  const idx=L.indexOf(l),prev=L[idx-1],next=L[idx+1];
+  app.style.setProperty('--u',u.c);app.style.setProperty('--soft',u.s);
+  app.innerHTML=`<div class="lhead"><span class="big">${l.id}</span><div><button class="crumb" data-go="#/">الوحدة ${u.n}: ${u.t}</button><h1>${l.t}</h1></div></div>
+  <div class="tabs" role="tablist">${TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===tab}" data-go="#/l/${l.id}/${k}">${n}</button>`).join('')}</div>
+  <div id="tabBody"></div>
+  <div class="next-row">${prev?`<button class="btn ghost" data-go="#/l/${prev.id}">→ ${prev.id} ${prev.t}</button>`:'<span></span>'}${next?`<button class="btn u" data-go="#/l/${next.id}">${next.id} ${next.t} ←</button>`:`<button class="btn u" data-go="#/quiz/all">الاختبار الشامل للفصل</button>`}</div>`;
+  const body=$('#tabBody');
+  if(tab==='k'){
+    body.innerHTML=`<div class="ideas"><ol>${l.k.map(x=>`<li>${x}</li>`).join('')}</ol>
+    <aside><div class="vocab"><h3>مفردات للتعلم</h3>${l.v.map(x=>`<span>${x}</span>`).join('')}</div>
+    <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px"><button class="btn u" data-go="#/l/${l.id}/sim">جرّب في المختبر</button><button class="btn ghost" data-go="#/l/${l.id}/play">العب وتعلّم</button></div></aside></div>`;
+  }else if(tab==='sim'){
+    body.innerHTML='<div class="panel" id="simBox"></div>';
+    SIMS[l.sim]($('#simBox'),l,()=>markDone(l.id,'sim'));
+  }else if(tab==='play'){
+    body.innerHTML=`<div class="actpick">${l.acts.map((a,i)=>`<button data-a="${i}" aria-pressed="${i===0}">${a.title}${store.done[l.id+':a'+i]?' <span class="ok">✓</span>':''}</button>`).join('')}</div><div class="panel" id="actBox"></div>`;
+    const show=i=>{$$('.actpick button').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.a===i)));runAct($('#actBox'),l.acts[i],()=>{markDone(l.id,'a'+i);const b=$(`.actpick [data-a="${i}"]`);if(b&&!b.querySelector('.ok'))b.insertAdjacentHTML('beforeend',' <span class="ok">✓</span>')})};
+    $$('.actpick button').forEach(b=>b.onclick=()=>show(+b.dataset.a));show(0);
+  }else{
+    body.innerHTML='<div class="panel" id="qBox"></div>';
+    startQuiz($('#qBox'),l.q.map(q=>({q,l:l.id})),{mode:'practice',key:'L'+l.id,title:'اختبار الدرس '+l.id,onDone:p=>{if(p>=60)markDone(l.id,'quiz')}});
+  }
+}
+
+/* ---------- activity engines ---------- */
+function finishBox(box,msg,again){const d=document.createElement('div');d.className='done';d.innerHTML=`<b>أحسنت!</b><div>${msg}</div><button class="btn u sm" style="margin-top:10px">العب مرة أخرى</button>`;d.querySelector('button').onclick=again;box.appendChild(d);sfx.win()}
+function runAct(box,a,onWin){({match:actMatch,sort:actSort,order:actOrder,tf:actTF,fill:actFill})[a.type](box,a,onWin)}
+function actMatch(box,a,onWin){
+  let mistakes=0,selL=null,selR=null,left=0;
+  const L1=shuffle(a.pairs.map((p,i)=>({t:p[0],i}))),R1=shuffle(a.pairs.map((p,i)=>({t:p[1],i})));
+  box.innerHTML=`<p class="prompt">اضغط على عنصر من العمود الأول ثم على ما يناسبه في العمود الثاني.</p><div class="match"><div class="col">${L1.map(x=>`<button class="chip" data-s="l" data-i="${x.i}">${x.t}</button>`).join('')}</div><div class="col">${R1.map(x=>`<button class="chip" data-s="r" data-i="${x.i}">${x.t}</button>`).join('')}</div></div>`;
+  left=a.pairs.length;
+  const check=()=>{if(!selL||!selR)return;if(selL.dataset.i===selR.dataset.i){[selL,selR].forEach(b=>{b.classList.remove('sel');b.classList.add('good');b.disabled=true});sfx.ok();left--;if(!left){onWin();finishBox(box,mistakes?`عدد المحاولات الخاطئة: ${mistakes}`:'بدون أي خطأ!',()=>actMatch(box,a,onWin))}}else{mistakes++;sfx.bad();[selL,selR].forEach(b=>{b.classList.remove('sel');b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),400)})}selL=selR=null};
+  $$('.chip',box).forEach(b=>b.onclick=()=>{if(b.disabled)return;sfx.tap();if(b.dataset.s==='l'){if(selL)selL.classList.remove('sel');selL=b}else{if(selR)selR.classList.remove('sel');selR=b}b.classList.add('sel');check()});
+}
+function actSort(box,a,onWin){
+  let mistakes=0,sel=null;const items=shuffle(a.items.map((x,i)=>({t:x[0],b:x[1],i})));
+  box.innerHTML=`<p class="prompt">اختر بطاقة، ثم اضغط على المجموعة المناسبة لها.</p><div class="pool">${items.map(x=>`<button class="chip" data-i="${x.i}">${x.t}</button>`).join('')}</div><div class="buckets">${a.buckets.map((b,i)=>`<div class="bucket" role="button" tabindex="0" data-b="${i}"><h4>${b}</h4></div>`).join('')}</div>`;
+  const pool=$('.pool',box);
+  $$('.pool .chip',box).forEach(c=>c.onclick=()=>{sfx.tap();if(sel)sel.classList.remove('sel');sel=c;c.classList.add('sel');$$('.bucket',box).forEach(b=>b.classList.add('armed'))});
+  $$('.bucket',box).forEach(bk=>{const act=()=>{if(!sel){toast('اختر بطاقة أولًا');return}const it=a.items[+sel.dataset.i];if(it[1]===+bk.dataset.b){sel.classList.remove('sel');sel.classList.add('good');sel.onclick=null;bk.appendChild(sel);sfx.ok();sel=null;$$('.bucket',box).forEach(b=>b.classList.remove('armed'));if(!pool.querySelector('.chip')){pool.innerHTML='<span class="hint">اكتمل التصنيف</span>';onWin();finishBox(box,mistakes?`عدد المحاولات الخاطئة: ${mistakes}`:'تصنيف كامل بدون أخطاء!',()=>actSort(box,a,onWin))}}else{mistakes++;sfx.bad();const s=sel;s.classList.add('shake');bk.classList.add('shake');setTimeout(()=>{s.classList.remove('shake');bk.classList.remove('shake')},400)}};bk.onclick=act;bk.onkeydown=e=>{if(e.key==='Enter'||e.key===' ')act()}});
+}
+function actOrder(box,a,onWin,ri=0){
+  const r=a.rounds[ri];const pool=shuffle(r.items.map((t,i)=>({t,i})));let ans=[];
+  const draw=()=>{box.innerHTML=`<p class="prompt">${r.p}${a.rounds.length>1?` <span class="hint">(${ri+1} من ${a.rounds.length})</span>`:''}</p>
+  <div class="slots" aria-label="ترتيبك">${ans.length?ans.map((x,k)=>`${k?'<span class="arr" style="color:var(--u);font-weight:800">←</span>':''}<button class="chip" data-a="${k}"><span class="n">${k+1}</span> ${x.t}</button>`).join(''):'<span class="hint">اضغط على البطاقات أدناه بالترتيب الصحيح</span>'}</div>
+  <div class="pool">${pool.filter(x=>!ans.includes(x)).map(x=>`<button class="chip" data-p="${x.i}">${x.t}</button>`).join('')||'<span class="hint">اضغط تحقق</span>'}</div>
+  <div class="ctrls"><button class="btn u" id="chk" ${ans.length<r.items.length?'disabled':''}>تحقّق</button><button class="btn ghost" id="rst">إعادة</button></div><div id="fb"></div>`;
+  $$('[data-p]',box).forEach(b=>b.onclick=()=>{sfx.tap();ans.push(pool.find(x=>x.i===+b.dataset.p));draw()});
+  $$('[data-a]',box).forEach(b=>b.onclick=()=>{ans.splice(+b.dataset.a,1);draw()});
+  $('#rst',box).onclick=()=>{ans=[];draw()};
+  $('#chk',box).onclick=()=>{let ok=0;$$('[data-a]',box).forEach((b,k)=>{const good=ans[k].i===k;if(good)ok++;b.classList.add(good?'good':'badx')});
+    if(ok===r.items.length){sfx.ok();if(ri+1<a.rounds.length){$('#fb',box).innerHTML=`<div class="feedback good">ترتيب صحيح! <button class="btn u sm" id="nx">التالي</button></div>`;$('#nx',box).onclick=()=>actOrder(box,a,onWin,ri+1)}else{onWin();finishBox(box,'رتّبت كل الخطوات بشكل صحيح.',()=>actOrder(box,a,onWin,0))}}
+    else{sfx.bad();$('#fb',box).innerHTML=`<div class="feedback bad">${ok} من ${r.items.length} في مكانها الصحيح. اضغط على البطاقة الحمراء لإعادتها ثم حاول مجددًا.</div>`}}};
+  draw();
+}
+function actTF(box,a,onWin){
+  const items=shuffle(a.items);let i=0,score=0;
+  const show=()=>{const it=items[i];box.innerHTML=`<div class="tfcard"><div class="hint">العبارة ${i+1} من ${items.length}</div><div class="st">${it[0]}</div><div class="row"><button class="btn u tfbtn" data-v="1">صح ✓</button><button class="btn ghost tfbtn" data-v="0">خطأ ✗</button></div><div id="fb"></div></div>`;
+    $$('[data-v]',box).forEach(b=>b.onclick=()=>{const right=(b.dataset.v==='1')===it[1];if(right){score++;sfx.ok()}else sfx.bad();$$('[data-v]',box).forEach(x=>x.disabled=true);
+      $('#fb',box).innerHTML=`<div class="feedback ${right?'good':'bad'}">${right?'إجابة صحيحة.':'إجابة غير صحيحة.'} العبارة ${it[1]?'صحيحة':'خاطئة'}. ${it[2]||''}<div style="margin-top:8px"><button class="btn sm" id="nx">${i+1<items.length?'التالي':'النتيجة'}</button></div></div>`;
+      $('#nx',box).onclick=()=>{i++;if(i<items.length)show();else{box.innerHTML='';if(score>=Math.ceil(items.length*.6))onWin();finishBox(box,`نتيجتك ${score} من ${items.length}`,()=>actTF(box,a,onWin))}};$('#nx',box).focus()})};
+  show();
+}
+function actFill(box,a,onWin){
+  const bank=shuffle([...new Set([...a.sents.map(s=>s[1]),...(a.extra||[])])]);const filled=a.sents.map(()=>false);let active=0,mistakes=0;
+  box.innerHTML=`<p class="prompt">اختر الفراغ ثم اضغط على الكلمة المناسبة من البنك.</p><div class="fill">${a.sents.map((s,i)=>`<p>${s[0]}<span class="blank" data-i="${i}" tabindex="0">&nbsp;</span>${s[2]}</p>`).join('')}</div><div class="bank">${bank.map(w=>`<button class="chip">${w}</button>`).join('')}</div>`;
+  const mark=()=>$$('.blank',box).forEach(b=>b.classList.toggle('active',+b.dataset.i===active&&!filled[active]));
+  $$('.blank',box).forEach(b=>b.onclick=()=>{if(!filled[+b.dataset.i]){active=+b.dataset.i;mark()}});
+  $$('.bank .chip',box).forEach(c=>c.onclick=()=>{if(active<0)return;if(c.textContent===a.sents[active][1]){const b=$(`.blank[data-i="${active}"]`,box);b.textContent=c.textContent;b.classList.add('good');b.classList.remove('active');filled[active]=true;sfx.ok();active=filled.indexOf(false);mark();if(active<0){onWin();finishBox(box,mistakes?`عدد المحاولات الخاطئة: ${mistakes}`:'بدون أي خطأ!',()=>actFill(box,a,onWin))}}else{mistakes++;sfx.bad();c.classList.add('shake','badx');setTimeout(()=>c.classList.remove('shake','badx'),450)}});
+  mark();
+}
+
+/* ---------- quiz engine ---------- */
+function prepQ(item){const [q,o,e]=item.q;const opts=shuffle(o.map((t,i)=>({t,c:i===0})));return{q,opts,e,l:item.l,ans:o[0]}}
+function startQuiz(box,pool,opt){
+  const n=Math.min(opt.count||pool.length,pool.length);
+  const qs=shuffle(pool).slice(0,n).map(prepQ);let i=0,score=0,picks=[],timer=null,tl=0;
+  const stopT=()=>{clearInterval(timer);timer=null};addCleanup(stopT);
+  const end=()=>{stopT();const pct=Math.round(score/qs.length*100);const k=opt.key;const prevBest=store.best[k]||0;if(pct>prevBest){store.best[k]=pct;save()}
+    opt.onDone&&opt.onDone(pct);if(pct>=80)sfx.win();
+    const msg=pct>=90?'ممتاز! أنت عالم صغير.':pct>=75?'رائع! أداء قوي.':pct>=60?'جيد، راجع الأسئلة الخاطئة.':'تحتاج إلى مراجعة الدرس ثم المحاولة مجددًا.';
+    box.innerHTML=`<div class="result"><div class="hint">${opt.title}</div><div class="pct">${pct}%</div><div style="font-weight:700">${score} من ${qs.length} إجابة صحيحة. ${msg}</div><div class="hint">أفضل نتيجة: ${Math.max(pct,prevBest)}%</div>
+    <div class="ctrls" style="justify-content:center"><button class="btn u" id="again">اختبار جديد</button>${opt.back?'<button class="btn ghost" id="back">العودة إلى المكتبة</button>':''}</div>
+    <div class="review">${qs.map((q,k)=>{const p=picks[k];const ok=p&&p.c;return`<div class="it ${ok?'':'x'}"><b>${k+1}. ${q.q}</b><div>${ok?'✓ ':'✗ إجابتك: '+(p?p.t:'لم تُجب')+'<br>'}<span class="c">الإجابة الصحيحة: ${q.ans}</span>${q.e?`<div class="hint">${q.e}</div>`:''}${!ok&&opt.showLesson?`<div class="hint">راجع الدرس <a href="#/l/${q.l}">${q.l}</a></div>`:''}</div></div>`}).join('')}</div></div>`;
+    $('#again',box).onclick=()=>startQuiz(box,pool,opt);if(opt.back)$('#back',box).onclick=opt.back};
+  const show=()=>{const q=qs[i];
+    box.innerHTML=`<div class="qcard"><div class="qtop"><span>${opt.title}</span><span>${opt.timer?'<span class="timer" id="tm"></span> ':''}السؤال ${i+1} من ${qs.length}</span></div><div class="qprog"><i style="width:${i/qs.length*100}%"></i></div>
+    <div class="qtext">${q.q}</div><div class="answers">${q.opts.map((o,k)=>`<button class="ans" data-k="${k}"><span class="k">${'أبجد'[k]}</span><span>${o.t}</span></button>`).join('')}</div><div id="fb"></div></div>`;
+    const pick=k=>{stopT();const o=k==null?null:q.opts[k];picks[i]=o;if(o&&o.c)score++;
+      $$('.ans',box).forEach((b,j)=>{b.disabled=true;if(opt.mode==='practice'){if(q.opts[j].c)b.classList.add('right');else if(j===k)b.classList.add('wrong')}else if(j===k)b.classList.add('picked')});
+      if(opt.mode==='practice'){o&&o.c?sfx.ok():sfx.bad();$('#fb',box).innerHTML=`<div class="feedback ${o&&o.c?'good':'bad'}">${o&&o.c?'إجابة صحيحة!':(o?'إجابة غير صحيحة.':'انتهى الوقت.')+' الإجابة الصحيحة: '+q.ans}${q.e?'<div class="hint">'+q.e+'</div>':''}<div style="margin-top:8px"><button class="btn sm" id="nx">${i+1<qs.length?'السؤال التالي':'عرض النتيجة'}</button></div></div>`;$('#nx',box).onclick=nxt;$('#nx',box).focus()}
+      else setTimeout(nxt,k==null?600:380)};
+    const nxt=()=>{i++;i<qs.length?show():end()};
+    $$('.ans',box).forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+    if(opt.timer){tl=opt.timer;const tm=$('#tm',box);tm.textContent=tl+'ث';timer=setInterval(()=>{if(!box.isConnected){stopT();return}tl--;if(tm.isConnected)tm.textContent=tl+'ث';if(tl<=0)pick(null)},1000)}};
+  show();
+}
+
+/* ---------- quiz library ---------- */
+function renderQuizLib(app){
+  document.documentElement.style.setProperty('--u','var(--u3)');app.style.setProperty('--u','var(--u3)');app.style.setProperty('--soft','var(--soft3)');
+  const scopeFromHash=(location.hash.split('/')[2])||'all';
+  const scopes={all:{t:'الاختبار الشامل للفصل الأول',pool:()=>L.flatMap(l=>l.q.map(q=>({q,l:l.id})))}};
+  UNITS.forEach(u=>scopes['u'+u.n]={t:'اختبار الوحدة '+u.n+': '+u.t,pool:()=>L.filter(l=>l.u===u.n).flatMap(l=>l.q.map(q=>({q,l:l.id})))});
+  L.forEach(l=>scopes['l'+l.id]={t:'الدرس '+l.id+': '+l.t,pool:()=>l.q.map(q=>({q,l:l.id}))});
+  let scope=scopes[scopeFromHash]?scopeFromHash:'all',count=10,mode='practice',timer=0;
+  const bestOf=k=>store.best['Q'+k]!=null?store.best['Q'+k]+'%':'';
+  const total=L.reduce((s,l)=>s+l.q.length,0);
+  const draw=()=>{
+    app.innerHTML=`<div class="lhead"><span class="big">✓</span><div><span class="crumb">${total} سؤالًا تغطي دروس الفصل الأول كلها</span><h1>مكتبة الاختبارات</h1></div></div>
+    <div class="qlib"><nav class="qscopes" aria-label="اختر الاختبار">
+      <button data-s="all" aria-pressed="${scope==='all'}"><span>الاختبار الشامل للفصل</span><em>${bestOf('all')}</em></button>
+      ${UNITS.map(u=>`<div class="grp">الوحدة ${u.n}</div><button data-s="u${u.n}" aria-pressed="${scope==='u'+u.n}"><span>اختبار الوحدة كاملة</span><em>${bestOf('u'+u.n)}</em></button>${L.filter(l=>l.u===u.n).map(l=>`<button data-s="l${l.id}" aria-pressed="${scope==='l'+l.id}"><span>${l.id} ${l.t}</span><em>${bestOf('l'+l.id)}</em></button>`).join('')}`).join('')}
+    </nav>
+    <div class="panel" id="qsetup">
+      <h2 style="font-size:28px">${scopes[scope].t}</h2><p class="hint">عدد الأسئلة المتاحة: ${scopes[scope].pool().length}. تُختار الأسئلة وترتيب الخيارات عشوائيًّا في كل مرة.</p>
+      <div class="opt"><label>عدد الأسئلة</label><div class="seg" id="cnt">${[5,10,20,30,0].map(c=>`<button data-c="${c}" aria-pressed="${count===c}">${c||'الكل'}</button>`).join('')}</div></div>
+      <div class="opt"><label>طريقة الاختبار</label><div class="seg" id="md"><button data-m="practice" aria-pressed="${mode==='practice'}">تدريب مع التصحيح الفوري</button><button data-m="exam" aria-pressed="${mode==='exam'}">اختبار والنتيجة في النهاية</button></div></div>
+      <div class="opt"><label>مؤقت لكل سؤال</label><div class="seg" id="tmr">${[0,20,30,45].map(t=>`<button data-t="${t}" aria-pressed="${timer===t}">${t?t+' ثانية':'بدون'}</button>`).join('')}</div></div>
+      <button class="btn u" id="startQ" style="margin-top:8px">ابدأ الاختبار</button>
+    </div></div>`;
+    $$('.qscopes button').forEach(b=>b.onclick=()=>{scope=b.dataset.s;draw()});
+    $$('#cnt button').forEach(b=>b.onclick=()=>{count=+b.dataset.c;draw()});
+    $$('#md button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;draw()});
+    $$('#tmr button').forEach(b=>b.onclick=()=>{timer=+b.dataset.t;draw()});
+    $('#startQ').onclick=()=>{const box=$('#qsetup');startQuiz(box,scopes[scope].pool(),{count:count||999,mode,timer,key:'Q'+scope,title:scopes[scope].t,showLesson:scope[0]!=='l',back:draw,onDone:p=>{if(scope[0]==='l'&&p>=60)markDone(scope.slice(1),'quiz')}});box.scrollIntoView({behavior:'smooth',block:'start'})};
+  };
+  draw();
+}
+
+/* ---------- simulations ---------- */
+const SIMS={};
+function raf(fn){let id,on=true;const loop=t=>{if(!on)return;fn(t);id=requestAnimationFrame(loop)};id=requestAnimationFrame(loop);const stop=()=>{on=false;cancelAnimationFrame(id)};addCleanup(stop);return stop}
+function every(ms,fn){const id=setInterval(fn,ms);addCleanup(()=>clearInterval(id));return()=>clearInterval(id)}
+
+function hotspotSim(box,o,onDone){
+  box.innerHTML=`<div class="sim"><div class="stage">${o.svg}</div><div class="side"><h3>${o.title}</h3><p class="hint">${o.intro}</p>
+  <div class="seg" id="hm"><button data-m="ex" aria-pressed="true">استكشف</button><button data-m="ch" aria-pressed="false">تحدَّ نفسك</button></div>
+  <div class="info" id="info">اضغط على أي جزء في الرسم لتتعرّف عليه.</div>${o.extra||''}</div></div>`;
+  const info=$('#info',box);let mode='ex',queue=[],score=0,miss=0;
+  const parts=()=>$$('[data-part]',box);
+  const clearHL=()=>parts().forEach(p=>p.classList.remove('hl'));
+  const ask=()=>{if(!queue.length){info.innerHTML=`<b>انتهى التحدي!</b><br>أصبت ${score} من ${o.challenge.length}${miss?` مع ${miss} محاولة خاطئة`:''}.<div style="margin-top:8px"><button class="btn u sm" id="rep">أعد التحدي</button></div>`;$('#rep',box).onclick=startCh;sfx.win();onDone();return}info.innerHTML=`<span class="score">${score} من ${o.challenge.length}</span><br><b>اضغط على: ${queue[0].p}</b>`};
+  const startCh=()=>{queue=shuffle(o.challenge);score=0;miss=0;clearHL();ask()};
+  $$('#hm button',box).forEach(b=>b.onclick=()=>{mode=b.dataset.m;$$('#hm button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));clearHL();if(mode==='ch')startCh();else info.textContent='اضغط على أي جزء في الرسم لتتعرّف عليه.'});
+  box.addEventListener('click',e=>{const p=e.target.closest('[data-part]');if(!p||!box.contains(p))return;const id=p.dataset.part;
+    if(mode==='ex'){clearHL();$$(`[data-part="${id}"]`,box).forEach(x=>x.classList.add('hl'));const d=o.parts[id];info.innerHTML=`<b>${d.n}</b><br>${d.i}`;sfx.tap();o.seen=o.seen||new Set();o.seen.add(id);if(o.seen.size===Object.keys(o.parts).length)onDone()}
+    else if(queue.length){if(id===queue[0].id){score++;sfx.ok();p.classList.add('hit');setTimeout(()=>p.classList.remove('hit'),400);queue.shift();ask()}else{miss++;sfx.bad();info.querySelector('b')&&(info.querySelector('b').innerHTML=`ليس هذا (${o.parts[id].n}). اضغط على: ${queue[0].p}`)}}});
+  return box;
+}
+
+SIMS.body=(box,l,done)=>hotspotSim(box,{title:'خريطة أعضاء الجسم',intro:'استكشف موقع كل عضو ووظيفته، ثم اختبر نفسك في تحديد مواقع الأعضاء.',
+ svg:`<svg viewBox="0 0 240 400" role="img" aria-label="رسم لأعضاء جسم الإنسان">
+ <g fill="var(--line)"><circle cx="120" cy="50" r="36"/><rect x="106" y="80" width="28" height="26" rx="8"/>
+ <path d="M60 110Q120 96 180 110Q194 118 194 140L188 262Q184 302 170 334L70 334Q56 302 52 262L46 140Q46 118 60 110Z"/></g>
+ <g stroke="var(--line)" stroke-width="20" stroke-linecap="round" fill="none"><path d="M52 124Q30 190 34 262"/><path d="M188 124Q210 190 206 262"/><path d="M92 334V392"/><path d="M148 334V392"/></g>
+ <path d="M120 106V128" stroke="#E3B8B8" stroke-width="7" stroke-linecap="round"/>
+ <g data-part="brain"><ellipse cx="120" cy="44" rx="25" ry="18" fill="#E7A3B2"/><path d="M102 40q6-8 12 0t12 0t12 0M104 50q6-6 12 0t12 0t10 0" stroke="#C97A8E" stroke-width="2" fill="none"/></g>
+ <g data-part="lungs"><path d="M112 126C90 118 74 140 72 168C70 194 84 204 106 198Z" fill="#F08A8A"/><path d="M128 126C150 118 166 140 168 168C170 194 156 204 134 198Z" fill="#F08A8A"/></g>
+ <path data-part="heart" d="M130 152c6-10 22-6 20 8c-1 10-14 20-20 26c-6-6-19-16-20-26c-2-14 14-18 20-8z" fill="#C62A3B"/>
+ <path data-part="liver" d="M74 214C78 200 122 198 138 207C132 224 100 232 78 228Z" fill="#8C3B2C"/>
+ <path data-part="stomach" d="M142 206C162 200 172 214 166 228C160 240 140 238 132 232C142 226 146 218 142 206Z" fill="#E59B52"/>
+ <g data-part="intest"><rect x="84" y="262" width="72" height="62" rx="24" fill="#F2B27A"/><path d="M98 280h44M98 293h44M98 306h44" stroke="#D88E54" stroke-width="4" fill="none" stroke-linecap="round"/></g>
+ <g data-part="kidneys"><ellipse cx="90" cy="246" rx="9" ry="14" fill="#9B4A6C"/><ellipse cx="150" cy="246" rx="9" ry="14" fill="#9B4A6C"/></g>
+ </svg>`,
+ parts:{brain:{n:'الدماغ',i:'يوجد داخل الجمجمة، ويتحكم في كل أجزاء الجسم: التفكير والتعلم والحركة والحواس.'},lungs:{n:'الرئتان',i:'زوج من الأعضاء داخل الصدر تحميهما الضلوع، وتقومان بعملية التنفس.'},heart:{n:'القلب',i:'عضلة داخل الصدر جهة اليسار قليلًا، يضخ الدم إلى جميع أنحاء الجسم.'},liver:{n:'الكبد',i:'لا يمكننا العيش بدونه؛ يخزّن الطاقة ويخلّص الجسم من المواد السامة.'},stomach:{n:'المعدة',i:'تمزج الطعام بالعصارة الهضمية فيتحوّل إلى سائل يشبه العصيدة.'},intest:{n:'الأمعاء',i:'تفتّت الطعام إلى جزيئات صغيرة جدًّا تنتقل إلى الدم.'},kidneys:{n:'الكليتان',i:'زوج على شكل حبة الفاصوليا في الجزء الخلفي من الجسم، تنقّيان الدم وتصنعان البول.'}},
+ challenge:[{p:'القلب',id:'heart'},{p:'الدماغ',id:'brain'},{p:'الرئتان',id:'lungs'},{p:'المعدة',id:'stomach'},{p:'الأمعاء',id:'intest'},{p:'الكبد',id:'liver'},{p:'الكليتان',id:'kidneys'},{p:'العضو الذي يضخ الدم',id:'heart'},{p:'العضو المسؤول عن الإخراج',id:'kidneys'},{p:'العضو الذي يتحكم في الجسم',id:'brain'},{p:'العضو الذي يخزّن الطاقة',id:'liver'}]},done);
+
+SIMS.heart=(box,l,done)=>{
+  hotspotSim(box,{title:'رحلة الدم في الجهاز الدوري',intro:'النقاط الحمراء دم محمّل بالأكسجين، والزرقاء دم بدون أكسجين. غيّر النشاط ولاحظ سرعة القلب.',
+  svg:`<svg viewBox="0 0 400 360" role="img" aria-label="الدورة الدموية">
+  <g data-part="lungs"><rect x="135" y="12" width="130" height="56" rx="20" fill="#F6B4B4"/><text x="200" y="47" text-anchor="middle" font-size="18" font-weight="700" fill="#7A1F1F">الرئتان</text></g>
+  <g data-part="body"><rect x="125" y="292" width="150" height="56" rx="20" fill="var(--soft)" stroke="var(--u)" stroke-width="2"/><text x="200" y="327" text-anchor="middle" font-size="17" font-weight="700" fill="var(--ink)">أجزاء الجسم</text></g>
+  <g fill="none" stroke-width="10" stroke-linecap="round" opacity=".25"><path id="hp1" d="M168 146C112 120 112 70 150 50" stroke="#3D6FD1"/><path id="hp2" d="M250 50C288 70 288 120 232 146" stroke="#D63A3A"/><path id="hp3" d="M232 206C292 236 296 286 258 304" stroke="#D63A3A"/><path id="hp4" d="M142 304C104 286 108 236 168 206" stroke="#3D6FD1"/></g>
+  <g id="hbeat" class="beat"><path data-part="right" d="M200 128C170 110 138 128 144 162C148 190 178 210 200 230Z" fill="#3D6FD1"/><path data-part="left" d="M200 128C230 110 262 128 256 162C252 190 222 210 200 230Z" fill="#D63A3A"/></g>
+  <text x="96" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">الجانب</text><text x="96" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">الأيمن</text>
+  <text x="306" y="176" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">الجانب</text><text x="306" y="194" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">الأيسر</text>
+  <g id="hdots"></g></svg>`,
+  parts:{right:{n:'الجانب الأيمن من القلب',i:'يستقبل الدم القادم من الجسم بدون أكسجين، ويضخه إلى الرئتين.'},left:{n:'الجانب الأيسر من القلب',i:'يستقبل الدم المحمّل بالأكسجين من الرئتين، ويضخه إلى جميع أجزاء الجسم.'},lungs:{n:'الرئتان',i:'هنا يحصل الدم على الأكسجين، ويتخلص من ثاني أكسيد الكربون.'},body:{n:'أجزاء الجسم',i:'يعطي الدم أجزاء الجسم الغذاء والأكسجين، ويحمل الفضلات إلى الكليتين والرئتين للتخلص منها.'}},
+  challenge:[{p:'الجانب الذي يضخ الدم إلى الرئتين',id:'right'},{p:'الجانب الذي يضخ الدم المحمّل بالأكسجين إلى الجسم',id:'left'},{p:'المكان الذي يحصل فيه الدم على الأكسجين',id:'lungs'},{p:'المكان الذي يحصل على الغذاء والأكسجين من الدم',id:'body'}],
+  extra:`<div class="ctrls"><div class="seg" id="act"><button data-v="0" aria-pressed="true">راحة</button><button data-v="1" aria-pressed="false">مشي</button><button data-v="2" aria-pressed="false">جري</button></div></div><p class="hint" id="actNote">في الراحة يدق القلب بهدوء.</p>`},done);
+  const g=$('#hdots',box);const paths=[1,2,3,4].map(i=>$('#hp'+i,box));const lens=paths.map(p=>p.getTotalLength());
+  const cols=['#3D6FD1','#D63A3A','#D63A3A','#3D6FD1'];const dots=[];
+  paths.forEach((p,i)=>{for(let k=0;k<4;k++){const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('r','6');c.setAttribute('fill',cols[i]);g.appendChild(c);dots.push({c,i,t:k/4})}});
+  const speeds=[.18,.32,.55],beats=['1s','.7s','.45s'],notes=['في الراحة يدق القلب بهدوء.','عند المشي تزداد دقات القلب.','عند الجري تزداد دقات القلب أكثر؛ لإمداد الجسم بما يكفي من الغذاء والأكسجين.'];
+  let sp=speeds[0],last=0;$('#hbeat',box).style.setProperty('--bt',beats[0]);
+  $$('#act button',box).forEach(b=>b.onclick=()=>{const v=+b.dataset.v;sp=speeds[v];$('#hbeat',box).style.setProperty('--bt',beats[v]);$('#actNote',box).textContent=notes[v];$$('#act button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)))});
+  raf(t=>{const dt=last?Math.min(.05,(t-last)/1000):0;last=t;dots.forEach(d=>{d.t=(d.t+dt*sp)%1;const pt=paths[d.i].getPointAtLength(d.t*lens[d.i]);d.c.setAttribute('cx',pt.x);d.c.setAttribute('cy',pt.y)})});
+};
+
+SIMS.pulse=(box,l,done)=>{
+  const res={rest:null,act:null};let which='rest',taps=0,tleft=0,running=false,stopT=null;
+  box.innerHTML=`<div class="sim"><div class="stage" style="gap:12px;padding:20px">
+   <button class="bigtap" id="tap" aria-label="اضغط مع كل نبضة">اضغط مع<br>كل نبضة</button>
+   <div class="timer" id="tt">15 ثانية</div><div class="hint" id="tc">النبضات: 0</div></div>
+  <div class="side"><h3>قِس نبضك</h3><p class="hint">ضع إصبعين (لا تستخدم الإبهام) على معصمك أو جانب عنقك. اضغط الزر مع كل نبضة تشعر بها لمدة 15 ثانية، وسنضرب العدد في 4 لنحسب نبضك في الدقيقة.</p>
+   <div class="seg" id="wh"><button data-w="rest" aria-pressed="true">قياس في الراحة</button><button data-w="act" aria-pressed="false">قياس بعد القفز 30 ثانية</button></div>
+   <div class="info" id="pinfo">اختر نوع القياس ثم ابدأ بالضغط.</div>
+   <div class="bars" id="bars"></div></div></div>`;
+  const drawBars=()=>{const rows=[['الفيل',30],['إنسان بالغ',70],['في سنك تقريبًا',90],['قياسك في الراحة',res.rest],['قياسك بعد النشاط',res.act],['الفأر',500]];
+    $('#bars',box).innerHTML=rows.map(([n,v])=>`<div class="bar"><span>${n}</span><i style="width:${v?Math.max(2,v/500*100):0}%;${n.startsWith('قياسك')?'background:var(--sun)':''}"></i><b>${v??'؟'}</b></div>`).join('')};
+  drawBars();
+  $$('#wh button',box).forEach(b=>b.onclick=()=>{if(running)return;which=b.dataset.w;$$('#wh button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#pinfo',box).textContent=which==='act'?'اقفز في مكانك 30 ثانية، ثم اضغط مع كل نبضة.':'اجلس بهدوء، ثم اضغط مع كل نبضة.'});
+  $('#tap',box).onclick=()=>{const b=$('#tap',box);b.animate([{transform:'scale(1)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:200});tone(140,.12,'sine',.12);
+    if(!running){running=true;taps=0;tleft=15;$('#tt',box).textContent='15 ثانية';stopT=every(1000,()=>{tleft--;$('#tt',box).textContent=tleft+' ثانية';if(tleft<=0){stopT();running=false;const bpm=taps*4;res[which]=bpm;drawBars();
+      let msg=`نبضك: <b>${bpm}</b> نبضة في الدقيقة.`;if(res.rest&&res.act)msg+=res.act>res.rest?' لاحظ أن نبضك ازداد بعد النشاط!':' جرّب القفز مدة أطول ثم قِس مرة أخرى.';
+      $('#pinfo',box).innerHTML=msg;$('#tt',box).textContent='انتهى';sfx.win();done()}})}
+    taps++;$('#tc',box).textContent='النبضات: '+taps};
+};
+
+SIMS.lungs=(box,l,done)=>{
+  box.innerHTML=`<div class="sim"><div class="stage"><svg viewBox="0 0 300 330" role="img" aria-label="الرئتان والتنفس">
+   <g stroke="var(--line)" stroke-width="5" fill="none" stroke-linecap="round"><path d="M50 150Q150 120 250 150"/><path d="M45 185Q150 155 255 185"/><path d="M45 220Q150 190 255 220"/></g>
+   <path d="M150 18V112M150 112L118 136M150 112L182 136" stroke="#E3A0A0" stroke-width="12" stroke-linecap="round" fill="none"/>
+   <g id="lg" style="transform-origin:150px 150px;transition:transform 1s ease"><path d="M138 120C96 100 62 140 60 190C58 236 84 252 132 240Z" fill="#F08A8A"/><path d="M162 120C204 100 238 140 240 190C242 236 216 252 168 240Z" fill="#F08A8A"/></g>
+   <path id="dia" d="M40 268Q150 222 260 268" stroke="var(--u)" stroke-width="8" fill="none" stroke-linecap="round" style="transition:transform 1s ease"/>
+   <text x="150" y="300" text-anchor="middle" font-size="14" font-weight="700" fill="var(--muted)">الحجاب الحاجز</text>
+   <g id="airin" opacity="0" style="transition:opacity .4s"><path d="M196 18l-30 30M196 18h-18M196 18v18" stroke="#2F7DD1" stroke-width="4" fill="none"/><text x="204" y="24" font-size="15" font-weight="700" fill="#2F7DD1">أكسجين</text></g>
+   <g id="airout" opacity="0" style="transition:opacity .4s"><path d="M104 48l-30-30M74 18h18M74 18v18" stroke="#777" stroke-width="4" fill="none"/><text x="6" y="56" font-size="13" font-weight="700" fill="#777">ثاني أكسيد الكربون</text></g>
+  </svg></div>
+  <div class="side"><h3>شهيق وزفير</h3><p class="hint">اضغط مطولًا على «شهيق» ثم اتركه للزفير، أو شغّل التنفس التلقائي.</p>
+   <div class="ctrls"><button class="btn u" id="inb">اضغط مطولًا: شهيق</button><button class="btn ghost" id="auto">تنفّس تلقائيًّا</button></div>
+   <div class="seg" id="rate"><button data-r="2600" aria-pressed="true">في الراحة</button><button data-r="1200" aria-pressed="false">عند الرياضة</button></div>
+   <div class="info" id="li">الرئتان في حالة الراحة.</div><div class="kv"><span>عدد مرات التنفس</span><span id="bc">0</span></div></div></div>`;
+  let inside=false,count=0,autoStop=null,rate=2600;
+  const set=v=>{if(v===inside)return;inside=v;$('#lg',box).style.transform=v?'scale(1.13)':'scale(1)';$('#dia',box).style.transform=v?'translateY(22px)':'none';$('#airin',box).setAttribute('opacity',v?1:0);$('#airout',box).setAttribute('opacity',v?0:1);
+    $('#li',box).innerHTML=v?'<b>شهيق:</b> يدخل الهواء عبر الأنف أو الفم ثم القصبة الهوائية إلى الرئتين، فتمتلئان ويزداد حجمهما، وينتقل الأكسجين إلى الدم.':'<b>زفير:</b> يخرج الهواء من الرئتين فيصغر حجمهما، ونتخلص من ثاني أكسيد الكربون الذي حمله الدم من أنحاء الجسم.';
+    if(!v){count++;$('#bc',box).textContent=count;if(count===5)done()}};
+  const inb=$('#inb',box);inb.onpointerdown=e=>{e.preventDefault();set(true)};['pointerup','pointerleave','pointercancel'].forEach(ev=>inb.addEventListener(ev,()=>{if(inside&&!autoStop)set(false)}));
+  inb.onkeydown=e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();set(true)}};inb.onkeyup=()=>set(false);
+  const startAuto=()=>{autoStop&&autoStop();autoStop=every(rate/2,()=>set(!inside));$('#auto',box).textContent='أوقف التنفس التلقائي'};
+  $('#auto',box).onclick=()=>{if(autoStop){autoStop();autoStop=null;$('#auto',box).textContent='تنفّس تلقائيًّا'}else startAuto()};
+  $$('#rate button',box).forEach(b=>b.onclick=()=>{rate=+b.dataset.r;$$('#rate button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#lg',box).style.transitionDuration=$('#dia',box).style.transitionDuration=(rate/2600)+'s';if(autoStop)startAuto();if(rate<2600)$('#li',box).innerHTML='عند ممارسة الرياضة يحتاج الجسم إلى أكسجين أكثر، فنتنفس أسرع.'});
+};
+
+SIMS.digest=(box,l,done)=>{
+  const st=[{x:130,y:52,r:14,c:'#E8B04C',n:'الفم',t:'تقطع الأسنان الطعام وتمضغه، ويبدأ اللعاب في هضمه، ثم نبتلعه.',p:'mouth'},
+  {x:132,y:128,r:11,c:'#E0A04A',n:'المريء',t:'يُدفع الطعام الذي تم ابتلاعه إلى المعدة عبر أنبوب يُسمّى المريء.',p:'eso'},
+  {x:158,y:196,r:11,c:'#C99A5B',n:'المعدة',t:'يمتزج الطعام داخل المعدة بالعصارة الهضمية، فيتحوّل إلى سائل يشبه العصيدة.',p:'stom'},
+  {x:130,y:270,r:6,c:'#C99A5B',n:'الأمعاء',t:'تُفتّت الأمعاء الطعام إلى جزيئات أصغر حتى يمكن نقله عبر الدم.',p:'small'},
+  {x:130,y:270,r:5,c:'#D63A3A',n:'الدم',t:'تمر جزيئات الطعام المهضوم من الأمعاء إلى الدم، فيُنقل إلى جميع أجزاء الجسم.',p:'small'},
+  {x:132,y:340,r:8,c:'#7A5230',n:'نهاية الأمعاء',t:'يتخلص الجسم من بقايا الطعام التي لم يتم هضمها في صورة براز عبر نهاية الأمعاء.',p:'large'}];
+  let i=0;
+  box.innerHTML=`<div class="sim"><div class="stage"><svg viewBox="0 0 260 380" role="img" aria-label="الجهاز الهضمي">
+   <g fill="var(--line)"><circle cx="130" cy="48" r="38"/><path d="M70 100Q130 88 190 100L196 300Q190 350 170 368L90 368Q70 350 64 300Z"/></g>
+   <g data-s="mouth"><path d="M112 60q18 14 36 0" stroke="#B5485A" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+   <path data-s="eso" d="M130 70Q132 120 150 176" stroke="#E8A38A" stroke-width="12" fill="none" stroke-linecap="round"/>
+   <path data-s="stom" d="M144 170C178 160 196 186 186 210C176 232 146 230 132 222C150 214 156 196 144 170Z" fill="#E59B52"/>
+   <g data-s="large"><path d="M92 330V236H170V330M130 330V352" stroke="#D88E54" stroke-width="16" fill="none" stroke-linejoin="round" stroke-linecap="round"/></g>
+   <g data-s="small"><rect x="102" y="246" width="56" height="70" rx="18" fill="#F2B27A"/><path d="M110 262h40M110 276h40M110 290h40M110 304h40" stroke="#D88E54" stroke-width="4" stroke-linecap="round"/></g>
+   <circle id="food" cx="0" cy="0" r="14" fill="#E8B04C" stroke="#fff" stroke-width="3" style="transition:transform .8s cubic-bezier(.5,0,.3,1),r .5s,fill .5s"/>
+  </svg></div><div class="side"><h3>رحلة لقمة الطعام</h3><p class="hint">اضغط «التالي» لتتبع الطعام داخل الجهاز الهضمي.</p>
+   <div class="info" id="di"></div><div class="ctrls"><button class="btn ghost" id="pv">السابق</button><button class="btn u" id="nx">التالي</button></div><div class="meter"><i id="dm"></i></div></div></div>`;
+  const draw=()=>{const s=st[i];const f=$('#food',box);f.style.transform=`translate(${s.x}px,${s.y}px)`;f.setAttribute('r',s.r);f.setAttribute('fill',s.c);
+    $$('[data-s]',box).forEach(g=>g.style.opacity=g.dataset.s===s.p?1:.45);
+    $('#di',box).innerHTML=`<b>${i+1}. ${s.n}</b><br>${s.t}`;$('#dm',box).style.width=((i+1)/st.length*100)+'%';$('#pv',box).disabled=i===0;$('#nx',box).textContent=i===st.length-1?'ابدأ من جديد':'التالي';if(i===st.length-1)done()};
+  $('#nx',box).onclick=()=>{i=i===st.length-1?0:i+1;sfx.tap();draw()};$('#pv',box).onclick=()=>{if(i>0){i--;draw()}};
+  draw();
+};
+
+SIMS.kidney=(box,l,done)=>{
+  box.innerHTML=`<div class="sim"><div class="stage"><svg viewBox="0 0 320 300" role="img" aria-label="عمل الكليتين">
+   <path d="M10 50H310" stroke="#D63A3A" stroke-width="18" stroke-linecap="round" opacity=".35"/>
+   <path d="M110 58V96M210 58V96" stroke="#D63A3A" stroke-width="8" opacity=".35"/>
+   <path d="M86 98C60 104 58 160 84 168C100 172 104 152 118 150C130 148 132 126 120 112C112 102 100 94 86 98Z" fill="#9B4A6C"/>
+   <path d="M234 98C260 104 262 160 236 168C220 172 216 152 202 150C190 148 188 126 200 112C208 102 220 94 234 98Z" fill="#9B4A6C"/>
+   <path d="M100 168Q120 210 150 222M220 168Q200 210 170 222" stroke="#E2C25A" stroke-width="6" fill="none"/>
+   <rect x="130" y="214" width="60" height="70" rx="14" fill="none" stroke="var(--ink)" stroke-width="3"/>
+   <rect id="bl" x="133" y="281" width="54" height="0" rx="10" fill="#F2D35B"/>
+   <text x="160" y="298" text-anchor="middle" font-size="11" fill="var(--muted)">المثانة</text>
+   <g id="kd"></g></svg></div>
+  <div class="side"><h3>مصفاة الجسم</h3><p class="hint">النقاط الحمراء دم، والصفراء فضلات وماء زائد. شغّل يومًا كاملًا ولاحظ كيف تنقّي الكليتان الدم.</p>
+   <button class="btn u" id="run">شغّل يومًا كاملًا</button>
+   <div class="kv" style="margin-top:12px"><span>مرات مرور الدم عبر الكليتين</span><span id="pc">0 من 40</span></div><div class="meter"><i id="pm" style="width:0"></i></div>
+   <div class="kv"><span>كمية البول</span><span id="uc">0 مل</span></div><div class="meter"><i id="um" style="width:0;background:#E2C25A"></i></div>
+   <p style="margin:14px 0 4px;font-weight:700">كم كوبًا من الماء تشرب يوميًّا؟</p><div class="seg" id="cups">${[2,4,6,8,10].map(c=>`<button data-c="${c}">${c}</button>`).join('')}</div><div class="info" id="ki">اختر عدد الأكواب.</div></div></div>`;
+  const g=$('#kd',box);const dots=[];
+  for(let k=0;k<14;k++){const c=document.createElementNS('http://www.w3.org/2000/svg','circle');const waste=k%3===0;c.setAttribute('r',waste?5:6);c.setAttribute('fill',waste?'#E2C25A':'#D63A3A');g.appendChild(c);dots.push({c,x:k*23,y:50,waste,phase:0,kx:k%2?110:210})}
+  let running=false,pass=0,last=0;
+  raf(t=>{const dt=last?Math.min(.05,(t-last)/1000):0;last=t;const v=running?160:50;dots.forEach(d=>{if(d.phase===0){d.x+=v*dt;if(d.waste&&running&&Math.abs(d.x-d.kx)<4){d.phase=1;d.x=d.kx}if(d.x>315){d.x=0;d.y=50;d.phase=0}}else{d.y+=v*dt*.9;if(d.y>140){d.phase=0;d.y=50;d.x=0}}d.c.setAttribute('cx',d.x);d.c.setAttribute('cy',d.y)})});
+  $('#run',box).onclick=()=>{if(running)return;running=true;pass=0;$('#run',box).disabled=true;const st=every(150,()=>{pass++;$('#pc',box).textContent=pass+' من 40';$('#pm',box).style.width=pass/40*100+'%';const ml=Math.round(pass/40*1000);$('#uc',box).textContent=ml>=1000?'1 لتر تقريبًا':ml+' مل';$('#um',box).style.width=pass/40*100+'%';$('#bl',box).setAttribute('height',pass/40*62);$('#bl',box).setAttribute('y',281-pass/40*62);
+    if(pass>=40){st();running=false;$('#run',box).disabled=false;$('#run',box).textContent='شغّل يومًا آخر';sfx.win();toast('مرّ الدم عبر الكليتين نحو 40 مرة، وأُفرز نحو لتر من البول');done()}})};
+  $$('#cups button',box).forEach(b=>b.onclick=()=>{const c=+b.dataset.c;$$('#cups button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#ki',box).innerHTML=c<6?'<b>اشرب أكثر!</b> يُنصح بشرب ستة إلى ثمانية أكواب من الماء يوميًّا للحفاظ على الكليتين بصحة جيدة.':c<=8?'<b>ممتاز!</b> ستة إلى ثمانية أكواب يوميًّا تحافظ على صحة الكليتين.':'جيد أنك تشرب الماء. الكمية الموصى بها ستة إلى ثمانية أكواب يوميًّا.'});
+};
+
+SIMS.brain=(box,l,done)=>hotspotSim(box,{title:'أجزاء الدماغ',intro:'لكل جزء من الدماغ وظيفة. استكشف الأجزاء، ثم حدّد الجزء الذي يتحكم في كل عمل.',
+ svg:`<svg viewBox="0 0 320 270" role="img" aria-label="أجزاء الدماغ">
+  <path d="M60 140C40 60 120 6 196 14C268 22 300 80 292 140C288 170 280 200 262 214L250 262H150L140 222C100 220 70 190 60 140Z" fill="var(--line)"/>
+  <g data-part="cere"><path d="M70 122C62 66 120 32 180 36C240 40 272 78 266 122C262 148 238 160 210 158C180 168 128 166 104 156C84 148 74 138 70 122Z" fill="#E9A8B8"/>
+  <path d="M100 80q14-14 28 0t28 0t28 0t28 0M90 110q14-14 28 0t28 0t28 0t28 0t28 0M110 140q14-12 28 0t28 0t28 0" stroke="#C97A8E" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+  <g data-part="cereb"><ellipse cx="112" cy="174" rx="36" ry="22" fill="#C77D96"/><path d="M84 168h56M80 178h64M88 188h48" stroke="#A85E78" stroke-width="2.5"/></g>
+  <path data-part="stem" d="M150 156H178L172 232H158Z" fill="#B2668A"/>
+  <text x="200" y="98" font-size="16" font-weight="700" fill="#7A2E46" text-anchor="middle" pointer-events="none">المخ</text>
+ </svg>`,
+ parts:{cere:{n:'المخ',i:'أكبر جزء في الدماغ. مسؤول عن التفكير والتعلم والكلام والحركة، ويحوّل الرسائل القادمة من العينين إلى صور نراها ويعطي معنى لما نسمعه.'},cereb:{n:'المخيخ',i:'يتحكم في التوازن، فيساعدك على الوقوف والمشي دون أن تقع.'},stem:{n:'جذع الدماغ',i:'يتحكم في الأشياء التي تتم تلقائيًّا دون تفكير، مثل: التنفس ودقات القلب وطرفة العين والعطس.'}},
+ challenge:[{p:'الجزء الذي يتحكم عندما تذكر اسمك',id:'cere'},{p:'الجزء الذي يساعدك على الوقوف على ساق واحدة',id:'cereb'},{p:'الجزء الذي يتحكم في ركل الكرة',id:'cere'},{p:'الجزء الذي يجعلك تفهم الموسيقى التي تسمعها',id:'cere'},{p:'الجزء الذي يتحكم في التنفس السريع عند الركض',id:'stem'},{p:'الجزء الذي يتحكم في دقات القلب',id:'stem'},{p:'الجزء المسؤول عن التوازن',id:'cereb'},{p:'الجزء الذي يتحكم في طرفة العين',id:'stem'}],
+ extra:'<p class="hint">تذكّر: الدماغ والأعصاب معًا يُكوّنان الجهاز العصبي، والأعصاب تنقل الرسائل بسرعة كبيرة. احمِ دماغك بارتداء الخوذة.</p>'},done);
+
+const CHAINS={
+ local:[{n:'مزرعة الخضروات',o:[['🥬','السبانخ'],['🐛','اليرقة'],['🐦','الطائر']]},{n:'مزرعة الذرة',o:[['🌽','سيقان الذرة'],['🪲','الحشرة ثاقبة الذرة'],['🦎','السحلية']]},{n:'المزرعة',o:[['🌽','بذور الذرة'],['🐔','الدجاجة'],['🧑','الإنسان']]},{n:'المرعى',o:[['🌾','العشب'],['🐄','البقرة']]}],
+ pred:[{n:'الحقل',o:[['🌿','النباتات'],['🦗','الجراد'],['🦎','السحلية'],['🦅','الصقر']]},{n:'الحديقة',o:[['🌰','البذور'],['🪲','الخنفساء'],['🦎','السحلية'],['🦅','الصقر']]},{n:'المزرعة ليلًا',o:[['🌾','الحبوب'],['🐭','الفأر'],['🦉','البومة']]},{n:'البركة',o:[['🌿','النباتات'],['🦗','الجراد'],['🐸','الضفدع'],['🐍','الثعبان']]}],
+ habitats:[{n:'السافانا',o:[['🌾','العشب'],['🦓','الحمار الوحشي'],['🦁','الأسد']]},{n:'السافانا',o:[['🌳','الأشجار المتفرقة'],['🦒','الزرافة'],['🦁','الأسد']]},{n:'المحيط',o:[['🦠','العوالق'],['🐟','سمك صغير'],['🦭','الفقمة'],['🦈','القرش']]},{n:'المحيط',o:[['🦠','العوالق'],['🐠','السمكة'],['🐦','النورس']]},{n:'المحيط',o:[['🦠','العوالق'],['🦈','القرش المتشمّس']]}]};
+SIMS.chain=(box,l,done)=>{
+  const set=CHAINS[l.simArg];let ci=0,pick=[],solved=0;
+  const role=(i,n)=>i===0?'منتج':n===2?'مستهلك':i===n-1?'مفترس':i===1?'مستهلك (فريسة)':'مفترس وفريسة';
+  const draw=()=>{const ch=set[ci];const order=draw.order||(draw.order=shuffle(ch.o.map((x,i)=>i)));
+    box.innerHTML=`<h3 style="font-size:24px;color:var(--u)">ابنِ السلسلة الغذائية: ${ch.n}</h3><p class="hint">اضغط على الكائنات بالترتيب: ابدأ بالكائن المنتج ثم من يتغذى عليه. السهم ← يعني «يتغذى عليه».</p>
+    <div class="seg" id="cs">${set.map((c,k)=>`<button data-k="${k}" aria-pressed="${k===ci}">${k+1}. ${c.n}</button>`).join('')}</div>
+    <div class="chain" id="slots">${pick.length?pick.map((i,k)=>`${k?'<span class="arr">←</span>':''}<div class="tile" data-r="${k}"><span class="e">${ch.o[i][0]}</span>${ch.o[i][1]}<span class="role" data-role></span></div>`).join(''):'<span class="hint">ستظهر السلسلة هنا</span>'}</div>
+    <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr))">${order.map(i=>`<button class="tile ${pick.includes(i)?'used':''}" data-i="${i}" ${pick.includes(i)?'disabled':''}><span class="e">${ch.o[i][0]}</span>${ch.o[i][1]}</button>`).join('')}</div>
+    <div class="ctrls"><button class="btn ghost" id="rs">إعادة</button></div><div class="info" id="ci">${solved?`أنجزت ${solved} سلسلة.`:''}</div>`;
+    $$('#cs button',box).forEach(b=>b.onclick=()=>{ci=+b.dataset.k;pick=[];draw.order=null;draw()});
+    $('#rs',box).onclick=()=>{pick=[];draw()};
+    $$('[data-i]',box).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;sfx.tap();pick.push(i);if(pick.length===ch.o.length)check();else draw()});
+  };
+  const check=()=>{const ch=set[ci];const ok=pick.every((v,k)=>v===k);draw();
+    if(ok){solved++;sfx.ok();$$('[data-r]',box).forEach((t,k)=>{t.classList.add('good');t.querySelector('[data-role]').textContent=role(k,ch.o.length)});
+      $('#ci',box).innerHTML=`<b>سلسلة صحيحة!</b> اضغط على أي كائن في السلسلة لترى ماذا يحدث لو اختفى من الموطن.${ci<set.length-1?' <button class="btn u sm" id="nxc">السلسلة التالية</button>':''}`;
+      if($('#nxc',box))$('#nxc',box).onclick=()=>{ci++;pick=[];draw.order=null;draw()};
+      if(solved>=Math.min(2,set.length))done();
+      $$('[data-r]',box).forEach(t=>t.onclick=()=>{const k=+t.dataset.r,n=ch.o.length,nm=x=>ch.o[x][1];let m;
+        if(k===0)m=`إذا اختفى ${nm(0)} (الكائن المنتج) لن يجد ${nm(1)} غذاءً فيتناقص عدده، وتتأثر السلسلة كلها؛ لأن كل السلاسل الغذائية تبدأ بالنباتات.`;
+        else if(k===n-1)m=k===1?`إذا اختفى ${nm(k)} يزداد عدد ${nm(0)} لأنه لم يعد هناك من يتغذى عليه.`:`إذا اختفى ${nm(k)} يزداد عدد ${nm(k-1)} لأنه لم يعد هناك من يتغذى عليه، فيأكل كمية أكبر من ${nm(k-2)}.`;
+        else m=`إذا اختفى ${nm(k)} يقل غذاء ${nm(k+1)} فيتناقص عدده، ويزداد عدد ${nm(k-1)} لأن ${nm(k)} كان يتغذى عليه.`;
+        $('#ci',box).innerHTML=`<b>ماذا لو اختفى ${nm(k)}؟</b><br>${m}${ci<set.length-1?' <button class="btn u sm" id="nxc">السلسلة التالية</button>':''}`;if($('#nxc',box))$('#nxc',box).onclick=()=>{ci++;pick=[];draw.order=null;draw()}})}
+    else{sfx.bad();$$('[data-r]',box).forEach((t,k)=>t.classList.add(pick[k]===k?'good':'badx'));$('#ci',box).innerHTML='الترتيب غير صحيح. تذكّر: السلسلة تبدأ بالكائن المنتج (النبات). اضغط «إعادة» وحاول مجددًا.'}};
+  draw();
+};
+
+SIMS.plant=(box,l,done)=>{
+  const f={sun:true,water:false,co2:true};let sugar=0,grow=0;
+  box.innerHTML=`<div class="sim"><div class="stage"><svg viewBox="0 0 300 300" role="img" aria-label="النبات يصنع غذاءه">
+   <g id="sun"><circle cx="250" cy="48" r="26" fill="var(--sun)"/><g stroke="var(--sun)" stroke-width="5" stroke-linecap="round"><path d="M250 8v8M250 80v8M210 48h8M282 48h8M222 20l6 6M272 70l6 6M222 76l6-6M272 26l6-6"/></g></g>
+   <g id="co2g"><text x="24" y="70" font-size="16" font-weight="700" fill="var(--muted)">ثاني أكسيد</text><text x="34" y="90" font-size="16" font-weight="700" fill="var(--muted)">الكربون</text><path d="M84 96l30 24" stroke="var(--muted)" stroke-width="3" marker-end="url(#ah)"/></g>
+   <defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
+   <rect x="0" y="236" width="300" height="64" fill="#8A6239"/><g id="wat" opacity="0"><path d="M60 250q10 12 0 22q-10-10 0-22zM230 255q8 10 0 18q-8-8 0-18z" fill="#4BA3E0"/></g>
+   <path d="M150 236C148 270 136 286 120 296M150 236C152 270 168 284 184 294M150 250V292" stroke="#C9A67A" stroke-width="3" fill="none"/>
+   <g id="pl" style="transform-origin:150px 236px;transition:transform .8s">
+    <path d="M150 236V120" stroke="#3E8A3A" stroke-width="6"/>
+    <path d="M150 200C120 196 100 176 104 160C126 160 146 176 150 200Z" fill="#4FAE4A"/><path d="M150 176C182 170 200 150 196 134C172 136 154 152 150 176Z" fill="#4FAE4A"/><path d="M150 150C124 146 110 128 114 114C134 116 148 130 150 150Z" fill="#5BBE55"/><path d="M150 128C170 120 180 104 174 94C158 98 150 110 150 128Z" fill="#5BBE55"/></g>
+   <g id="bub"></g>
+  </svg></div><div class="side"><h3>مصنع الغذاء في الورقة</h3><p class="hint">وفّر للنبات العوامل الثلاثة، ثم شغّل المصنع.</p>
+   <div class="ctrls"><button class="btn sm" data-f="sun">☀️ ضوء الشمس</button><button class="btn sm" data-f="water">💧 الماء</button><button class="btn sm" data-f="co2">ثاني أكسيد الكربون</button></div>
+   <button class="btn u" id="go">شغّل مصنع الغذاء</button>
+   <div class="info" id="pi">النبات كائن منتج؛ يصنع غذاءه بنفسه في أوراقه.</div>
+   <div class="kv"><span>السكر المُخزّن</span><span id="sg">0</span></div><div class="meter"><i id="sm" style="width:0"></i></div></div></div>`;
+  const upd=()=>{$$('[data-f]',box).forEach(b=>{const on=f[b.dataset.f];b.classList.toggle('ghost',!on);b.setAttribute('aria-pressed',String(on))});$('#sun',box).style.opacity=f.sun?1:.15;$('#co2g',box).style.opacity=f.co2?1:.15;$('#wat',box).setAttribute('opacity',f.water?1:0)};
+  $$('[data-f]',box).forEach(b=>b.onclick=()=>{f[b.dataset.f]=!f[b.dataset.f];upd()});
+  $('#go',box).onclick=()=>{const miss=[!f.sun&&'ضوء الشمس',!f.water&&'الماء',!f.co2&&'ثاني أكسيد الكربون'].filter(Boolean);
+    if(miss.length){sfx.bad();$('#pl',box).style.transform=`scale(${1+grow*.06}) rotate(${miss.length*3}deg)`;$('#pi',box).innerHTML=`<b>لم يتمكن النبات من صنع الغذاء!</b> ينقصه: ${miss.join('، ')}. إذا نقص أحد العوامل الثلاثة لن يتمكن النبات من إنتاج الغذاء.`;return}
+    sfx.ok();sugar++;grow=Math.min(5,grow+1);$('#pl',box).style.transform=`scale(${1+grow*.06})`;$('#sg',box).textContent=sugar;$('#sm',box).style.width=Math.min(100,sugar*20)+'%';
+    $('#pi',box).innerHTML='<b>نجح المصنع!</b> استخدم النبات طاقة الشمس لتحويل الماء وثاني أكسيد الكربون إلى سكر وأكسجين. خُزّن السكر في النبات، وانطلق الأكسجين إلى الهواء.';
+    const g=$('#bub',box);for(let k=0;k<5;k++){const c=document.createElementNS('http://www.w3.org/2000/svg','text');c.textContent='O₂';c.setAttribute('x',110+k*18);c.setAttribute('y',140);c.setAttribute('font-size','13');c.setAttribute('font-weight','700');c.setAttribute('fill','#2F7DD1');g.appendChild(c);c.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-110px)',opacity:0}],{duration:1600+k*200,easing:'ease-out'}).onfinish=()=>c.remove()}
+    if(sugar>=3)done()};
+  upd();
+};
+
+SIMS.forest=(box,l,done)=>{
+  const N=24;const st=Array(N).fill(2);const why=['جمع الخشب لصناعة الأثاث','جمع الخشب لحرقه كوقود','إخلاء الأرض للزراعة','إخلاء الأرض للسكن','إخلاء الأرض للصناعة'];let wi=0,cut=0;
+  box.innerHTML=`<div class="sim"><div class="stage" style="align-content:start"><div class="tiles" id="fg" style="grid-template-columns:repeat(6,1fr);width:100%"></div></div>
+  <div class="side"><h3>ماذا يحدث عندما نزيل الغابة؟</h3><p class="hint">اضغط على الأشجار لقطعها، ثم ازرع أشجارًا جديدة ولاحظ المؤشرات.</p>
+   <div class="kv"><span>أنواع الكائنات في الغابة</span><span id="sp"></span></div><div class="meter"><i id="m1"></i></div>
+   <div class="kv"><span>خصوبة التربة</span><span id="so"></span></div><div class="meter"><i id="m2"></i></div>
+   <div class="kv"><span>ثاني أكسيد الكربون في الهواء</span><span id="co"></span></div><div class="meter"><i id="m3" style="background:#8a8a8a"></i></div>
+   <div class="kv"><span>الأكسجين الذي تطلقه الأشجار</span><span id="ox"></span></div><div class="meter"><i id="m4" style="background:#2F7DD1"></i></div>
+   <div class="ctrls"><button class="btn u sm" id="pl">ازرع شتلات</button><button class="btn ghost sm" id="yr">مرّت 100 سنة</button></div>
+   <div class="info" id="fi">الغابة سليمة. في كل 6 كيلومترات مربعة منها قد يعيش نحو 1500 نوع من النباتات و400 نوع من الطيور و150 نوعًا من الفراشات و100 نوع من الزواحف.</div></div></div>`;
+  const draw=()=>{$('#fg',box).innerHTML=st.map((s,i)=>`<button class="tile" data-i="${i}" aria-label="${['جذع','شتلة','شجرة'][s]}" style="padding:4px"><span class="e">${['🪵','🌱','🌳'][s]}</span></button>`).join('');
+    const trees=st.reduce((a,s)=>a+(s===2?1:s===1?.2:0),0)/N;
+    $('#sp',box).textContent=Math.round(2150*trees)+' نوعًا تقريبًا';$('#m1',box).style.width=trees*100+'%';
+    $('#so',box).textContent=trees>.7?'غنية':trees>.35?'متوسطة':'فقيرة';$('#m2',box).style.width=trees*100+'%';
+    $('#co',box).textContent=trees>.7?'منخفض':trees>.35?'يرتفع':'مرتفع';$('#m3',box).style.width=(100-trees*80)+'%';
+    $('#ox',box).textContent=Math.round(trees*100)+'%';$('#m4',box).style.width=trees*100+'%';
+    $$('#fg .tile',box).forEach(t=>t.onclick=()=>{const i=+t.dataset.i;if(st[i]===2){st[i]=0;cut++;tone(180,.15,'sawtooth',.04);$('#fi',box).innerHTML=`<b>سبب القطع: ${why[wi++%why.length]}.</b> كل شجرة تُقطع تعني: ثاني أكسيد كربون أكثر في الهواء، وأكسجين أقل، وتربة لا تتلقى الأوراق المتحللة فتصبح فقيرة، وموطن أصغر للكائنات.`;if(cut>=8)done();draw()}else toast(st[i]===1?'هذه شتلة صغيرة، تحتاج وقتًا طويلًا لتكبر':'اضغط «ازرع شتلات» لزراعة شجرة هنا')});
+    if(trees<.35&&cut)$('#fi',box).innerHTML+='<br><b>ارتفاع ثاني أكسيد الكربون يزيد الاحتباس الحراري؛ لأنه من الغازات الدفيئة التي تحبس الحرارة.</b>'};
+  $('#pl',box).onclick=()=>{let n=0;st.forEach((s,i)=>{if(s===0){st[i]=1;n++}});if(!n){toast('لا توجد أرض فارغة للزراعة');return}sfx.ok();$('#fi',box).innerHTML=`زرعت ${n} شتلة. زراعة الأشجار تساعد في الحفاظ على البيئة، لكن الأشجار تستغرق نحو 100 عام لتنمو من جديد!`;draw()};
+  $('#yr',box).onclick=()=>{let n=0;st.forEach((s,i)=>{if(s===1){st[i]=2;n++}});if(!n){toast('لا توجد شتلات. ازرع أولًا');return}sfx.win();$('#fi',box).innerHTML=`بعد نحو 100 عام كبرت ${n} شجرة! تمتص الأشجار ثاني أكسيد الكربون وتطلق الأكسجين، وتعود الكائنات إلى موطنها.`;draw()};
+  draw();
+};
+
+SIMS.air=(box,l,done)=>{
+  const s={cars:2,carType:'old',energy:'coal',wind:'calm'};let tries=new Set();
+  box.innerHTML=`<div class="sim"><div class="stage" style="padding:0"><svg viewBox="0 0 400 300" role="img" aria-label="تلوث هواء المدينة">
+   <rect width="400" height="300" fill="#9FD3F2"/><rect id="haze" width="400" height="300" fill="#7d7464" opacity="0"/>
+   <circle cx="340" cy="50" r="24" fill="var(--sun)" id="sunc"/>
+   <g fill="#5E7486"><rect x="20" y="140" width="50" height="120"/><rect x="80" y="110" width="40" height="150"/><rect x="128" y="160" width="46" height="100"/><rect x="290" y="130" width="40" height="130"/><rect x="336" y="170" width="50" height="90"/></g>
+   <g id="fac"><rect x="190" y="180" width="80" height="80" fill="#6B5A50"/><rect x="200" y="120" width="16" height="62" fill="#6B5A50"/><rect x="236" y="134" width="16" height="48" fill="#6B5A50"/><g id="smoke"><circle cx="208" cy="108" r="12" fill="#555"/><circle cx="220" cy="90" r="16" fill="#555"/><circle cx="244" cy="120" r="10" fill="#555"/><circle cx="254" cy="102" r="14" fill="#555"/></g></g>
+   <g id="clean" opacity="0"><path d="M200 260V170" stroke="#eee" stroke-width="5"/><g id="blades" style="transform-origin:200px 170px"><path d="M200 170l-4-44h8zM200 170l42 14-4 8zM200 170l-38 26-4-7z" fill="#fff"/></g><rect x="236" y="226" width="44" height="26" fill="#2B4C8C" transform="skewX(-15)"/></g>
+   <rect y="260" width="400" height="40" fill="#555"/><text id="carsT" x="200" y="290" text-anchor="middle" font-size="22"></text>
+   <text id="windT" x="20" y="40" font-size="20" fill="#fff" font-weight="700"></text>
+  </svg></div>
+  <div class="side"><h3>جودة هواء المدينة</h3><p class="hint">غيّر مصادر الطاقة والسيارات والرياح، ولاحظ أثرها في الهواء.</p>
+   <div class="opt"><label>عدد السيارات</label><div class="seg" data-k="cars"><button data-v="1">قليل</button><button data-v="2">متوسط</button><button data-v="3">كثير</button></div></div>
+   <div class="opt"><label>نوع السيارات</label><div class="seg" data-k="carType"><button data-v="old">قديمة</button><button data-v="new">جديدة بجهاز تحويل العادم</button></div></div>
+   <div class="opt"><label>مصدر الطاقة للمصنع</label><div class="seg" data-k="energy"><button data-v="coal">حرق الفحم والنفط</button><button data-v="clean">الرياح والشمس</button></div></div>
+   <div class="opt"><label>الرياح</label><div class="seg" data-k="wind"><button data-v="calm">هادئة</button><button data-v="strong">قوية</button></div></div>
+   <div class="kv"><span>تلوث الهواء</span><span id="aq"></span></div><div class="meter"><i id="am"></i></div>
+   <div class="info" id="ai"></div></div></div>`;
+  let spin=0;raf(()=>{if(s.energy==='clean'){spin=(spin+4)%360;$('#blades',box).style.transform=`rotate(${spin}deg)`}});
+  const upd=()=>{$$('.seg[data-k]',box).forEach(g=>$$('button',g).forEach(b=>b.setAttribute('aria-pressed',String(String(s[g.dataset.k])===b.dataset.v))));
+    let p=s.cars*(s.carType==='old'?14:5)+(s.energy==='coal'?45:0);let windNote='';if(s.wind==='strong'){p*=.6;windNote=' الرياح القوية نقلت جزءًا من الملوثات بعيدًا عن المدينة إلى أماكن أخرى؛ فالتلوث لم يختفِ بل انتشر.'}
+    p=Math.round(Math.min(100,p));$('#haze',box).setAttribute('opacity',p/100*.75);$('#aq',box).textContent=p<25?'منخفض':p<55?'متوسط':'مرتفع';$('#am',box).style.width=p+'%';$('#am',box).style.background=p<25?'var(--ok)':p<55?'var(--sun)':'var(--bad)';
+    $('#smoke',box).style.display=s.energy==='coal'?'':'none';$('#clean',box).setAttribute('opacity',s.energy==='clean'?1:0);$('#carsT',box).textContent='🚗'.repeat(s.cars*2);$('#windT',box).textContent=s.wind==='strong'?'💨 💨 💨':'';
+    const gas=[];if(s.carType==='old')gas.push('أول أكسيد الكربون (غاز سام) من عوادم السيارات');else gas.push('السيارات الجديدة تغيّر غازات العادم إلى ثاني أكسيد الكربون فتلوث أقل');if(s.energy==='coal')gas.push('ثاني أكسيد الكبريت وأكسيد النيتروجين من حرق الفحم والنفط');else gas.push('طاقة الرياح والشمس لا تسبب التلوث لكنها أكثر تكلفة');
+    $('#ai',box).innerHTML=gas.map(x=>'• '+x).join('<br>')+windNote+(p>=55?'<br><b>يصاب كثير من الناس في المناطق الملوثة بالالتهاب الشعبي والربو، ويتضرر النبات والحيوان.</b>':'');
+    tries.add(s.energy+s.carType);if(tries.size>=3)done()};
+  $$('.seg[data-k]',box).forEach(g=>$$('button',g).forEach(b=>b.onclick=()=>{const k=g.dataset.k;s[k]=k==='cars'?+b.dataset.v:b.dataset.v;sfx.tap();upd()}));
+  upd();
+};
+
+SIMS.acid=(box,l,done)=>{
+  box.innerHTML=`<div class="sim"><div class="stage"><svg viewBox="0 0 340 280" id="acs" role="img" aria-label="تجربة الأمطار الحمضية"></svg></div>
+  <div class="side"><h3>نبتتان وسائلان</h3><p class="hint">نسقي نبتة بماء الصنبور وأخرى بعصير الليمون (يمثّل الأمطار الحمضية). حرّك شريط الأيام ولاحظ.</p>
+   <label style="font-weight:700" for="dy">اليوم: <span id="dv">0</span></label><input id="dy" type="range" min="0" max="7" value="0" style="width:100%;accent-color:var(--u)">
+   <div class="info" id="aci">في اليوم الأول تبدو النبتتان متشابهتين.</div>
+   <div class="opt"><label>ماذا يحدث في البحيرة؟</label><div class="seg" id="lk"><button data-v="0" aria-pressed="true">مطر عادي</button><button data-v="1" aria-pressed="false">مطر حمضي</button></div></div>
+   <div class="info" id="lki">البحيرة سليمة: حشرات كثيرة وبيض، والضفادع تجد غذاءها.</div></div></div>`;
+  const leaf=(x,y,r,c,fall)=>`<path d="M${x} ${y}c${r?18:-18} -6 ${r?30:-30} -18 ${r?28:-28} -30c${r?-16:16} 0 ${r?-28:28} 12 ${r?-28:28} 30z" fill="${c}" ${fall?`transform="translate(${r?14:-14} ${fall}) rotate(${r?40:-40} ${x} ${y})"`:''}/>`;
+  const pot=(cx,d,acid)=>{const n=acid?Math.max(0,6-d):Math.min(8,6+Math.floor(d/3));const col=acid?['#4FAE4A','#6DAA45','#94A23F','#B39A3A','#B98A3A','#A87436','#8E6234','#7a5530'][d]:'#4FAE4A';const h=acid?120-d*4:120+d*4;
+    let s=`<rect x="${cx-34}" y="210" width="68" height="50" rx="6" fill="#B5643B"/><rect x="${cx-40}" y="204" width="80" height="12" rx="4" fill="#9C5230"/><path d="M${cx} 206V${206-h}" stroke="#3E8A3A" stroke-width="5" ${acid&&d>4?`transform="rotate(${(d-4)*6} ${cx} 206)"`:''}/>`;
+    for(let k=0;k<n;k++)s+=leaf(cx,206-h+18+k*(h-24)/Math.max(1,n),k%2===0,col);
+    if(acid)for(let k=0;k<Math.min(6,d);k++)s+=leaf(cx-30+k*12,262,k%2===0,'#8E6234',0);
+    s+=`<text x="${cx}" y="276" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">${acid?'عصير الليمون':'ماء الصنبور'}</text>`;return s};
+  const draw=d=>{$('#acs',box).innerHTML=pot(90,d,false)+pot(250,d,true);$('#dv',box).textContent=d;
+    $('#aci',box).innerHTML=d===0?'في اليوم الأول تبدو النبتتان متشابهتين.':d<4?'بدأت أوراق النبتة التي تُسقى بعصير الليمون تفقد لونها، بينما تنمو النبتة الأخرى بشكل طبيعي.':'النبتة التي تُسقى بالسائل الحمضي ضعفت وتساقطت أوراقها. الأمطار الحمضية تُفقد التربة جزءًا من المغذيات، فيضعف النبات ويبطؤ نموه.';if(d>=6)done()};
+  $('#dy',box).oninput=e=>draw(+e.target.value);
+  $$('#lk button',box).forEach(b=>b.onclick=()=>{$$('#lk button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));$('#lki',box).innerHTML=b.dataset.v==='1'?'🥚✗ 🦟✗ 🐸↓<br>تتسرب الأمطار الحمضية إلى البحيرة فتصبح مياهها حمضية، فتدمر البيض وتقتل الحشرات، فيتناقص عدد الضفادع لقلة غذائها. وتُسبب أيضًا تآكل الصخور في المباني الحجرية.':'🥚 🦟 🐸<br>البحيرة سليمة: حشرات كثيرة وبيض، والضفادع تجد غذاءها.'});
+  draw(0);
+};
+
+SIMS.recycle=(box,l,done)=>{
+  const M=[{e:'📰',n:'الورق',s:['📰 جمع الصحف والدفاتر القديمة','🏭 معالجتها لتصبح منتجًا جديدًا','📄 ورق جديد'],b:'إعادة تدوير الورق تعني قطع أشجار أقل؛ لأن الورق يُصنع من لب الخشب.'},
+  {e:'🍾',n:'الزجاج',s:['🍾 جمع القوارير والأوعية الزجاجية','🔥 صهر الزجاج','🫙 إعادة تشكيله أوعية جديدة'],b:'يظل الزجاج محافظًا على قوته بعد إعادة تدويره.'},
+  {e:'🥫',n:'الألومنيوم',s:['🥫 جمع علب المشروبات المعدنية','🔥 صهر العلب','🥤 صناعة علب جديدة'],b:'استخراج الألومنيوم من الصخور يحتاج إلى طاقة كبيرة، أما إعادة التدوير فتستهلك طاقة أقل.'},
+  {e:'🛍️',n:'البلاستيك',s:['🛍️ البلاستيك لا يتحلل','💰 إعادة تدويره ممكنة لكنها مكلفة','👜 قلّل استخدامه وأعد استخدامه'],b:'لا تستخدم أكياسًا بلاستيكية جديدة كل مرة؛ استخدم حقيبة قماشية.'},
+  {e:'🍌',n:'مخلفات الحديقة والطعام',s:['🍂 اجمع القشور والأوراق والأعشاب الضارة','🛍️ ضعها في كيس وأضف قليلًا من الماء','⏳ اتركها في مكان دافئ عدة أسابيع','🌱 ضع السماد حول نباتاتك'],b:'السماد غامق اللون وطري القوام، وهو مفيد للتربة ويساعد النباتات على النمو بشكل أفضل.'}];
+  let mi=0,si=0;const fin=new Set();
+  const draw=()=>{const m=M[mi];const land=100-fin.size*18;
+    box.innerHTML=`<h3 style="font-size:24px;color:var(--u)">مصنع إعادة التدوير</h3><p class="hint">اختر مادة وتتبّع رحلتها خطوة بخطوة. كل مادة تُعيد تدويرها تقلل حجم مردم النفايات.</p>
+    <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(110px,1fr))">${M.map((x,k)=>`<button class="tile" data-m="${k}" style="${k===mi?'border-color:var(--u);background:var(--soft)':''}"><span class="e">${x.e}</span>${x.n}${fin.has(k)?' ✓':''}</button>`).join('')}</div>
+    <div class="chain">${m.s.slice(0,si+1).map((x,k)=>`${k?'<span class="arr">←</span>':''}<div class="tile" style="cursor:default;max-width:180px">${x}</div>`).join('')}</div>
+    <div class="ctrls"><button class="btn u" id="st">${si<m.s.length-1?'الخطوة التالية':'تمت إعادة التدوير ✓'}</button></div>
+    <div class="info">${si===m.s.length-1?'<b>'+m.b+'</b>':'اضغط «الخطوة التالية».'}</div>
+    <div class="kv"><span>🗑️ حجم مردم النفايات</span><span>${land}%</span></div><div class="meter"><i style="width:${land}%;background:#8a6a4a"></i></div>`;
+    $$('[data-m]',box).forEach(b=>b.onclick=()=>{mi=+b.dataset.m;si=0;draw()});
+    $('#st',box).onclick=()=>{if(si<m.s.length-1){si++;sfx.tap();if(si===m.s.length-1){fin.add(mi);sfx.ok();if(fin.size>=3)done()}draw()}else{const nx=M.findIndex((x,k)=>!fin.has(k));if(nx>=0){mi=nx;si=0;draw()}else{sfx.win();toast('أعدت تدوير كل المواد!')}}}};
+  draw();
+};
+
+SIMS.house=(box,l,done)=>{
+  const H=[['🚰','صنبور يقطر','🚰✅','أحكمتَ غلق الصنبور وعالجت التسرب','💧'],['🛁','حوض استحمام ممتلئ','🚿','استحممت بالرشاش بدلًا من ملء الحوض','💧'],['🌧️','مياه أمطار تضيع','🛢️','جمعت مياه الأمطار في خزان لري النباتات والغسيل','💧'],['💡','مصباح مضاء في غرفة فارغة','🌙','أطفأت الكهرباء لأنك لا تستخدمها','⚡'],['📺','تلفاز يعمل ولا أحد يشاهده','📴','أطفأت التلفاز','⚡'],['🚗','السيارة لمشوار قريب','🚲','مشيت أو ركبت الدراجة','⚡'],['🔦','إنارة الحديقة بمصابيح عادية','☀️','استخدمت مصابيح الطاقة الشمسية','⚡'],['🛍️','كيس بلاستيكي على الشاطئ','🗑️','وضعت الكيس في سلة المهملات لحماية السلاحف','🧹']];
+  const fixed=new Set();
+  const draw=()=>{const c=k=>H.filter((h,i)=>h[4]===k&&fixed.has(i)).length,t=k=>H.filter(h=>h[4]===k).length;
+    box.innerHTML=`<div class="sim"><div class="stage" style="align-content:start"><div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr));width:100%">${H.map((h,i)=>`<button class="tile ${fixed.has(i)?'good':''}" data-i="${i}" style="${fixed.has(i)?'border-color:var(--ok)':''}"><span class="e">${fixed.has(i)?h[2]:h[0]}</span>${fixed.has(i)?h[3]:h[1]}</button>`).join('')}</div></div>
+    <div class="side"><h3>بطل البيئة في البيت</h3><p class="hint">ابحث عن مواقف تهدر الماء أو الطاقة أو تلوث البيئة، واضغط عليها لإصلاحها.</p>
+     <div class="kv"><span>💧 توفير الماء</span><span>${c('💧')} من ${t('💧')}</span></div><div class="meter"><i style="width:${c('💧')/t('💧')*100}%;background:#2F7DD1"></i></div>
+     <div class="kv"><span>⚡ توفير الطاقة</span><span>${c('⚡')} من ${t('⚡')}</span></div><div class="meter"><i style="width:${c('⚡')/t('⚡')*100}%;background:var(--sun)"></i></div>
+     <div class="kv"><span>🧹 بيئة نظيفة</span><span>${c('🧹')} من ${t('🧹')}</span></div><div class="meter"><i style="width:${c('🧹')/t('🧹')*100}%"></i></div>
+     <div class="info" id="hi">${fixed.size===H.length?'<b>رائع! أصبحت بطل البيئة.</b> العناية بالبيئة تبدأ من عاداتنا اليومية.':'كل مصدر نحافظ عليه يحمي بيئتنا.'}</div></div></div>`;
+    $$('[data-i]',box).forEach(b=>b.onclick=()=>{const i=+b.dataset.i;if(fixed.has(i))return;fixed.add(i);sfx.ok();if(fixed.size===H.length){sfx.win();done()}draw()})};
+  draw();
+};
+
+SIMS.heat=(box,l,done)=>{
+  const IT=[['🧊','مكعب ثلج','💧','انصهر وأصبح ماءً سائلًا','🧊','تجمّد وعاد ثلجًا',1],['🍫','قطعة شوكولاتة','🫗','ذابت وأصبحت سائلة','🍫','تجمّدت وعادت صلبة',1],['🕯️','شمعة','🫗','انصهر الشمع','🕯️','تجمّد الشمع وعاد صلبًا',1],['🥚','بيضة نيئة','🍳','أصبحت بيضة مطبوخة','🍳','ما زالت مطبوخة',0],['🌽','حبيبات ذرة','🍿','فرقعت وأصبحت فشارًا','🍿','ما زالت فشارًا',0],['🪵','عود ثقاب','⚫','احترق وأصبح أسود اللون (كربون)','⚫','ما زال أسود',0],['🥣','خليط الكعكة','🎂','أصبح كعكة','🎂','ما زالت كعكة',0]];
+  let i=0,step=0,pred=null,score=0;const doneSet=new Set();
+  const draw=()=>{const it=IT[i];
+    box.innerHTML=`<div class="sim"><div class="stage" style="gap:8px"><div style="font-size:96px;line-height:1">${step===0?it[0]:step===1?it[2]:it[4]}</div><div style="font-weight:700">${step===0?it[1]:step===1?it[3]:it[5]}</div><div style="font-size:30px">${step===1?'🔥':step===2?'❄️':''}</div></div>
+    <div class="side"><h3>مختبر الحرارة</h3><p class="hint">اختر مادة، وتنبأ بنوع التغيّر، ثم سخّنها وبرّدها لتختبر تنبؤك.</p>
+     <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(78px,1fr))">${IT.map((x,k)=>`<button class="tile" data-k="${k}" style="${k===i?'border-color:var(--u);background:var(--soft)':''}"><span class="e">${x[0]}</span>${doneSet.has(k)?'✓':''}</button>`).join('')}</div>
+     <div class="info" id="hi"></div><div class="ctrls" id="hb"></div><div class="kv"><span>تنبؤات صحيحة</span><span>${score} من ${doneSet.size}</span></div></div></div>`;
+    const hi=$('#hi',box),hb=$('#hb',box);
+    if(step===0&&pred===null){hi.innerHTML=`<b>${it[1]}</b>: ماذا تتوقع؟ إذا سخّناها ثم برّدناها، هل ستعود إلى حالتها الأولى؟`;hb.innerHTML='<button class="btn u sm" data-p="1">أتوقع: قابل للعكس</button><button class="btn ghost sm" data-p="0">أتوقع: غير قابل للعكس</button>';$$('[data-p]',box).forEach(b=>b.onclick=()=>{pred=+b.dataset.p;draw()})}
+    else if(step===0){hi.innerHTML='سجّلنا تنبؤك. الآن سخّن المادة.';hb.innerHTML='<button class="btn u" id="h1">🔥 سخّن</button>';$('#h1',box).onclick=()=>{step=1;tone(300,.3,'sawtooth',.03);draw()}}
+    else if(step===1){hi.innerHTML='الحرارة سببت تغيّرًا في المادة. الآن برّدها في الثلاجة.';hb.innerHTML='<button class="btn u" id="h2">❄️ برّد</button>';$('#h2',box).onclick=()=>{step=2;draw()}}
+    else{const r=it[6]===1,ok=pred===it[6];if(!doneSet.has(i)){doneSet.add(i);if(ok)score++;ok?sfx.ok():sfx.bad();if(doneSet.size>=4)done();draw();return}
+      hi.innerHTML=`<b>${r?'تغيّر قابل للعكس':'تغيّر غير قابل للعكس'}</b>: ${r?'عادت المادة إلى حالتها الأولى بعد التبريد.':'لم تعد المادة إلى حالتها الأولى، فقد تحوّلت إلى مادة جديدة.'} ${ok?'تنبؤك صحيح!':'تنبؤك لم يكن صحيحًا، وهذا جزء من التعلم.'}`;
+      hb.innerHTML='<button class="btn u sm" id="nx">المادة التالية</button>';$('#nx',box).onclick=()=>{const n=IT.findIndex((x,k)=>!doneSet.has(k));i=n>=0?n:(i+1)%IT.length;step=0;pred=null;draw()}}
+    $$('[data-k]',box).forEach(b=>b.onclick=()=>{i=+b.dataset.k;step=0;pred=null;draw()})};
+  draw();
+};
+
+const SEP={solid:{methods:['الفرز باليد','الغربال'],mix:[['فول سوداني وزبيب','🥜🍇',0,'الحبات كبيرة ويمكن رؤيتها بسهولة، فنفصلها بالفرز باليد.'],['حصى وتربة','🪨🟫',1,'يسمح الغربال بمرور حبيبات التربة الصغيرة ويحجز الحصى الكبيرة، كما يفعل المزارع.'],['أرز ودقيق','🍚🌾',1,'يمر الدقيق الناعم من ثقوب الغربال وتبقى حبات الأرز.'],['حبات فاصوليا وخرز ملون','🫘🔵',0,'الحبات والخرز كبيرة ومختلفة الشكل واللون، فيسهل فرزها باليد.'],['بازلاء ودقيق','🟢🌾',1,'يمر الدقيق من الغربال وتبقى حبيبات البازلاء.'],['الملح والرمل','🧂🏖️',-1,'حبيبات الملح والرمل صغيرة جدًّا ولا يفصلها الفرز ولا الغربال بسهولة؛ سنتعلم طريقة فصلها في درس الترشيح.']]},
+ liquid:{methods:['الترشيح','الإذابة ثم الترشيح','لا يُفصل بالترشيح'],mix:[['رمل وماء','🏖️💧',0,'الرمل لا يذوب، فيبقى على ورقة الترشيح ويمر الماء صافيًا.','#C9A86A','#BFE3F7'],['دقيق وماء','🌾💧',0,'الدقيق لا يذوب في الماء؛ يبقى على ورقة الترشيح ويمر الماء.','#F1EBDD','#D6EDF8'],['حبيبات القهوة المطحونة والماء الساخن','☕',0,'تبقى حبيبات القهوة على ورقة الترشيح كما في صنع القهوة، ويمر السائل.','#4A2E1F','#A87A55'],['ملح ورمل','🧂🏖️',1,'نضيف الماء فيذوب الملح ويمر مع الماء عبر المرشح، ويبقى الرمل على الورقة.','#C9A86A','#D9EEF8'],['ماء محلّى بالسكر','🍬💧',2,'السكر ذائب، وجزيئاته الصغيرة تمر عبر ثقوب المرشح مع الماء، فلا يفصله الترشيح.','#ffffff','#E9F2FB']]}};
+SIMS.sep=(box,l,done)=>{
+  const S=SEP[l.simArg];let mi=0;const solved=new Set();
+  const draw=(state)=>{const m=S.mix[mi];const liquid=l.simArg==='liquid';
+    const vis=liquid?`<svg viewBox="0 0 200 240" style="max-height:300px"><path d="M40 20H160L112 92V118H88V92Z" fill="none" stroke="var(--ink)" stroke-width="3"/><path d="M52 26H148L106 84H94Z" fill="${state==='ok'?m[4]:'#fff'}" stroke="#ccc" stroke-width="2" opacity="${state==='ok'?1:.6}"/><rect x="50" y="130" width="100" height="100" rx="10" fill="none" stroke="var(--ink)" stroke-width="3"/><rect x="53" y="${state==='ok'?170:226}" width="94" height="${state==='ok'?57:1}" rx="8" fill="${m[5]}" style="transition:all 1s"/>${state==='ok'?'<path d="M100 120v40" stroke="#7FC4EE" stroke-width="3" stroke-dasharray="4 6"/>':''}</svg>`:`<div style="font-size:84px;line-height:1">${state==='ok'?Array.from(m[1]).join(' '):m[1]}</div>`;
+    box.innerHTML=`<div class="sim"><div class="stage" style="gap:10px">${vis}<div style="font-weight:700">${m[0]}</div></div>
+    <div class="side"><h3>${liquid?'مختبر الترشيح':'مختبر فصل المخاليط'}</h3><p class="hint">اختر مخلوطًا، ثم اختر أفضل طريقة لفصل مكوّناته.</p>
+     <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">${S.mix.map((x,k)=>`<button class="tile" data-k="${k}" style="${k===mi?'border-color:var(--u);background:var(--soft)':''}">${x[0]}${solved.has(k)?' ✓':''}</button>`).join('')}</div>
+     <p style="font-weight:700;margin:12px 0 6px">كيف تفصله؟</p><div class="ctrls">${S.methods.map((x,k)=>`<button class="btn ghost sm" data-m="${k}">${x}</button>`).join('')}${l.simArg==='solid'?'<button class="btn ghost sm" data-m="-1">لا تنفع الطريقتان</button>':''}</div>
+     <div class="info" id="si">${state==='ok'?'<b>صحيح!</b> '+m[3]:'المخلوط يتكوّن من مادتين أو أكثر لم تتفاعلا، لذا يمكن فصلهما.'}</div></div></div>`;
+    $$('[data-k]',box).forEach(b=>b.onclick=()=>{mi=+b.dataset.k;draw()});
+    $$('[data-m]',box).forEach(b=>b.onclick=()=>{if(+b.dataset.m===m[2]){sfx.ok();solved.add(mi);if(solved.size>=Math.min(4,S.mix.length))done();draw('ok')}else{sfx.bad();b.classList.add('shake','badx');setTimeout(()=>b.classList.remove('shake'),400);$('#si',box).innerHTML='ليست أفضل طريقة. فكّر: هل الجزيئات كبيرة أم صغيرة؟ وهل تذوب في الماء أم لا؟'}})};
+  draw();
+};
+
+SIMS.dissolve=(box,l,done)=>{
+  const SB=[['السكر','🍬',0,'rgba(255,255,255,.0)'],['الملح','🧂',0,'rgba(255,255,255,0)'],['القهوة سريعة الذوبان','☕',0,'rgba(120,70,30,.45)'],['مسحوق المشروب البارد','🍹',0,'rgba(230,80,140,.4)'],['الرمل','🏖️',2,''],['الدقيق (الطحين)','🌾',1,'rgba(245,240,228,.92)'],['الطباشير','🖍️',1,'rgba(250,250,250,.9)']];
+  let si=0,phase=0;const rec={};
+  const beaker=(s,ph)=>{const water='#BFE3F7';let inner=`<rect x="34" y="70" width="132" height="126" rx="10" fill="${water}"/>`;
+    if(ph===1)inner+=Array.from({length:22},(_,k)=>`<circle cx="${50+(k*37)%100}" cy="${90+(k*53)%90}" r="3" fill="${s[2]===2?'#C9A86A':s[2]===1?'#fff':'#eee'}" stroke="#999" stroke-width=".5"/>`).join('');
+    if(ph===2){if(s[2]===0)inner+=`<rect x="34" y="70" width="132" height="126" rx="10" fill="${s[3]}"/>`;if(s[2]===1)inner+=`<rect x="34" y="70" width="132" height="126" rx="10" fill="${s[3]}"/>`;if(s[2]===2)inner+=`<path d="M36 196V182Q60 174 100 178T164 182V196Z" fill="#C9A86A"/>`}
+    return`<svg viewBox="0 0 200 220" style="max-height:300px"><path d="M30 40V196Q30 206 40 206H160Q170 206 170 196V40" fill="none" stroke="var(--ink)" stroke-width="4"/>${inner}<text x="178" y="80" font-size="10" fill="var(--muted)">100 مل</text></svg>`};
+  const draw=()=>{const s=SB[si];
+    box.innerHTML=`<div class="sim"><div class="stage" style="gap:6px">${beaker(s,phase)}<div style="font-weight:700">${phase===0?'كأس فيها 100 مل من الماء':phase===1?'نحرّك المزيج...':'بعد التحريك: '+(s[2]===0?'مخلوط شفاف لا نرى فيه المادة':s[2]===1?'مخلوط ضبابي (محلول معلق)':'استقرت حبيبات الرمل في القاع')}</div></div>
+    <div class="side"><h3>هل تذوب المادة في الماء؟</h3><p class="hint">نستخدم نفس كمية الماء ونفس كمية المادة في كل مرة ليكون الاختبار عادلًا.</p>
+     <div class="tiles" style="grid-template-columns:repeat(auto-fit,minmax(96px,1fr))">${SB.map((x,k)=>`<button class="tile" data-k="${k}" style="${k===si?'border-color:var(--u);background:var(--soft)':''}"><span class="e">${x[1]}</span>${x[0]}${rec[k]?' ✓':''}</button>`).join('')}</div>
+     <div class="ctrls" id="db"></div><div class="info" id="dbi"></div>
+     <div class="tablewrap"><table class="res"><thead><tr><th>المادة</th><th>شفاف أم ضبابي؟</th><th>الاستنتاج</th></tr></thead><tbody>${Object.keys(rec).map(k=>`<tr><td>${SB[k][0]}</td><td>${SB[k][2]===0?'شفاف':SB[k][2]===1?'ضبابي':'ترسّب في القاع'}</td><td>${SB[k][2]===0?'قابلة للذوبان':'غير قابلة للذوبان'}</td></tr>`).join('')}</tbody></table></div></div></div>`;
+    $$('[data-k]',box).forEach(b=>b.onclick=()=>{si=+b.dataset.k;phase=0;draw()});
+    const db=$('#db',box),dbi=$('#dbi',box);
+    if(phase===0){db.innerHTML='<button class="btn u" id="add">أضف ملعقة وحرّك</button>';$('#add',box).onclick=()=>{phase=1;draw();setTimeout(()=>{if(box.isConnected){phase=2;draw()}},1300)}}
+    else if(phase===2&&!rec[si]){dbi.textContent='ما استنتاجك؟';db.innerHTML='<button class="btn u sm" data-a="0">قابلة للذوبان</button><button class="btn ghost sm" data-a="1">غير قابلة للذوبان</button>';
+      $$('[data-a]',box).forEach(b=>b.onclick=()=>{const right=(+b.dataset.a===0)===(s[2]===0);if(right){sfx.ok();rec[si]=1;if(Object.keys(rec).length>=5)done();draw();$('#dbi',box).innerHTML='<b>صحيح!</b> '+(s[2]===0?'امتزجت المادة تمامًا مع الماء فلا نراها.':'ما زالت المادة مرئية ولم تمتزج تمامًا مع الماء.')}else{sfx.bad();dbi.innerHTML='فكّر مرة أخرى: هل ما زلنا نرى المادة الصلبة في الماء؟'}})}
+    else if(phase===2)dbi.innerHTML=s[2]===0?'المادة امتزجت تمامًا مع الماء: قابلة للذوبان.':'المادة ما زالت مرئية: غير قابلة للذوبان.'};
+  draw();
+};
+
+SIMS.particles=(box,l,done)=>{
+  const EX=[['ماء البحر','الملح','الماء'],['الشاي المحلّى','السكر','الماء (الشاي)'],['المشروب البارد','المسحوق','الماء']];let ei=0,dissolving=false,stir=false,t0=0;
+  box.innerHTML=`<div class="sim"><div class="stage"><canvas id="pc" width="360" height="280" style="width:100%;max-width:420px;border-radius:12px;background:#E6F3FB" aria-label="جزيئات المحلول"></canvas></div>
+  <div class="side"><h3>ماذا يحدث داخل المحلول؟</h3><p class="hint">نكبّر المحلول لنرى جزيئاته. اختر مثالًا ثم اضغط «أذب».</p>
+   <div class="seg" id="ex">${EX.map((x,k)=>`<button data-k="${k}" aria-pressed="${k===0}">${x[0]}</button>`).join('')}</div>
+   <div class="ctrls"><button class="btn u" id="ds">أذب</button><button class="btn ghost" id="st">حرّك</button><button class="btn ghost" id="rs">من جديد</button></div>
+   <div class="kv"><span><span style="color:#E8742C">●</span> المادة المذابة: <b id="sol"></b></span></div><div class="kv"><span><span style="color:#3E86C8">●</span> المادة المذيبة: <b id="svt"></b></span></div>
+   <div class="info" id="pi"></div></div></div>`;
+  const cv=$('#pc',box),cx=cv.getContext('2d');let W=cv.width,H=cv.height,ps=[];
+  const reset=()=>{dissolving=false;stir=false;ps=[];for(let k=0;k<70;k++)ps.push({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,s:0});for(let k=0;k<30;k++)ps.push({x:W/2-30+(k%6)*12,y:H-70+Math.floor(k/6)*12,vx:0,vy:0,s:1,fixed:true});$('#sol',box).textContent=EX[ei][1];$('#svt',box).textContent=EX[ei][2];$('#pi',box).innerHTML=`${EX[ei][0]} محلول: <b>${EX[ei][1]}</b> مادة مذابة، و<b>${EX[ei][2]}</b> مادة مذيبة. الجزيئات البرتقالية متجمعة الآن في القاع.`;$('#st',box).textContent='حرّك'};
+  raf(()=>{cx.clearRect(0,0,W,H);const sp=stir?2.4:1;ps.forEach(p=>{if(p.fixed&&!dissolving)return;if(p.fixed&&dissolving&&Math.random()<.04*sp)p.fixed=false;if(p.fixed)return;p.vx+=(Math.random()-.5)*.6*sp;p.vy+=(Math.random()-.5)*.6*sp;if(stir){const dx=p.x-W/2,dy=p.y-H/2;p.vx+=-dy*.002;p.vy+=dx*.002}p.vx*=.92;p.vy*=.92;p.x+=p.vx;p.y+=p.vy;if(p.x<6||p.x>W-6)p.vx*=-1;if(p.y<6||p.y>H-6)p.vy*=-1;p.x=Math.max(6,Math.min(W-6,p.x));p.y=Math.max(6,Math.min(H-6,p.y))});
+    ps.forEach(p=>{cx.beginPath();cx.arc(p.x,p.y,p.s?6:7,0,7);cx.fillStyle=p.s?'#E8742C':'#3E86C8';cx.globalAlpha=p.s?1:.55;cx.fill()});cx.globalAlpha=1;
+    if(dissolving&&!ps.some(p=>p.fixed)&&!t0){t0=1;$('#pi',box).innerHTML='<b>ذابت المادة!</b> تحركت جزيئاتها بين جزيئات المادة المذيبة، فلم نعد نراها، وأصبح للمحلول مظهر <b>متجانس</b> يبدو بنفس الشكل في جميع أجزائه.';sfx.ok();done()}});
+  $('#ds',box).onclick=()=>{dissolving=true;t0=0;$('#pi',box).textContent='تبدأ الجزيئات الخارجية بالانفصال والانتشار بين جزيئات الماء...'};
+  $('#st',box).onclick=()=>{stir=!stir;$('#st',box).textContent=stir?'أوقف التحريك':'حرّك';if(stir&&!dissolving){dissolving=true;t0=0}};
+  $('#rs',box).onclick=()=>{t0=0;reset()};
+  $$('#ex button',box).forEach(b=>b.onclick=()=>{ei=+b.dataset.k;$$('#ex button',box).forEach(x=>x.setAttribute('aria-pressed',String(x===b)));t0=0;reset()});
+  reset();
+};
+
+SIMS.rate=(box,l,done)=>{
+  const s={temp:'cold',stir:'no',grain:l.simArg==='grain'?'big':'mid'};const rows=[];let busy=false;
+  const N={temp:{cold:'بارد',hot:'ساخن'},stir:{no:'بدون تحريك',yes:'مع التحريك'},grain:{big:'مكعبات كبيرة',mid:'حبيبات عادية',fine:'مسحوق ناعم'}};
+  const VN={temp:'درجة حرارة الماء',stir:'التحريك',grain:'حجم الحبيبات'};
+  const time=()=>{let t={big:240,mid:120,fine:60}[s.grain];if(s.temp==='hot')t*=.45;if(s.stir==='yes')t*=.5;return Math.round(t*(.94+Math.random()*.12))};
+  box.innerHTML=`<div class="sim"><div class="stage" style="gap:8px"><svg viewBox="0 0 200 220" style="max-height:280px"><path d="M30 40V196Q30 206 40 206H160Q170 206 170 196V40" fill="none" stroke="var(--ink)" stroke-width="4"/><rect id="wt" x="34" y="70" width="132" height="132" rx="8" fill="#BFE3F7"/><g id="sug"></g><g id="steam"></g></svg>
+   <div class="timer" id="clk">00:00</div><div class="hint">ساعة الإيقاف</div></div>
+  <div class="side"><h3>مختبر سرعة الذوبان</h3><p class="hint">ثابت في كل تجربة: 100 مل ماء وملعقة سكر. غيّر عاملًا واحدًا كل مرة، ثم قارن الزمن.</p>
+   <div class="opt"><label>${VN.temp}</label><div class="seg" data-k="temp"><button data-v="cold">بارد</button><button data-v="hot">ساخن</button></div></div>
+   <div class="opt"><label>${VN.stir}</label><div class="seg" data-k="stir"><button data-v="no">بدون</button><button data-v="yes">مع التحريك</button></div></div>
+   <div class="opt"><label>${VN.grain}</label><div class="seg" data-k="grain"><button data-v="big">مكعبات كبيرة</button><button data-v="mid">حبيبات</button><button data-v="fine">مسحوق ناعم</button></div></div>
+   <button class="btn u" id="run">ابدأ التجربة</button><div class="info" id="ri">${l.simArg==='grain'?'ابدأ بالمكعبات الكبيرة، ثم غيّر حجم الحبيبات فقط وقارن.':'ابدأ بالماء البارد دون تحريك، ثم غيّر عاملًا واحدًا وقارن.'}</div>
+   <div class="tablewrap"><table class="res"><thead><tr><th>#</th><th>الماء</th><th>التحريك</th><th>الحبيبات</th><th>الزمن</th></tr></thead><tbody id="tb"></tbody></table></div><div class="bars" id="rb"></div></div></div>`;
+  const fmt=t=>String(Math.floor(t/60)).padStart(2,'0')+':'+String(t%60).padStart(2,'0');
+  const sugarDraw=f=>{const g=$('#sug',box);const n={big:2,mid:10,fine:30}[s.grain];const r={big:16,mid:6,fine:3}[s.grain];let h='';for(let k=0;k<n;k++){const x=60+(k*47)%80,y=188-(k%3)*(r*1.6);h+=`<rect x="${x-r*f}" y="${y-r*f}" width="${2*r*f}" height="${2*r*f}" rx="${r*.3}" fill="#fff" stroke="#bbb"/>`}g.innerHTML=f>0.02?h:'';
+    $('#steam',box).innerHTML=s.temp==='hot'?'<path d="M80 60q-8-12 0-24M100 60q-8-12 0-24M120 60q-8-12 0-24" stroke="#bbb" stroke-width="3" fill="none"/>':'';$('#wt',box).setAttribute('fill',s.temp==='hot'?'#F7D2C4':'#BFE3F7')};
+  const upd=()=>{$$('.seg[data-k]',box).forEach(g=>$$('button',g).forEach(b=>b.setAttribute('aria-pressed',String(s[g.dataset.k]===b.dataset.v))));if(!busy)sugarDraw(1)};
+  $$('.seg[data-k]',box).forEach(g=>$$('button',g).forEach(b=>b.onclick=()=>{if(busy)return;s[g.dataset.k]=b.dataset.v;upd()}));
+  $('#run',box).onclick=()=>{if(busy)return;busy=true;$('#run',box).disabled=true;const T=time();const cfg={...s};const dur=1800+T*6;const start=performance.now();
+    const stop=raf(now=>{const f=Math.min(1,(now-start)/dur);$('#clk',box).textContent=fmt(Math.round(T*f));sugarDraw(1-f);if(f>=1){stop();busy=false;$('#run',box).disabled=false;rows.push({...cfg,T});report()}})};
+  const report=()=>{$('#tb',box).innerHTML=rows.map((r,k)=>`<tr><td>${k+1}</td><td>${N.temp[r.temp]}</td><td>${N.stir[r.stir]}</td><td>${N.grain[r.grain]}</td><td><b>${fmt(r.T)}</b></td></tr>`).join('');
+    const mx=Math.max(...rows.map(r=>r.T));$('#rb',box).innerHTML=rows.map((r,k)=>`<div class="bar"><span>التجربة ${k+1}</span><i style="width:${r.T/mx*100}%"></i><b>${r.T}ث</b></div>`).join('');
+    sfx.ok();if(rows.length<2){$('#ri',box).innerHTML=`ذاب السكر في ${rows[0].T} ثانية. غيّر عاملًا واحدًا فقط وأعد التجربة للمقارنة.`;return}
+    const a=rows[rows.length-2],b=rows[rows.length-1];const diff=['temp','stir','grain'].filter(k=>a[k]!==b[k]);let m;
+    if(diff.length===0)m='كررت التجربة نفسها. تكرار القياس يجعل النتائج أكثر دقة.';
+    else if(diff.length>1)m=`<b>انتبه!</b> غيّرت أكثر من عامل (${diff.map(k=>VN[k]).join(' و')})، فلا نعرف أيّها سبب الفرق. الاختبار العادل يغيّر عاملًا واحدًا فقط.`;
+    else{const k=diff[0];const faster=b.T<a.T;m=`<b>اختبار عادل ✓</b> غيّرت ${VN[k]} فقط. ذاب السكر ${faster?'أسرع':'أبطأ'} مع «${N[k][b[k]]}» مقارنة بـ«${N[k][a[k]]}». `+({temp:'الحرارة تُكسب الجزيئات طاقة فتتحرك أسرع، فتذوب المادة أسرع.',stir:'التحريك يجعل جزيئات السكر تنتشر في الفراغات بين جزيئات الماء أسرع.',grain:'الحبيبات الصغيرة تذوب أسرع؛ لأن جزيئاتها تتصل بالسائل بسرعة، أما الكبيرة فتحتاج وقتًا أطول.'})[k]}
+    $('#ri',box).innerHTML=m;if(rows.length>=3)done()};
+  upd();
+};
+
+render();
+</script>
+<script>window.__NAV={"pre": [], "levels": [".lrows button", "div.tabs button"]}</script><script>(function(){var N=window.__NAV,q=new URLSearchParams(location.search).get("go");if(!N||!q)return;
+var P=q.split(".").map(Number);if(P.some(isNaN))return;
+var steps=(N.pre||[]).map(function(p){return{sel:p.sel,idx:p.idx||0}}).concat(P.map(function(v,i){return{sel:N.levels[i],idx:v}}));
+function vis(e){var r=e.getBoundingClientRect(),c=getComputedStyle(e);return r.width>4&&r.height>4&&c.visibility!=="hidden"&&c.display!=="none"}
+function run(i){if(i>=steps.length)return;var s=steps[i],t=0;(function w(){var l=[].filter.call(document.querySelectorAll(s.sel),vis);
+if(l.length>s.idx){l[s.idx].scrollIntoView({block:"center"});l[s.idx].click();setTimeout(function(){run(i+1)},700)}else if(t++<48)setTimeout(w,250)})()}
+function go(){setTimeout(function(){run(0)},900)}if(document.readyState==="complete")go();else addEventListener("load",go)})();</script>
+</body>
+</html>

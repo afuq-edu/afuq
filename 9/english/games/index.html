@@ -644,7 +644,7 @@ window.OWL=(x,y,s)=>`<g class="robot" transform="translate(${x} ${y}) scale(${s}
 const D=window.DECK, IM=window.IMGS||{}, SC=window.SCENES;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function fmt(s){let t=esc(s).replace(/\\n|\n/g,'\u0001');if(!(D.cfg&&D.cfg.lang==='en'))t=t.replace(/(^|[^A-Za-z0-9&;])((?:[A-Za-z][A-Za-z0-9+#._\-/]*)(?:(?:[ \t]+| &amp; )[A-Za-z0-9+#._\-/()]+)*)/g,(m,a,b)=>{const d=(b.match(/[.]+$/)||[''])[0];b=b.slice(0,b.length-d.length);return a+'<bdi class="en" dir="ltr">'+b+'</bdi>'+d});t=t.replace(/\[\[(.+?)\]\]/g,'<mark>$1</mark>');t=t.replace(/[0-9٠-٩]{1,3}(?:[\u00A0\u202F\u2009][0-9٠-٩]{3})+(?:[.,٫][0-9٠-٩]+)?/g,m=>'<bdi dir="ltr">'+m+'</bdi>');return t.replace(/\u0001/g,'<br>')}
+function fmt(s){let t=esc(s).replace(/\\n|\n/g,'\u0001');if(!(D.cfg&&D.cfg.lang==='en'))t=t.replace(/(^|[^A-Za-z0-9&;])((?:[A-Za-z][A-Za-z0-9+#._\-/]*)(?:(?:[ \t]+| &amp; )[A-Za-z0-9+#._\-/()]+)*)/g,(m,a,b)=>{const d=(b.match(/[.]+$/)||[''])[0];b=b.slice(0,b.length-d.length);return a+'<bdi class="en" dir="ltr">'+b+'</bdi>'+d});t=t.replace(/\[\[(.+?)\]\]/g,'<mark>$1</mark>');t=t.replace(/[0-9٠-٩]{1,3}(?:[\u00A0\u202F\u2009][0-9٠-٩]{3})+(?:[.,٫][0-9٠-٩]+)?/g,m=>'<bdi dir="ltr">'+m+'</bdi>');return '<span class="fx">'+t.replace(/\u0001/g,'<br>')+'</span>'}
 const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const COL=['c0','c1','c2','c3','c4','c5'];
 /* ---------- sound ---------- */

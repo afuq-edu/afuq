@@ -27,7 +27,7 @@ function beep(ok){ if(muted) return; try{ AC=AC||new (window.AudioContext||windo
     o.connect(g);g.connect(AC.destination);o.start(t+i*.09);o.stop(t+i*.09+.25);}); }catch(e){} }
 
 /* ---------- lesson & item pools ---------- */
-var params=new URLSearchParams(location.search), li=parseInt(params.get('l'),10)-1;
+var params=new URLSearchParams(location.search), li=parseInt(params.get('l')||D.l,10)-1;   /* D.l: a page made for one lesson (SCORM package) */
 if(!D||!D.L||!D.L.length){app.innerHTML='<div class="wrap"><div class="card">لا توجد بيانات.</div></div>';return;}
 if(!(li>=0&&li<D.L.length)) return lessonList();
 var L=D.L[li], KEY='afuq-q:'+D.g+'/'+D.s+'/'+(li+1);
@@ -71,7 +71,9 @@ function short(s,max){s=String(s).trim();max=max||46;if(s.length<=max)return s;
 
 /* ---------- progress ---------- */
 var ST={};try{ST=JSON.parse(sget(KEY)||'{}')||{};}catch(e){ST={};}
-function save(){sset(KEY,JSON.stringify(ST));}
+/* every score change is announced (afuq-q event) — the SCORM package (tools/build_scorm.py) passes it to the LMS */
+function emit(t){try{window.dispatchEvent(new CustomEvent('afuq-q',{detail:{type:t,key:KEY,st:ST,total:total(),max:GAMES.length*10,done:allDone()}}));}catch(e){}}
+function save(){sset(KEY,JSON.stringify(ST));emit('score');}
 var NAME=sget('afuq-q-name')||'', GIRL=sget('afuq-q-girl')==='1';
 
 /* ---------- screens ---------- */
@@ -261,7 +263,7 @@ function gameMC(g,practice){
 
 /* ---------- certificate ---------- */
 function cert(){
-  window.scrollTo(0,0);
+  window.scrollTo(0,0);emit('cert');
   app.innerHTML=header()+'<div class="wrap"><div class="card cert" id="cw"><p class="hint">جارٍ تجهيز الشهادة…</p></div></div>';bindHome();
   var fonts=document.fonts?Promise.all([document.fonts.load('700 40px Taj'),document.fonts.load('400 30px Taj')]).catch(function(){}):Promise.resolve();
   fonts.then(draw);

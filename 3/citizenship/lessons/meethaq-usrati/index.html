@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ميثاق أسرتي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Tajawal:wght@500;700;800&display=swap">
+<style>
+/* Layout: a fixed 1600×900 "stage" scaled to the window, one illustrated home-and-sky world, cream banners with pink stitched borders and ticket cards on top. Single deliberate look (bright daytime), so colors are set explicitly. */
+:root{
+  --sky-top:#7cc8ef; --sky-bot:#dff4ff;
+  --cream:#fff7ee; --pink:#e6587e; --pink-soft:#f6b9c8;
+  --navy:#1d2b5c; --blue:#2f8fd8; --blue-soft:#cfe8fb;
+  --green:#2f9e62; --orange:#f08a24; --gold:#f6c343; --sand:#f2d7a4;
+  --ink-soft:#5b6283; --white:#ffffff;
+  --display:"Baloo Bhaijaan 2","Tajawal",Tahoma,Arial,sans-serif;
+  --body:"Tajawal","Baloo Bhaijaan 2",Tahoma,Arial,sans-serif;
+  color-scheme:light;
+}
+html,body{height:100%}
+body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overflow:hidden}
+#wrap{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+#stage{width:1600px;height:900px;position:relative;transform-origin:center center;flex:none;overflow:hidden;
+  border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);direction:rtl;user-select:none}
+#bg{position:absolute;inset:0}
+.cloud{animation:drift linear infinite}
+@keyframes drift{from{transform:translateX(-300px)}to{transform:translateX(1900px)}}
+.slide{position:absolute;inset:0 0 86px 0;padding:34px 60px 0;box-sizing:border-box}
+.slide.enter{animation:enter .55s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes enter{from{opacity:0;transform:translateY(30px) scale(.97)}to{opacity:1;transform:none}}
+
+/* banner */
+.banner{position:relative;background:var(--cream);border:7px solid var(--pink-soft);border-radius:44px;
+  padding:18px 46px;box-shadow:0 10px 0 rgba(230,88,126,.18),0 18px 30px rgba(29,43,92,.18);text-align:center;margin-inline:auto;width:fit-content;max-width:1300px}
+.banner::after{content:"";position:absolute;inset:9px;border:3px dashed var(--pink-soft);border-radius:34px;pointer-events:none}
+.banner h1,.banner h2{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance}
+.banner h1{font-size:96px;color:var(--navy);font-weight:800}
+.banner h2{font-size:58px;color:var(--navy);font-weight:800}
+.banner .sub{font-family:var(--display);font-size:46px;font-weight:700;color:var(--pink);margin-top:2px}
+.banner .sub.blue{color:var(--blue)}
+.banner .tag{position:absolute;top:-24px;left:40px;background:var(--blue);color:#fff;font:700 24px var(--body);padding:6px 18px;border-radius:999px;transform:rotate(-4deg);box-shadow:0 4px 0 rgba(0,0,0,.15)}
+
+/* tickets */
+.ticket{display:flex;align-items:stretch;background:var(--cream);border-radius:26px;border:4px solid var(--pink-soft);
+  box-shadow:0 8px 0 rgba(29,43,92,.12),0 14px 24px rgba(29,43,92,.15);overflow:hidden;cursor:pointer;transition:transform .2s}
+.ticket:hover{transform:translateY(-4px) rotate(-.4deg)}
+.ticket .stub{width:110px;flex:none;display:grid;place-items:center;font:800 54px var(--display);color:#fff;background:var(--pink);border-left:4px dashed rgba(255,255,255,.7)}
+.ticket .txt{flex:1;padding:18px 30px;font:700 38px/1.35 var(--body);display:flex;align-items:center}
+.ticket.blue{border-color:#a9d3f5}.ticket.blue .stub{background:var(--blue)}
+.ticket.gold{border-color:#f5dc96}.ticket.gold .stub{background:var(--gold);color:var(--navy)}
+.ticket.green{border-color:#a7dcbc}.ticket.green .stub{background:var(--green)}
+
+.btn{font:800 34px var(--display);border:none;border-radius:999px;padding:14px 40px;cursor:pointer;color:#fff;background:var(--pink);
+  box-shadow:0 7px 0 #b33a5c;transition:transform .1s,box-shadow .1s}
+.btn:active{transform:translateY(5px);box-shadow:0 2px 0 #b33a5c}
+.btn.blue{background:var(--blue);box-shadow:0 7px 0 #1f679f}
+.btn.green{background:var(--green);box-shadow:0 7px 0 #1f6d43}
+.btn.orange{background:var(--orange);box-shadow:0 7px 0 #b25f10}
+.btn:focus-visible,.navb:focus-visible,.chip:focus-visible,.ticket:focus-visible{outline:5px solid var(--gold);outline-offset:4px}
+
+.hidden-r{opacity:0;transform:scale(.6);pointer-events:none;transition:all .45s cubic-bezier(.2,.9,.3,1.4)}
+.show-r{opacity:1;transform:none;pointer-events:auto}
+.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-14px)}40%,80%{transform:translateX(14px)}}
+.bump{animation:bump .5s}
+@keyframes bump{40%{transform:scale(1.12)}}
+
+/* nav */
+#nav{position:absolute;left:0;right:0;bottom:0;height:86px;display:flex;align-items:center;gap:14px;padding:0 26px;box-sizing:border-box;
+  background:rgba(29,43,92,.88);backdrop-filter:blur(6px);z-index:50}
+.navb{width:62px;height:62px;border-radius:50%;border:none;background:var(--cream);color:var(--navy);font:800 30px var(--display);cursor:pointer;display:grid;place-items:center}
+.navb.off{opacity:.45}
+.navb svg{width:32px;height:32px}
+#dots{flex:1;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+#dots button{width:18px;height:18px;border-radius:50%;border:3px solid var(--cream);background:transparent;cursor:pointer;padding:0}
+#dots button.on{background:var(--gold);border-color:var(--gold);transform:scale(1.3)}
+#stitle{color:var(--cream);font:700 26px var(--body);min-width:260px;text-align:center}
+
+/* specific */
+.balloon{position:absolute;width:150px;height:190px;cursor:pointer;animation:bob 3s ease-in-out infinite}
+.balloon svg{width:100%;height:auto;overflow:visible}
+.balloon b{position:absolute;top:52px;left:0;right:0;text-align:center;font:800 64px var(--display);color:#fff;text-shadow:0 3px 0 rgba(0,0,0,.15)}
+@keyframes bob{50%{transform:translateY(-22px)}}
+.balloon.popped{animation:popb .35s forwards;pointer-events:none}
+@keyframes popb{to{transform:scale(1.6);opacity:0}}
+.qcard{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:1180px;background:var(--cream);border:7px solid var(--pink);border-radius:36px;padding:22px 40px;
+  text-align:center;font:800 48px/1.35 var(--display);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+
+.hand{font-size:150px;line-height:1;display:block}
+.bigcard{background:var(--cream);border:8px solid var(--pink-soft);border-radius:40px;box-shadow:0 14px 30px rgba(29,43,92,.2);padding:28px 40px;text-align:center}
+
+.chip{display:inline-block;font:800 40px var(--display);padding:10px 30px;border-radius:999px;background:var(--white);border:4px solid var(--blue);color:var(--navy);cursor:pointer;margin:8px;transition:all .2s}
+.chip.used{opacity:.25;pointer-events:none;transform:scale(.9)}
+.blank{display:inline-block;min-width:170px;border-bottom:6px dashed var(--pink);color:var(--pink);text-align:center;margin:0 6px;padding:0 6px}
+.blank.next{background:rgba(246,195,67,.35);border-radius:10px}
+.blank.done{border-bottom-style:solid;color:var(--green)}
+
+.charter{background:#fffdf6;border-radius:24px;box-shadow:0 14px 30px rgba(29,43,92,.25);padding:20px 26px;position:relative}
+.charter h3{margin:0 0 10px;font:800 40px var(--display);text-align:center;border-radius:16px;color:#fff;padding:4px}
+.charter ul{list-style:none;margin:0;padding:0;min-height:250px;display:flex;flex-direction:column;gap:10px}
+.charter li{font:700 32px var(--body);background:#fff;border:3px solid #e8e1cf;border-radius:14px;padding:8px 16px;animation:stamp .4s}
+@keyframes stamp{from{transform:scale(1.5) rotate(-6deg);opacity:0}}
+.charter .add{display:flex;gap:10px;margin-top:12px}
+.charter input{flex:1;font:700 28px var(--body);padding:10px 14px;border-radius:14px;border:3px solid #cfd6ea;min-width:0;direction:rtl}
+
+.sit{font:800 60px/1.35 var(--display);min-height:200px;display:grid;place-items:center;text-align:center;padding:0 20px}
+.ansbtn{font:800 54px var(--display);border:none;border-radius:34px;padding:16px 50px;color:#fff;cursor:pointer;display:flex;align-items:center;gap:16px}
+.ansbtn span{font-size:74px}
+.ansbtn.r{background:var(--green);box-shadow:0 9px 0 #1f6d43}
+.ansbtn.d{background:var(--orange);box-shadow:0 9px 0 #b25f10}
+.ansbtn:active{transform:translateY(6px);box-shadow:none}
+.feedback{font:800 42px var(--display);min-height:64px;text-align:center}
+.prog{height:22px;background:rgba(255,255,255,.6);border-radius:999px;overflow:hidden;border:3px solid #fff}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--pink));width:0;transition:width .5s}
+.stars{font:800 44px var(--display);color:var(--navy);background:var(--cream);border-radius:999px;padding:6px 26px;border:5px solid var(--gold)}
+.speak{position:absolute;top:18px;left:22px;width:70px;height:70px;border-radius:50%;border:none;background:var(--blue);cursor:pointer;display:grid;place-items:center;box-shadow:0 5px 0 #1f679f}
+.speak svg{width:38px;height:38px}
+
+.flip{perspective:1200px;height:150px;cursor:pointer}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.flip.open .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:26px;display:flex;align-items:center;padding:0 30px;font:800 38px/1.3 var(--body);box-sizing:border-box}
+.flip .f{background:var(--cream);border:5px solid var(--pink-soft)}
+.flip .f::before{content:attr(data-n);font:800 50px var(--display);color:var(--pink);margin-left:20px}
+.flip .b{background:var(--blue);color:#fff;transform:rotateY(180deg);font-size:34px}
+
+#fx{position:absolute;inset:0;pointer-events:none;z-index:60}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:55}
+#start{position:absolute;inset:0;z-index:80;display:grid;place-items:center;background:rgba(23,59,99,.25)}
+@media (prefers-reduced-motion: reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+
+</head><body>
+<div id="wrap"><div id="stage">
+<svg id="bg" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7cc8ef"/><stop offset="1" stop-color="#e3f5ff"/></linearGradient>
+    <radialGradient id="sun"><stop offset="0" stop-color="#fff6c4"/><stop offset=".45" stop-color="#ffe17a"/><stop offset="1" stop-color="#ffe17a" stop-opacity="0"/></radialGradient>
+    <g id="cl"><ellipse cx="0" cy="0" rx="70" ry="38" fill="#fff"/><ellipse cx="55" cy="-22" rx="55" ry="45" fill="#fff"/><ellipse cx="110" cy="0" rx="65" ry="36" fill="#fff"/><ellipse cx="55" cy="14" rx="110" ry="26" fill="#fff"/></g>
+    <g id="palm"><path d="M0 0 C 6 -90, -8 -170, 10 -260" stroke="#9a6a3c" stroke-width="22" fill="none" stroke-linecap="round"/>
+      <path d="M10 -260 q -90 -20 -150 40 q 70 -70 150 -40z M10 -260 q 90 -30 150 30 q -80 -60 -150 -30z M10 -260 q -40 -70 -120 -80 q 80 30 120 80z M10 -260 q 50 -80 130 -70 q -90 10 -130 70z M10 -260 q -10 60 -70 120 q 40 -70 70 -120z" fill="#3c9a4f"/>
+      <circle cx="0" cy="-252" r="10" fill="#c98a2e"/><circle cx="18" cy="-248" r="10" fill="#c98a2e"/></g>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <circle cx="190" cy="150" r="170" fill="url(#sun)"/><circle cx="190" cy="150" r="62" fill="#ffd955"/>
+  <use href="#cl" class="cloud" style="animation-duration:70s;animation-delay:-10s" x="0" y="130"/>
+  <use href="#cl" class="cloud" style="animation-duration:95s;animation-delay:-60s" x="0" y="230" opacity=".85"/>
+  <use href="#cl" class="cloud" style="animation-duration:80s;animation-delay:-35s" x="0" y="90" opacity=".9"/>
+  <path d="M0 610 L130 520 L230 570 L380 470 L520 560 L640 500 L800 585 L950 480 L1100 560 L1240 490 L1400 570 L1600 500 L1600 700 L0 700Z" fill="#c9a27a" opacity=".55"/>
+  <path d="M0 650 L160 580 L300 630 L470 560 L650 640 L820 590 L1000 650 L1180 585 L1380 640 L1600 600 L1600 720 L0 720Z" fill="#b48a62" opacity=".55"/>
+  <rect y="690" width="1600" height="210" fill="#f2d7a4"/>
+  <path d="M0 700 Q 800 660 1600 700 L1600 720 L0 720Z" fill="#e8c88f"/>
+  <!-- Omani house -->
+  <g transform="translate(1140 380)">
+    <rect x="0" y="40" width="420" height="290" fill="#fbf4e6"/>
+    <path d="M0 40 h420 v-14 h-20 v-14 h-20 v14 h-30 v-14 h-20 v14 h-30 v-14 h-20 v14 h-30 v-14 h-20 v14 h-30 v-14 h-20 v14 h-30 v-14 h-20 v14 h-30 v-14 h-20 v14 h-30 v-14 h-20 v14 h-20z" fill="#efe3c9"/>
+    <rect x="300" y="-60" width="110" height="110" fill="#f6ecd8"/>
+    <path d="M300 -60 h110 v-12 h-14 v-12 h-16 v12 h-18 v-12 h-16 v12 h-18 v-12 h-14 v12 h-14z" fill="#e7d8b8"/>
+    <path d="M330 30 v-40 a25 25 0 0 1 50 0 v40z" fill="#5aa6d6"/>
+    <path d="M160 330 v-130 a50 50 0 0 1 100 0 v130z" fill="#8a4f24"/>
+    <path d="M170 330 v-125 a40 40 0 0 1 80 0 v125z" fill="#a8622d"/>
+    <g fill="#e7b04a"><circle cx="190" cy="230" r="5"/><circle cx="230" cy="230" r="5"/><circle cx="190" cy="270" r="5"/><circle cx="230" cy="270" r="5"/><circle cx="190" cy="310" r="5"/><circle cx="230" cy="310" r="5"/></g>
+    <path d="M40 200 v-60 a35 35 0 0 1 70 0 v60z" fill="#5aa6d6" stroke="#8a4f24" stroke-width="8"/>
+    <path d="M310 200 v-60 a35 35 0 0 1 70 0 v60z" fill="#5aa6d6" stroke="#8a4f24" stroke-width="8"/>
+    <rect x="-10" y="320" width="440" height="16" fill="#e3d2b0"/>
+  </g>
+  <use href="#palm" transform="translate(110 720)"/>
+  <use href="#palm" transform="translate(1080 720) scale(.8)"/>
+  <use href="#palm" transform="translate(260 720) scale(.65)"/>
+</svg>
+
+<!-- 0 cover -->
+<section class="slide" data-t="ميثاق أسرتي">
+  <div class="banner" style="margin-top:70px">
+    <span class="tag">الهوية والمواطنة • الصف الثالث</span>
+    <h1>ميثاق أسرتي</h1>
+    <div class="sub">الوحدة الثانية: حقوقي وواجباتي الأسرية</div>
+  </div>
+  <div style="position:absolute;bottom:60px;right:120px;display:flex;gap:18px;align-items:flex-end" aria-hidden="true">
+    <svg width="430" height="300" viewBox="0 0 430 300" id="family">
+      <g><circle cx="70" cy="80" r="40" fill="#8b5a3c"/><rect x="25" y="125" width="90" height="170" rx="40" fill="#fff" stroke="#d9d9d9" stroke-width="4"/><path d="M28 70 q42 -55 84 0 q0 -40 -42 -45 q-42 5 -42 45z" fill="#fff"/></g>
+      <g><circle cx="190" cy="95" r="36" fill="#c58a62"/><path d="M150 100 q40 -90 80 0 v190 h-80z" fill="#2c3e73"/><circle cx="190" cy="100" r="30" fill="#e9b48f"/></g>
+      <g><circle cx="290" cy="150" r="30" fill="#e9b48f"/><path d="M262 150 q28 -60 56 0 v18 h-56z" fill="#e6587e"/><rect x="260" y="185" width="60" height="110" rx="26" fill="#e6587e"/></g>
+      <g><circle cx="380" cy="160" r="28" fill="#c58a62"/><rect x="352" y="192" width="56" height="103" rx="26" fill="#fff" stroke="#d9d9d9" stroke-width="4"/><path d="M354 150 q26 -36 52 0 q0 -24 -26 -26 q-26 2 -26 26z" fill="#2f8fd8"/></g>
+      <path d="M190 30 l8 -16 l8 16 l18 2 l-13 12 l3 18 l-16 -9 l-16 9 l3 -18 l-13 -12z" fill="#f6c343"/>
+    </svg>
+  </div>
+  <div style="position:absolute;bottom:110px;left:120px">
+    <button class="btn" id="go" style="font-size:44px;padding:20px 60px">ابدأ الرحلة ◀</button>
+  </div>
+</section>
+
+<!-- 1 goals -->
+<section class="slide" data-t="أهداف الدرس" hidden>
+  <div class="banner"><h2>في درس اليوم سوف…</h2></div>
+  <div style="display:flex;flex-direction:column;gap:24px;width:1050px;margin:40px auto 0" class="reveal-list">
+    <div class="ticket hidden-r" tabindex="0"><div class="stub">١</div><div class="txt">أتعرّف على مفهوم ميثاق الأسرة وفائدته.</div></div>
+    <div class="ticket blue hidden-r" tabindex="0"><div class="stub">٢</div><div class="txt">أميّز بين حقوقي وواجباتي في أسرتي.</div></div>
+    <div class="ticket gold hidden-r" tabindex="0"><div class="stub">٣</div><div class="txt">ألتزم بواجباتي وأحترم حقوق أفراد أسرتي.</div></div>
+  </div>
+  <p style="text-align:center;font:700 28px var(--body);color:var(--ink-soft)">اضغط على الشاشة لإظهار الهدف التالي</p>
+</section>
+
+<!-- 2 balloons -->
+<section class="slide" data-t="التعلم القبلي" hidden>
+  <div class="banner"><h2>التعلم القبلي</h2><div class="sub">لعبة البالونات</div></div>
+  <div id="balloons" style="position:absolute;inset:200px 60px 0"></div>
+  <div class="qcard hidden-r" id="bq"></div>
+</section>
+
+<!-- 3 traffic -->
+<section class="slide" data-t="التمهيد" hidden>
+  <div class="banner"><h2>التمهيد: تأمّل الصورة</h2></div>
+  <svg viewBox="0 0 1600 560" style="position:absolute;left:0;bottom:0;width:1600px;height:560px" aria-hidden="true">
+    <rect x="0" y="360" width="1600" height="200" fill="#4a4f5c"/>
+    <rect x="0" y="352" width="1600" height="12" fill="#d7d2c4"/>
+    <g fill="#fff">
+      <rect x="60" y="452" width="120" height="10"/><rect x="280" y="452" width="120" height="10"/><rect x="500" y="452" width="120" height="10"/><rect x="1180" y="452" width="120" height="10"/><rect x="1400" y="452" width="120" height="10"/>
+      <g id="zebra"><rect x="780" y="372" width="26" height="180"/><rect x="830" y="372" width="26" height="180"/><rect x="880" y="372" width="26" height="180"/><rect x="930" y="372" width="26" height="180"/></g>
+    </g>
+    <g transform="translate(990 70)">
+      <rect x="12" y="150" width="16" height="140" fill="#3b3f4a"/>
+      <rect x="-30" y="0" width="100" height="250" rx="22" fill="#1d2440"/>
+      <circle id="lr" cx="20" cy="45" r="32" fill="#ff3b3b"/><circle id="ly" cx="20" cy="125" r="32" fill="#5b4a1c"/><circle id="lg" cx="20" cy="205" r="32" fill="#1c4a2c"/>
+      <circle cx="20" cy="45" r="48" fill="#ff3b3b" opacity=".25"><animate attributeName="r" values="40;54;40" dur="1.2s" repeatCount="indefinite"/></circle>
+    </g>
+    <g id="car" transform="translate(1250 340)">
+      <g id="lines" opacity="0"><rect x="250" y="20" width="160" height="8" rx="4" fill="#fff"/><rect x="270" y="55" width="120" height="8" rx="4" fill="#fff"/><rect x="240" y="90" width="150" height="8" rx="4" fill="#fff"/></g>
+      <path d="M10 110 q0 -40 40 -46 l50 -6 q30 -50 80 -52 h50 q40 2 60 52 l20 6 q20 6 20 46 z" fill="#e23b3b"/>
+      <path d="M110 58 q24 -40 60 -40 h20 v40z" fill="#bfe6ff"/><path d="M200 18 h20 q30 2 46 40 h-66z" fill="#bfe6ff"/>
+      <rect x="250" y="80" width="20" height="10" rx="4" fill="#ffe08a"/>
+      <circle cx="80" cy="112" r="28" fill="#222"/><circle cx="80" cy="112" r="12" fill="#bbb"/>
+      <circle cx="240" cy="112" r="28" fill="#222"/><circle cx="240" cy="112" r="12" fill="#bbb"/>
+    </g>
+    <g id="boom" opacity="0" transform="translate(470 300)">
+      <path d="M0 -110 L30 -40 L105 -60 L55 0 L110 50 L35 45 L20 120 L-15 55 L-90 90 L-50 20 L-120 -20 L-45 -35 L-60 -100 L-10 -50Z" fill="#ffd23f" stroke="#e6587e" stroke-width="10"/>
+      <text x="0" y="22" text-anchor="middle" font-family="Baloo Bhaijaan 2, Tahoma" font-size="64" font-weight="800" fill="#c62828">خطر!</text>
+    </g>
+  </svg>
+  <div class="bigcard" style="position:absolute;top:210px;right:70px;width:520px;padding:20px 30px">
+    <div style="font:800 52px var(--display);color:var(--blue)">برأيك، ما الذي سيحدث؟</div>
+  </div>
+  <div style="position:absolute;top:240px;left:70px;display:flex;flex-direction:column;gap:22px;align-items:flex-start">
+    <button class="btn" id="playcar">شاهد ماذا يحدث</button>
+    <button class="btn blue hidden-r" id="lesson1">ماذا نتعلّم؟</button>
+  </div>
+  <div class="qcard hidden-r" id="tq" style="border-color:var(--green);font-size:38px;bottom:20px">عدم الالتزام بقواعد المرور يسبّب الحوادث ويحرمنا من الأمان…<br><span style="color:var(--pink)">وفي الأسرة: التقصير في الواجبات يسبّب المشكلات ويحرمنا من حقوقنا.</span></div>
+</section>
+
+<!-- 4 story -->
+<section class="slide" data-t="القصة" hidden>
+  <div class="banner"><h2>أقرأ وأستمع: ميثاق أسرة شمساء</h2></div>
+  <div style="display:flex;gap:50px;margin-top:40px;align-items:flex-start">
+    <div style="width:520px;flex:none;text-align:center">
+      <svg viewBox="0 0 520 360" width="520" aria-hidden="true">
+        <path d="M260 40 Q140 0 20 30 V330 Q140 300 260 340Z" fill="#fffdf6" stroke="#2f8fd8" stroke-width="8"/>
+        <path d="M260 40 Q380 0 500 30 V330 Q380 300 260 340Z" fill="#fffdf6" stroke="#2f8fd8" stroke-width="8"/>
+        <g stroke="#cfd6ea" stroke-width="6" stroke-linecap="round"><path d="M60 100h160M60 140h160M60 180h130M60 220h160M60 260h110"/><path d="M300 100h160M300 140h160M300 180h130M300 220h160M300 260h110"/></g>
+        <text x="140" y="70" text-anchor="middle" font-family="Tajawal, Tahoma" font-size="30" font-weight="800" fill="#e6587e">٥٦</text>
+        <text x="380" y="70" text-anchor="middle" font-family="Tajawal, Tahoma" font-size="30" font-weight="800" fill="#e6587e">٥٧</text>
+      </svg>
+      <div class="bigcard" style="padding:14px 20px;font:800 40px var(--display);color:var(--navy)">افتح كتابك ص (٥٦ – ٥٧)<div style="font:700 28px var(--body);color:var(--ink-soft)">واستمع إلى النص من رمز QR</div></div>
+    </div>
+    <div style="flex:1;display:flex;flex-direction:column;gap:24px">
+      <div class="flip" data-n="١" tabindex="0"><div class="in"><div class="f" data-n="١">ما المقصود بميثاق الأسرة؟</div><div class="b">وثيقة مكتوبة تنظّم العلاقات بين أفراد الأسرة، ويلتزمون بها.</div></div></div>
+      <div class="flip" tabindex="0"><div class="in"><div class="f" data-n="٢">ما فائدة ميثاق الأسرة؟</div><div class="b">يوضّح حقوق أفراد الأسرة وواجباتهم، فيعيشون في محبة ونظام.</div></div></div>
+      <div class="flip" tabindex="0"><div class="in"><div class="f" data-n="٣">هل لديكم في الأسرة ميثاق يشبهه؟</div><div class="b">شاركنا: ما القواعد التي تلتزم بها أسرتك؟</div></div></div>
+      <p style="margin:0;font:700 26px var(--body);color:var(--ink-soft);text-align:center">اضغط على السؤال لقلب البطاقة</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 concept builder -->
+<section class="slide" data-t="المفهوم" hidden>
+  <div class="banner"><h2>أكمل المفهوم</h2><div class="sub blue">اختر الكلمة المناسبة للفراغ الملوّن</div></div>
+  <div class="bigcard" id="defcard" style="margin:40px auto 0;width:1300px;box-sizing:border-box;font:800 54px/1.9 var(--display)">
+    <span style="color:var(--pink)">ميثاق الأسرة:</span> وثيقة <span class="blank" data-a="مكتوبة">؟</span> تنظّم <span class="blank" data-a="العلاقات">؟</span> بين أفراد الأسرة، وتوضّح <span class="blank" data-a="حقوقهم">؟</span> و<span class="blank" data-a="واجباتهم">؟</span>، ويلتزم بها <span class="blank" data-a="الجميع">؟</span>.
+  </div>
+  <div id="chips" style="text-align:center;margin-top:28px"></div>
+</section>
+
+<!-- 6 activity 58 -->
+<section class="slide" data-t="نشاط ص58" hidden>
+  <div class="banner"><h2>نشاط (١): أكمل ميثاق أسرة شمساء</h2><div class="sub blue">كتاب التلميذ ص ٥٨ • عمل في مجموعات</div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px">
+    <div class="charter"><h3 style="background:var(--green)">حقوقي ✊</h3><ul id="lr1"></ul>
+      <form class="add" data-list="lr1"><input id="in-r" placeholder="مثال: أحصل على الرعاية عندما أمرض" aria-label="أضف حقًا"><button class="btn green" style="font-size:28px;padding:8px 26px">أضف</button></form></div>
+    <div class="charter"><h3 style="background:var(--orange)">واجباتي ✋</h3><ul id="ld1"></ul>
+      <form class="add" data-list="ld1"><input id="in-d" placeholder="مثال: أحترم والديّ وأطيعهما" aria-label="أضف واجبًا"><button class="btn orange" style="font-size:28px;padding:8px 26px">أضف</button></form></div>
+  </div>
+</section>
+
+<!-- 7 rules -->
+<section class="slide" data-t="قواعد اللعبة" hidden>
+  <div class="banner"><h2>لعبة: خُذ وأعطِ</h2><div class="sub">أقرأ الموقف… وكلّنا نرفع الإشارة معًا!</div></div>
+  <div style="display:flex;justify-content:center;gap:90px;margin-top:40px">
+    <div class="bigcard" style="width:440px;border-color:#a7dcbc"><span class="hand bump" style="animation-iteration-count:infinite;animation-duration:1.6s">✊</span><div style="font:800 66px var(--display);color:var(--green)">خُذ = حق</div><div style="font:700 34px var(--body);color:var(--ink-soft)">اثنِ كفّ يدك</div></div>
+    <div class="bigcard" style="width:440px;border-color:#f8c99a"><span class="hand bump" style="animation-iteration-count:infinite;animation-duration:1.6s;animation-delay:.8s">✋</span><div style="font:800 66px var(--display);color:var(--orange)">أعطِ = واجب</div><div style="font:700 34px var(--body);color:var(--ink-soft)">ابسط كفّ يدك</div></div>
+  </div>
+</section>
+
+<!-- 8 game -->
+<section class="slide" data-t="لعبة خذ وأعطِ" hidden>
+  <div style="display:flex;align-items:center;gap:30px">
+    <div class="banner" style="margin:0;padding:10px 36px"><h2 style="font-size:46px">خُذ ✊ أم أعطِ ✋ ؟</h2></div>
+    <div style="flex:1"><div class="prog"><i id="gbar"></i></div><div id="gcount" style="font:800 28px var(--body);margin-top:6px;color:var(--navy)"></div></div>
+    <div class="stars" id="gstars">⭐ ٠</div>
+  </div>
+  <div class="bigcard" id="gcard" style="position:relative;margin:34px auto 0;width:1250px;box-sizing:border-box">
+    <button class="speak" id="gspeak" aria-label="اقرأ الموقف"><svg viewBox="0 0 24 24" fill="#fff"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg></button>
+    <div class="sit" id="gsit"></div>
+    <div class="feedback" id="gfb"></div>
+  </div>
+  <div style="display:flex;justify-content:center;align-items:center;gap:50px;margin-top:30px" id="gbtns">
+    <button class="ansbtn r" data-a="R"><span>✊</span> حق</button>
+    <button class="ansbtn d" data-a="D"><span>✋</span> واجب</button>
+    <button class="btn blue hidden-r" id="gnext">الموقف التالي ◀</button>
+  </div>
+</section>
+
+<!-- 9 pledge -->
+<section class="slide" data-t="وأنت؟" hidden>
+  <div class="banner"><h2>وأنت… ما الواجب الذي ستبادر إليه اليوم؟</h2></div>
+  <div style="display:flex;gap:40px;margin-top:36px;align-items:center">
+    <div id="pchips" style="flex:1;text-align:center"></div>
+    <div style="width:430px;flex:none;position:relative;text-align:center">
+      <svg viewBox="0 0 200 180" width="430" aria-hidden="true"><path d="M100 170 C 20 110, 0 70, 20 40 C 40 5, 90 10, 100 45 C 110 10, 160 5, 180 40 C 200 70, 180 110, 100 170Z" fill="#e6587e"/></svg>
+      <div style="position:absolute;inset:60px 60px 80px;display:grid;place-items:center;color:#fff;font:800 44px var(--display)"><div>وعدي لأسرتي<div id="pcount" style="font-size:80px">٠</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 exit -->
+<section class="slide" data-t="بطاقة الخروج" hidden>
+  <div class="banner"><h2>بطاقة الخروج</h2><div class="sub blue">حق ✊ أم واجب ✋ ؟</div></div>
+  <div id="exit" style="display:flex;flex-direction:column;gap:22px;width:1250px;margin:34px auto 0"></div>
+  <div class="qcard hidden-r" id="exitq" style="bottom:10px;border-color:var(--gold)">ماذا تعلّمنا اليوم يا صغار؟</div>
+</section>
+
+<!-- 11 homework -->
+<section class="slide" data-t="الواجب المنزلي" hidden>
+  <div class="banner"><h2>واجبي المنزلي</h2></div>
+  <div class="ticket blue" style="width:1150px;margin:44px auto 0;cursor:default"><div class="stub" style="font-size:36px;width:130px">ص ٥٩</div><div class="txt" style="font-size:46px">نشاط (٢): أكتب ميثاقًا لأسرتي بمساعدة وليّ أمري، وأحضره معي إلى الصف.</div></div>
+  <div style="text-align:center;margin-top:40px"><button class="btn" id="bravo" style="font-size:50px;padding:20px 70px">أحسنتم يا أبطال!</button></div>
+</section>
+
+<div id="flash"></div>
+<canvas id="fx" width="1600" height="900"></canvas>
+
+<nav id="nav" aria-label="التنقل">
+  <button class="navb" id="prev" aria-label="السابق">▶</button>
+  <div id="stitle"></div>
+  <div id="dots"></div>
+  <button class="navb" id="snd" aria-label="المؤثرات الصوتية"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg></button>
+  <button class="navb off" id="mus" aria-label="موسيقى الخلفية"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.6A4 4 0 1 0 14 17V7h4V3h-6z"/></svg></button>
+  <button class="navb" id="fs" aria-label="ملء الشاشة"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg></button>
+  <button class="navb" id="next" aria-label="التالي" style="background:var(--gold)">◀</button>
+</nav>
+</div></div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const stage=$('#stage');
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`scale(${s})`;}
+addEventListener('resize',fit);fit();
+const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+
+/* ---------- sound (synthesised, works offline) ---------- */
+let ac=null,sfxOn=true,musOn=false,musTimer=null;
+function ctx(){if(!ac){try{ac=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(ac&&ac.state==='suspended')ac.resume();return ac;}
+function tone(f,d,type='sine',v=.18,t0=0,f2){const a=ctx();if(!a||!sfxOn)return;const t=a.currentTime+t0,o=a.createOscillator(),g=a.createGain();
+  o.type=type;o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.015);g.gain.exponentialRampToValueAtTime(.0008,t+d);
+  o.connect(g).connect(a.destination);o.start(t);o.stop(t+d+.05);}
+function noise(d,v=.3,t0=0,lp=2000,lp2){const a=ctx();if(!a||!sfxOn)return;const t=a.currentTime+t0,b=a.createBuffer(1,a.sampleRate*d,a.sampleRate),c=b.getChannelData(0);
+  for(let i=0;i<c.length;i++)c[i]=Math.random()*2-1;const s=a.createBufferSource();s.buffer=b;const fl=a.createBiquadFilter();fl.type='lowpass';fl.frequency.setValueAtTime(lp,t);
+  if(lp2)fl.frequency.exponentialRampToValueAtTime(lp2,t+d);const g=a.createGain();g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(fl).connect(g).connect(a.destination);s.start(t);}
+const S={
+  click:()=>tone(880,.08,'triangle',.12),
+  whoosh:()=>noise(.45,.25,0,400,4000),
+  pop:()=>{noise(.12,.5,0,6000,800);tone(900,.15,'square',.08,0,200);},
+  ding:()=>[784,988,1175,1568].forEach((f,i)=>tone(f,.35,'triangle',.16,i*.08)),
+  buzz:()=>{tone(150,.35,'sawtooth',.14);tone(110,.35,'sawtooth',.12,.05);},
+  flip:()=>{noise(.15,.2,0,3000,800);tone(500,.1,'sine',.08,.05,900);},
+  stamp:()=>{tone(120,.25,'sine',.35,0,60);noise(.08,.25,0,1500);},
+  sparkle:()=>[1318,1760,2093,2637].forEach((f,i)=>tone(f,.25,'sine',.09,i*.06)),
+  fanfare:()=>[[523,0],[659,.12],[784,.24],[1047,.4],[784,.58],[1047,.7]].forEach(([f,t])=>tone(f,.4,'square',.07,t)),
+  engine:()=>{tone(70,1.4,'sawtooth',.12,0,220);tone(140,1.4,'square',.04,0,440);},
+  honk:()=>{tone(420,.25,'square',.09);tone(520,.25,'square',.07);},
+  crash:()=>{noise(1.1,.6,0,3000,200);tone(90,.6,'sine',.4,0,40);},
+  screech:()=>tone(1400,.5,'sawtooth',.05,0,900)
+};
+function play(n){try{S[n]&&S[n]();}catch(e){}}
+function speak(t){try{const u=new SpeechSynthesisUtterance(t);u.lang='ar-SA';u.rate=.85;const v=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith('ar'));if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+/* gentle background melody */
+const mel=[523,587,659,784,659,587,523,440,523,659,784,880,784,659,587,523];
+function startMusic(){let i=0;stopMusic();musTimer=setInterval(()=>{const a=ctx();if(!a)return;const t=a.currentTime,o=a.createOscillator(),g=a.createGain();o.type='triangle';o.frequency.value=mel[i++%mel.length];
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.045,t+.03);g.gain.exponentialRampToValueAtTime(.001,t+.5);o.connect(g).connect(a.destination);o.start(t);o.stop(t+.55);},420);}
+function stopMusic(){clearInterval(musTimer);musTimer=null;}
+$('#snd').onclick=()=>{sfxOn=!sfxOn;$('#snd').classList.toggle('off',!sfxOn);};
+$('#mus').onclick=()=>{ctx();musOn=!musOn;$('#mus').classList.toggle('off',!musOn);musOn?startMusic():stopMusic();};
+$('#fs').onclick=()=>{try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>{});}catch(e){}};
+
+/* ---------- confetti ---------- */
+const cv=$('#fx'),cx=cv.getContext('2d');let parts=[],anim=null;
+function confetti(n=140,x=800,y=350){const cols=['#e6587e','#2f8fd8','#f6c343','#2f9e62','#f08a24','#fff'];
+  for(let i=0;i<n;i++)parts.push({x,y,vx:(Math.random()-.5)*26,vy:Math.random()*-22-6,s:8+Math.random()*10,c:cols[i%cols.length],r:Math.random()*6,vr:(Math.random()-.5)*.4,life:120+Math.random()*60});
+  if(!anim)loop();}
+function loop(){cx.clearRect(0,0,1600,900);parts=parts.filter(p=>p.life-->0&&p.y<950);
+  parts.forEach(p=>{p.vy+=.6;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.fillStyle=p.c;cx.fillRect(-p.s/2,-p.s/3,p.s,p.s*.66);cx.restore();});
+  anim=parts.length?requestAnimationFrame(loop):(cx.clearRect(0,0,1600,900),null);}
+function flash(){const f=$('#flash');f.style.transition='none';f.style.opacity=.8;requestAnimationFrame(()=>{f.style.transition='opacity .6s';f.style.opacity=0;});}
+function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');}
+
+/* ---------- slides ---------- */
+const slides=$$('.slide');let cur=0;
+const dots=$('#dots');slides.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',s.dataset.t);b.onclick=()=>go(i);dots.appendChild(b);});
+function go(i){if(i<0||i>=slides.length||i===cur&&slides[i].dataset.seen)return;
+  slides[cur].hidden=true;cur=i;const s=slides[i];s.hidden=false;s.classList.remove('enter');void s.offsetWidth;s.classList.add('enter');s.dataset.seen=1;
+  $$('#dots button').forEach((b,k)=>b.classList.toggle('on',k===i));$('#stitle').textContent=s.dataset.t;play('whoosh');}
+$('#next').onclick=()=>step(1);$('#prev').onclick=()=>step(-1);
+function step(d){if(d>0&&revealNext())return;go(cur+d);}
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='ArrowLeft'||e.key===' '||e.key==='PageDown'){e.preventDefault();step(1);}if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();step(-1);}});
+/* step-reveal lists (goals) */
+function revealNext(){const s=slides[cur];const h=s.querySelector('.reveal-list .hidden-r:not(.show-r)');if(h){h.classList.add('show-r');play('pop');return true;}return false;}
+slides[1].addEventListener('click',e=>{if(!e.target.closest('button'))revealNext();});
+$('#go').onclick=()=>{ctx();play('fanfare');confetti(120,400,600);setTimeout(()=>go(1),500);};
+slides[0].hidden=false;slides[0].dataset.seen=1;$$('#dots button')[0].classList.add('on');$('#stitle').textContent=slides[0].dataset.t;
+
+/* ---------- balloons ---------- */
+const BAL=[['#2f8fd8','من يرعاني ويحميني في البيت؟'],['#f6c343','كيف تساعد والدتك في البيت؟'],['#2f9e62','ماذا تقدّم لك أسرتك عندما تمرض؟'],
+  ['#e53935','اذكر حقًّا من حقوقك على أسرتك، وواجبًا من واجباتك نحوها.'],['#7e57c2','كيف تتعامل مع جدّك وجدّتك؟'],['#f08a24','مفاجأة! صفّقوا لأنفسكم 👏']];
+const bw=$('#balloons');
+BAL.forEach(([c,q],i)=>{const d=document.createElement('div');d.className='balloon';d.tabIndex=0;d.style.right=(40+i*235)+'px';d.style.top=(i%2?60:0)+'px';d.style.animationDelay=(-i*.6)+'s';
+  d.innerHTML=`<svg viewBox="0 0 150 300"><path d="M75 190 q-10 40 6 70 q14 30 -4 40" stroke="#6b7280" stroke-width="3" fill="none"/><ellipse cx="75" cy="88" rx="70" ry="88" fill="${c}"/><path d="M68 174 h14 l-7 14z" fill="${c}"/><ellipse cx="50" cy="50" rx="14" ry="24" fill="#fff" opacity=".35"/></svg><b>${AR(i+1)}</b>`;
+  d.onclick=()=>{play('pop');d.classList.add('popped');const qc=$('#bq');qc.classList.remove('show-r');void qc.offsetWidth;qc.textContent=q;qc.style.borderColor=c;qc.classList.add('show-r');
+    if(i===3){confetti(80,1000,300);setTimeout(()=>play('ding'),150);} if(i===5)setTimeout(()=>play('fanfare'),150);};
+  d.onkeydown=e=>{if(e.key==='Enter')d.onclick();};bw.appendChild(d);});
+
+/* ---------- traffic ---------- */
+$('#playcar').onclick=()=>{const car=$('#car');play('engine');car.style.transition='none';car.setAttribute('transform','translate(1250 340)');
+  $('#lines').setAttribute('opacity','1');let t0=null;
+  function f(ts){if(!t0)t0=ts;const p=Math.min((ts-t0)/1300,1);const x=1250-p*p*900;car.setAttribute('transform',`translate(${x} 340)`);
+    if(p<1)requestAnimationFrame(f);else{play('screech');setTimeout(()=>{play('crash');flash();shake(stage);$('#boom').setAttribute('opacity','1');$('#lesson1').classList.add('show-r');},250);}}
+  requestAnimationFrame(f);};
+$('#lesson1').onclick=()=>{play('ding');$('#tq').classList.add('show-r');};
+
+/* ---------- story flips ---------- */
+$$('.flip').forEach(f=>{f.onclick=()=>{f.classList.toggle('open');play('flip');};f.onkeydown=e=>{if(e.key==='Enter')f.onclick();};});
+
+/* ---------- concept builder ---------- */
+const blanks=$$('#defcard .blank');let bi=0;
+function markNext(){blanks.forEach((b,k)=>b.classList.toggle('next',k===bi));}
+markNext();
+const words=['العلاقات','مرسومة','الجميع','حقوقهم','الألعاب','مكتوبة','واجباتهم'];
+words.forEach(w=>{const c=document.createElement('button');c.className='chip';c.textContent=w;c.onclick=()=>{
+  if(bi<blanks.length&&blanks[bi].dataset.a===w){blanks[bi].textContent=w;blanks[bi].classList.add('done','bump');c.classList.add('used');play('ding');bi++;markNext();
+    if(bi===blanks.length){setTimeout(()=>{play('fanfare');confetti(160);},300);}}
+  else{play('buzz');shake(c);}};$('#chips').appendChild(c);});
+
+/* ---------- charter activity ---------- */
+$$('.charter form').forEach(fm=>fm.addEventListener('submit',e=>{e.preventDefault();const inp=fm.querySelector('input');const v=inp.value.trim();if(!v)return;
+  const li=document.createElement('li');li.textContent=v;$('#'+fm.dataset.list).appendChild(li);inp.value='';play('stamp');}));
+
+/* ---------- game ---------- */
+const SIT=[['أحصل على الحب والرعاية من أسرتي.','R'],['ألتزم بمواعيد تناول الوجبات الغذائية مع أسرتي.','D'],['أستقبل الضيوف مع والدي، وأقدّم لهم التحية.','D'],['اسمي جميل وأنا أحب اسمي.','R'],
+['توفّر لي أسرتي بيتًا نسكن فيه.','R'],['أتعاون مع والدتي في تنظيف البيت.','D'],['أساعد أبي في سقي حديقة البيت.','D'],['أحب أن أقرأ في مكان هادئ بالبيت.','R'],
+['تهتم والدتي بنظافة الغذاء الذي تقدّمه لنا.','R'],['أسارع إلى جدّي كلما سمعته يناديني.','D'],['أجلس بأدب مع جدّتي عندما تحكي لي حكاية.','D'],['خصّصت أسرتي وقتًا لي للعب.','R'],
+['عندما أمرض يأخذني أبي إلى المركز الصحي.','R'],['قبل أن أنام أتأكد من نظافة غرفتي.','D'],['أحافظ على أسرار أسرتي، ولا أخبر بها أحدًا.','D'],['أشعر بالأمن والاطمئنان عندما أكون بالقرب من أسرتي.','R']];
+let gi=0,stars=0,answered=false;
+function showSit(){const [t]=SIT[gi];$('#gsit').textContent=t;$('#gfb').textContent='';answered=false;$('#gnext').classList.remove('show-r');
+  $('#gbar').style.width=(gi/SIT.length*100)+'%';$('#gcount').textContent=`الموقف ${AR(gi+1)} من ${AR(SIT.length)}`;
+  const c=$('#gcard');c.style.borderColor='';c.classList.remove('enter');void c.offsetWidth;c.classList.add('enter');}
+$$('#gbtns .ansbtn').forEach(b=>b.onclick=()=>{if(answered)return;const [,a]=SIT[gi];const fb=$('#gfb'),c=$('#gcard');
+  if(b.dataset.a===a){answered=true;stars++;$('#gstars').textContent='⭐ '+AR(stars);$('#gstars').classList.remove('bump');void $('#gstars').offsetWidth;$('#gstars').classList.add('bump');
+    play('ding');confetti(70,800,420);c.style.borderColor='var(--green)';
+    fb.innerHTML=a==='R'?'<span style="color:var(--green)">أحسنت! هذا حقّي: شيء تقدّمه لي أسرتي ✊</span>':'<span style="color:var(--orange)">أحسنت! هذا واجبي: شيء أقدّمه لأسرتي ✋</span>';
+    $('#gnext').classList.add('show-r');$('#gnext').textContent=gi<SIT.length-1?'الموقف التالي ◀':'النتيجة ◀';}
+  else{play('buzz');shake(c);c.style.borderColor='var(--pink)';fb.innerHTML='<span style="color:var(--pink)">فكّر مرة أخرى… هل أنا آخذ أم أعطي؟</span>';}});
+$('#gnext').onclick=()=>{play('click');if(gi<SIT.length-1){gi++;showSit();}else{$('#gbar').style.width='100%';$('#gsit').innerHTML=`رائع! جمعتم ${AR(stars)} نجمة ⭐`;$('#gfb').textContent='';$('#gnext').classList.remove('show-r');play('fanfare');confetti(220);}};
+$('#gspeak').onclick=()=>{ctx();speak($('#gsit').textContent);};
+showSit();
+
+/* ---------- pledge ---------- */
+let pc=0;['أرتّب غرفتي','أساعد والدتي','أحترم كبار السن','أطيع والديّ','أحافظ على أسرار أسرتي','أحافظ على هدوء البيت','أعتني بإخوتي','أحافظ على نظافة البيت'].forEach(w=>{
+  const c=document.createElement('button');c.className='chip';c.textContent=w;c.onclick=()=>{if(c.dataset.on)return;c.dataset.on=1;c.style.background='var(--gold)';c.style.borderColor='var(--gold)';
+    pc++;$('#pcount').textContent=AR(pc);play('sparkle');const r=c.getBoundingClientRect();confetti(30,800,450);};$('#pchips').appendChild(c);});
+
+/* ---------- exit ticket ---------- */
+const EX=[['تشتري لي أسرتي ملابس المدرسة.','R'],['أرتّب سريري كل صباح.','D'],['أطيع والديّ وأحترمهما.','D']];let ed=0;
+EX.forEach(([t,a])=>{const row=document.createElement('div');row.className='ticket';row.style.cursor='default';
+  row.innerHTML=`<div class="txt" style="font-size:42px">${t}</div><div style="display:flex;gap:16px;padding:14px 20px;align-items:center"><button class="ansbtn r" style="font-size:36px;padding:8px 26px" data-a="R"><span style="font-size:46px">✊</span>حق</button><button class="ansbtn d" style="font-size:36px;padding:8px 26px" data-a="D"><span style="font-size:46px">✋</span>واجب</button></div>`;
+  row.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(row.dataset.ok)return;if(b.dataset.a===a){row.dataset.ok=1;play('ding');row.style.borderColor=a==='R'?'var(--green)':'var(--orange)';
+      row.querySelectorAll('button').forEach(x=>{if(x!==b)x.style.opacity=.25;});ed++;if(ed===EX.length){setTimeout(()=>{play('fanfare');$('#exitq').classList.add('show-r');},400);}}
+    else{play('buzz');shake(row);}});$('#exit').appendChild(row);});
+
+$('#bravo').onclick=()=>{play('fanfare');confetti(260,800,500);setTimeout(()=>confetti(160,300,400),400);setTimeout(()=>confetti(160,1300,400),800);};
+})();
+</script>
+
+</body></html>

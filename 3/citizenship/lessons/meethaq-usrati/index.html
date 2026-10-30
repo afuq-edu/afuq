@@ -17,8 +17,8 @@
 }
 html,body{height:100%}
 body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overflow:hidden}
-#wrap{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
-#stage{width:1600px;height:900px;position:relative;transform-origin:center center;flex:none;overflow:hidden;
+#wrap{position:fixed;inset:0;overflow:hidden}
+#stage{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform-origin:center center;flex:none;overflow:hidden;
   border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.35);direction:rtl;user-select:none}
 #bg{position:absolute;inset:0}
 .cloud{animation:drift linear infinite}
@@ -360,7 +360,7 @@ body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overf
 (()=>{
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const stage=$('#stage');
-function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`scale(${s})`;}
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);stage.style.transform=`translate(-50%,-50%) scale(${s})`;}
 addEventListener('resize',fit);fit();
 const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 

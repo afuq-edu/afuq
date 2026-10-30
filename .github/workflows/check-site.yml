@@ -1,0 +1,34 @@
+name: check-site
+
+# Runs tools/check_site.py on every pull request and push to main: broken links, game pages
+# (window.QZ), SCORM packages and file names. Going over the 1 GB Pages limit is reported as a
+# warning here (--soft-size) so unrelated pull requests are not blocked while the site is over it.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Check the site
+        run: |
+          set -o pipefail
+          python3 tools/check_site.py --soft-size | tee report.txt
+      - name: Job summary
+        if: always()
+        run: |
+          { echo '```'; cat report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

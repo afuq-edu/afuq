@@ -1,6 +1,6 @@
 /* ألعاب ونشاط الدرس – منصة أفق.
    Data: window.QZ = {g, gn, s, sn, L:[{t:title, u:unit, q:[[question, answer, level 0|1|2|-1, distractors? | 1 (true/false item)]]}]}
-   Page: <subject>/?l=N (1-based lesson). Three games + one activity, 10 points each, then a certificate (canvas → PNG).
+   Page: <subject>/?l=N (1-based lesson). Three games + one activity, 10 points each; each one finished gives its own certificate (canvas → PNG), all four a full one.
    Built from the prep files by tools/build_quiz.py (site repo); this file is copied to afuq-edu/afuq q/engine.js. */
 (function(){
 'use strict';
@@ -72,7 +72,8 @@ function short(s,max){s=String(s).trim();max=max||46;if(s.length<=max)return s;
 /* ---------- progress ---------- */
 var ST={};try{ST=JSON.parse(sget(KEY)||'{}')||{};}catch(e){ST={};}
 /* every score change is announced (afuq-q event) — the SCORM package (tools/build_scorm.py) passes it to the LMS */
-function emit(t){try{window.dispatchEvent(new CustomEvent('afuq-q',{detail:{type:t,key:KEY,st:ST,total:total(),max:GAMES.length*10,done:allDone()}}));}catch(e){}}
+/* the pupil may finish any one game: done = at least one finished, max = 10 per finished game (score = their average) */
+function emit(t){try{window.dispatchEvent(new CustomEvent('afuq-q',{detail:{type:t,key:KEY,st:ST,total:total(),max:Math.max(1,doneN())*10,done:doneN()>0,all:allDone()}}));}catch(e){}}
 function save(){sset(KEY,JSON.stringify(ST));emit('score');}
 var NAME=sget('afuq-q-name')||'', GIRL=sget('afuq-q-girl')==='1';
 
@@ -84,22 +85,27 @@ function header(){
 function bindHome(){var b=$('#hm');if(b)b.onclick=home;var m=$('#mu');if(m)m.onclick=function(){muted=!muted;sset('afuq-q-mute',muted?'1':null);m.textContent=muted?'🔇':'🔊';};}
 function total(){var t=0;GAMES.forEach(function(g){t+=ST[g.id]||0;});return t;}
 function allDone(){return GAMES.every(function(g){return ST[g.id]!=null;});}
+function doneN(){return GAMES.filter(function(g){return ST[g.id]!=null;}).length;}
+function cname(g){return g.id==='mc'?'النشاط':g.n;}
 function home(){
   window.scrollTo(0,0);
   var h=header()+'<div class="wrap">';
   h+='<div class="card"><h2>👋 مرحبًا بك! تعليمات للطالب</h2><ol class="steps">'+
      '<li>اكتب اسمك في المربع أدناه، فهو يظهر في شهادتك.</li>'+
-     '<li>العب الألعاب الثلاث ثم حلّ النشاط، ولكلٍّ منها <b>١٠ درجات</b>.</li>'+
+     '<li>اختر <b>أي لعبة تريدها</b> أو النشاط، ولكلٍّ منها <b>١٠ درجات</b> و<b>شهادة خاصة بها</b>؛ لست مضطرًا لإنهاء الأربعة.</li>'+
      '<li>اقرأ كل سؤال بتمعّن قبل أن تجيب. تُحسب المحاولة الأولى لكل لعبة في الشهادة.</li>'+
-     '<li>بعد الانتهاء تظهر <b>شهادتك</b>. احفظها صورة وأرسلها لمعلمك.</li></ol>'+
+     '<li>بعد إنهاء أي لعبة تظهر <b>شهادتك</b> فيها، ومن ينهي الأربعة يحصل أيضًا على الشهادة الكاملة. احفظها صورة وأرسلها لمعلمك.</li></ol>'+
      '<div style="margin-top:10px"><label class="nm" for="nm">✏️ اكتب اسمك كما تريده في الشهادة</label><input class="nm" id="nm" autocomplete="name" maxlength="40" placeholder="الاسم الثلاثي" value="'+esc(NAME)+'">'+
      '<div class="sx"><button type="button" data-g="0" class="'+(GIRL?'':'on')+'">👦 طالب</button><button type="button" data-g="1" class="'+(GIRL?'on':'')+'">👧 طالبة</button></div><div class="warn" id="wn"></div></div></div>';
   if(L.o&&L.o.length) h+='<div class="card"><h2>🎯 مخرجات الدرس التي تقيسها الأنشطة</h2><ul class="outc">'+L.o.map(function(o){return '<li class="bdi">'+esc(o)+'</li>';}).join('')+'</ul></div>';
   h+='<div class="games">'+GAMES.map(function(g,i){var s=ST[g.id];
      return '<button type="button" class="g '+g.c+(s!=null?' done':'')+'" data-i="'+i+'"><span class="ic">'+g.ic+'</span><b>'+g.n+'</b><small>'+g.d+'</small><span class="st">'+(s!=null?'✔ '+ar(s)+' / ١٠':'ابدأ ←')+'</span></button>';}).join('')+'</div>';
-  var done=allDone();
-  h+='<div class="tot">مجموعك: '+ar(total())+' / ٤٠</div>';
-  h+='<div style="margin-top:12px"><button type="button" class="big gold" id="ce" '+(done?'':'disabled')+'>🏅 '+(done?'اعرض شهادتي':'الشهادة تظهر بعد إنهاء الأربعة')+'</button></div>';
+  var dn=doneN();
+  if(dn) h+='<div class="tot">مجموعك: '+ar(total())+' / '+ar(dn*10)+'</div>';
+  h+='<div class="certs" style="margin-top:12px;display:grid;gap:10px">'+(dn?GAMES.filter(function(g){return ST[g.id]!=null;}).map(function(g){
+       return '<button type="button" class="big gold ce" data-c="'+g.id+'">🏅 شهادة «'+cname(g)+'» ('+ar(ST[g.id])+' / ١٠)</button>';}).join('')+
+     (allDone()?'<button type="button" class="big gold ce" data-c="">🏆 الشهادة الكاملة ('+ar(total())+' / ٤٠)</button>':''):
+     '<button type="button" class="big gold" disabled>🏅 أنهِ أي لعبة لتظهر شهادتها</button>')+'</div>';
   if(Object.keys(ST).length) h+='<button type="button" class="link" id="rs">ابدأ من جديد (يمسح الدرجات)</button>';
   h+='</div>';
   app.innerHTML=h;bindHome();
@@ -112,7 +118,8 @@ function home(){
     if(ST[g.id]!=null){ if(!confirm('أنهيت هذه اللعبة ('+ar(ST[g.id])+' / ١٠). هل تريد اللعب مرة أخرى للتدريب؟ درجتك الأولى تبقى في الشهادة.')) return; play(g,true); }
     else play(g,false);
   };});
-  $('#ce').onclick=function(){if(!NAME.trim()){$('#wn').textContent='اكتب اسمك أولًا.';nm.focus();return;}cert();};
+  Array.prototype.forEach.call(document.querySelectorAll('.ce'),function(b){b.onclick=function(){if(!NAME.trim()){$('#wn').textContent='اكتب اسمك أولًا.';nm.focus();return;}
+    var id=b.getAttribute('data-c');cert(id?GAMES.filter(function(g){return g.id===id;})[0]:null);};});
   var rs=$('#rs');if(rs)rs.onclick=function(){if(confirm('مسح كل الدرجات والبدء من جديد؟')){ST={};save();home();}};
 }
 function finish(g,score,practice){
@@ -122,8 +129,8 @@ function finish(g,score,practice){
   var msg=score>=9?'ممتاز! أداء رائع':score>=7?'أحسنت! أداء جيد جدًا':score>=5?'جيد، واصل التقدّم':'لا بأس، راجع الدرس وستتحسن';
   app.innerHTML=header()+'<div class="wrap"><div class="card res"><div class="ic">'+face+'</div><h2>'+g.n+'</h2><div class="sc">'+ar(score)+' / ١٠</div><p>'+msg+'</p>'+
     (practice?'<p class="hint">هذه محاولة تدريب، ودرجتك الأولى ('+ar(ST[g.id])+') هي التي في الشهادة.</p>':'')+
-    '<button type="button" class="big" id="bk">'+(allDone()?'🏅 إلى الشهادة':'التالي ←')+'</button></div></div>';
-  bindHome();$('#bk').onclick=function(){allDone()&&!practice?cert():home();};
+    '<div class="row2"><button type="button" class="big gold" id="cg">🏅 شهادتي في «'+cname(g)+'»</button><button type="button" class="big" id="bk">'+(allDone()?'🏆 الشهادة الكاملة':'اختر لعبة أخرى ←')+'</button></div></div></div>';
+  bindHome();$('#cg').onclick=function(){cert(g);};$('#bk').onclick=function(){allDone()?cert():home();};
 }
 function play(g,practice){window.scrollTo(0,0);({tf:gameTF,bx:gameBoxes,ct:gameCatch,mc:gameMC})[g.id](g,practice);}
 function dots(res,cur){var h='<div class="dots">';for(var i=0;i<10;i++)h+='<i class="'+(res[i]===1?'ok':res[i]===0?'no':'')+(i===cur?' cur':'')+'"></i>';return h+'</div>';}
@@ -262,14 +269,14 @@ function gameMC(g,practice){
 }
 
 /* ---------- certificate ---------- */
-function cert(){
+function cert(one){   /* one: a game → its own certificate; none → the full one (all four) */
   window.scrollTo(0,0);emit('cert');
   app.innerHTML=header()+'<div class="wrap"><div class="card cert" id="cw"><p class="hint">جارٍ تجهيز الشهادة…</p></div></div>';bindHome();
   var fonts=document.fonts?Promise.all([document.fonts.load('700 40px Taj'),document.fonts.load('400 30px Taj')]).catch(function(){}):Promise.resolve();
   fonts.then(draw);
   function draw(){
     var W=1600,H=1130,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
-    var F='Taj,Tahoma,sans-serif',tot=total(),pc=Math.round(tot/40*100);
+    var F='Taj,Tahoma,sans-serif',tot=one?(ST[one.id]||0):total(),mx=one?10:40,pc=Math.round(tot/mx*100);
     var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#FFFDF6');g.addColorStop(1,'#F2FAF8');x.fillStyle=g;x.fillRect(0,0,W,H);
     x.strokeStyle='#C99A2E';x.lineWidth=14;x.strokeRect(30,30,W-60,H-60);x.strokeStyle='#1F7A7A';x.lineWidth=4;x.strokeRect(56,56,W-112,H-112);
     ['⭐','⭐','⭐','⭐'].forEach(function(s,k){x.font='46px '+F;x.textAlign='center';x.fillText(s,k%2?W-110:110,k<2?125:H-90);});
@@ -279,30 +286,31 @@ function cert(){
     x.fillStyle='#22313A';x.font='400 34px '+F;x.fillText(GIRL?'تُمنح هذه الشهادة للطالبة':'تُمنح هذه الشهادة للطالب',W/2,320);
     x.fillStyle='#1F7A7A';x.font='700 66px '+F;x.fillText(NAME.trim()||'—',W/2,405);
     x.strokeStyle='#E3C77A';x.lineWidth=3;x.beginPath();x.moveTo(W/2-330,430);x.lineTo(W/2+330,430);x.stroke();
-    x.fillStyle='#22313A';x.font='400 32px '+F;x.fillText(GIRL?'لإنجازها ألعاب ونشاط درس:':'لإنجازه ألعاب ونشاط درس:',W/2,488);
+    x.fillStyle='#22313A';x.font='400 32px '+F;x.fillText(one?(GIRL?'لإنجازها '+(one.id==='mc'?'نشاط':'لعبة')+' «'+cname(one)+'» في درس:':'لإنجازه '+(one.id==='mc'?'نشاط':'لعبة')+' «'+cname(one)+'» في درس:'):(GIRL?'لإنجازها ألعاب ونشاط درس:':'لإنجازه ألعاب ونشاط درس:'),W/2,488);
     x.font='700 40px '+F;var t=L.t;while(x.measureText('«'+t+'»').width>W-260&&t.length>8)t=t.slice(0,-2);if(t!==L.t)t+='…';
     x.fillText('«'+t+'»',W/2,545);
     x.font='400 30px '+F;x.fillStyle='#5E7680';x.fillText(D.sn+' – الصف '+D.gn,W/2,595);
     var cw=300,gap=26,x0=W/2+2*cw+1.5*gap-cw/2-cw*0; var cells=GAMES.map(function(gm){return [gm.ic+' '+gm.n.replace('نشاط: ',''),ST[gm.id]||0];});
     cells[3][0]='📝 النشاط';
-    cells.forEach(function(cl,k){var cx=W/2+(1.5-k)*(cw+gap);x.fillStyle='#FFFFFF';x.strokeStyle='#D9E6EC';x.lineWidth=3;
+    if(one){cells=[[one.ic+' '+cname(one),tot]];cw=460;}
+    cells.forEach(function(cl,k){var cx=one?W/2:W/2+(1.5-k)*(cw+gap);x.fillStyle='#FFFFFF';x.strokeStyle='#D9E6EC';x.lineWidth=3;
       roundRect(x,cx-cw/2,630,cw,150,22);x.fill();x.stroke();
       x.fillStyle='#22313A';x.font='700 28px '+F;x.fillText(cl[0],cx,685);
       x.fillStyle='#1F7A7A';x.font='700 48px '+F;x.fillText(ar(cl[1])+' / ١٠',cx,752);});
-    x.fillStyle='#B27A00';x.font='700 50px '+F;x.fillText('المجموع: '+ar(tot)+' / ٤٠  ('+ar(pc)+'٪)',W/2,860);
+    x.fillStyle='#B27A00';x.font='700 50px '+F;x.fillText((one?'الدرجة: ':'المجموع: ')+ar(tot)+' / '+ar(mx)+'  ('+ar(pc)+'٪)',W/2,860);
     var msg=pc>=90?'ممتاز! أداء رائع، بارك الله فيك 🌟':pc>=75?'أحسنت! أداء جيد جدًا 👏':pc>=50?(GIRL?'جيد، واصلي التدريب لتتقدمي 👍':'جيد، واصل التدريب لتتقدم 👍'):(GIRL?'راجعي الدرس وحاولي مرة أخرى، أنتِ قادرة 💪':'راجع الدرس وحاول مرة أخرى، أنت قادر 💪');
     x.fillStyle='#22313A';x.font='400 36px '+F;x.fillText(msg,W/2,925);
     var d=new Date(),ds;try{ds=d.toLocaleDateString('ar-OM',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' – '+d.toLocaleTimeString('ar-OM',{hour:'2-digit',minute:'2-digit'});}catch(e){ds=d.toLocaleString();}
     x.fillStyle='#5E7680';x.font='400 28px '+F;x.fillText('التاريخ: '+ds,W/2,1000);
     var url;try{url=c.toDataURL('image/png');}catch(e){url='';}
-    var fn='شهادة-'+(NAME.trim()||'طالب').replace(/\s+/g,'-')+'.png';
+    var fn='شهادة-'+((NAME.trim()||'طالب')+(one?' '+cname(one):'')).replace(/\s+/g,'-')+'.png';
     $('#cw').innerHTML='<img alt="شهادة الإنجاز" src="'+url+'"><div class="row2"><a class="big" style="text-align:center;text-decoration:none" id="dl" download="'+esc(fn)+'" href="'+url+'">⬇️ حفظ الشهادة</a>'+
       '<button type="button" class="big gold" id="sh">📤 مشاركة</button></div><p class="hint">على الجوال يمكنك أيضًا الضغط مطولًا على الشهادة ثم «حفظ الصورة»، أو تصوير الشاشة. أرسلها لمعلمك.</p>'+
-      '<button type="button" class="link" id="bk">← العودة إلى الألعاب</button>';
+      '<button type="button" class="link" id="bk">← العودة إلى الألعاب والشهادات الأخرى</button>';
     $('#bk').onclick=home;
     $('#sh').onclick=function(){
       if(navigator.share&&navigator.canShare&&url){fetch(url).then(function(r){return r.blob();}).then(function(b){var f=new File([b],fn,{type:'image/png'});
-        if(navigator.canShare({files:[f]}))return navigator.share({files:[f],title:'شهادة إنجاز',text:NAME+' – '+L.t+' – '+ar(tot)+'/٤٠'});throw 0;}).catch(function(){window.print();});}
+        if(navigator.canShare({files:[f]}))return navigator.share({files:[f],title:'شهادة إنجاز',text:NAME+' – '+L.t+(one?' – '+cname(one):'')+' – '+ar(tot)+'/'+ar(mx)});throw 0;}).catch(function(){window.print();});}
       else window.print();
     };
   }

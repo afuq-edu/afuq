@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ميثاق أسرتي</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Tajawal:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Tajawal:wght@500;700;800&family=Noto+Naskh+Arabic:wght@600;700&display=swap">
 <style>
 /* Layout: a fixed 1600×900 "stage" scaled to the window, one illustrated home-and-sky world, cream banners with pink stitched borders and ticket cards on top. Single deliberate look (bright daytime), so colors are set explicitly. */
 :root{
@@ -122,6 +122,22 @@ body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overf
 .flip .f::before{content:attr(data-n);font:800 50px var(--display);color:var(--pink);margin-left:20px}
 .flip .b{background:var(--blue);color:#fff;transform:rotateY(180deg);font-size:34px}
 
+.story-text{flex:1;min-width:0;background:#fffdf6;border:7px solid var(--pink-soft);border-radius:36px;padding:16px 34px 18px;box-shadow:0 14px 30px rgba(29,43,92,.2);display:flex;flex-direction:column}
+.story-tabs{display:flex;gap:12px;margin-bottom:8px}
+.stab{font:800 28px var(--body);border:3px solid var(--blue);background:#fff;color:var(--blue);border-radius:999px;padding:4px 22px;cursor:pointer}
+.stab.on{background:var(--blue);color:#fff}
+.story-page{flex:1;font:700 37px/1.75 "Noto Naskh Arabic","Traditional Arabic","Simplified Arabic",Tahoma,serif;color:var(--navy)}
+.sn{display:block;margin-bottom:6px;cursor:pointer;border-radius:12px;padding:0 8px;transition:background .3s,color .3s;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.sn:hover{background:rgba(47,143,216,.12)}
+.sn.reading{background:var(--gold);color:var(--navy)}
+.gloss{font:inherit;color:var(--pink);background:none;border:none;border-bottom:4px dotted var(--pink);padding:0;cursor:help}
+.story-ctl{display:flex;gap:18px;align-items:center;margin-top:10px}
+.story-ctl .btn{font-size:28px;padding:8px 26px;white-space:nowrap;flex:none}
+.story-note{flex:1;min-width:0;font:700 20px/1.3 var(--body);color:var(--ink-soft)}
+.story-pic{width:560px;flex:none;position:relative;align-self:center}
+.story-pic img{width:100%;display:block;border-radius:30px;border:9px solid #fff;box-shadow:0 14px 30px rgba(29,43,92,.28);transform:rotate(1.5deg);transition:opacity .35s}
+.gloss-card{position:absolute;left:20px;right:20px;bottom:-24px;background:var(--cream);border:5px solid var(--pink);border-radius:24px;padding:14px 20px;font:700 30px/1.5 var(--body);color:var(--navy);box-shadow:0 10px 20px rgba(0,0,0,.2)}
+.gloss-card b{color:var(--pink)}
 #fx{position:absolute;inset:0;pointer-events:none;z-index:60}
 #flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:55}
 #start{position:absolute;inset:0;z-index:80;display:grid;place-items:center;background:rgba(23,59,99,.25)}
@@ -245,19 +261,46 @@ body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overf
   <div class="qcard hidden-r" id="tq" style="border-color:var(--green);font-size:38px;bottom:20px">عدم الالتزام بقواعد المرور يسبّب الحوادث ويحرمنا من الأمان…<br><span style="color:var(--pink)">وفي الأسرة: التقصير في الواجبات يسبّب المشكلات ويحرمنا من حقوقنا.</span></div>
 </section>
 
-<!-- 4 story -->
+<!-- 4 story reader -->
 <section class="slide" data-t="القصة" hidden>
-  <div class="banner"><h2>أقرأ وأستمع: ميثاق أسرة شمساء</h2></div>
+  <div class="banner" style="padding:12px 40px"><h2 style="font-size:50px">أقرأ وأستمع: ميثاق أسرة شمساء</h2></div>
+  <div style="display:flex;gap:40px;margin-top:18px;align-items:stretch">
+    <div class="story-text" id="storyText">
+      <div class="story-tabs" role="tablist">
+        <button class="stab on" data-pg="0" role="tab" type="button">ص ٥٦</button>
+        <button class="stab" data-pg="1" role="tab" type="button">ص ٥٧</button>
+      </div>
+      <div class="story-page" data-pg="0">
+        <span class="sn">فَتَحَتْ جَدَّتي <button class="gloss" type="button">الْمَنْدوسَ</button>، وَأَخْرَجَتْ مِنْهُ وَرَقَةً قَديمَةً خُطَّتْ بِيَدِ جَدّي.</span>
+        <span class="sn">الْوَرَقَةُ تَحْكي ميثاقَ أُسْرَةِ جَدّي.</span>
+        <span class="sn">لَمَعَتْ فِكْرَةٌ في عَقْلي، لِماذا لا نَجْعَلُ لِأُسْرَتِنا ميثاقًا أَيْضًا، يُساعِدُنا في تَنْظيمِ مَسْؤولِيّاتِنا في بَيْتِنا؟</span>
+        <span class="sn">أَخْبَرْتُ أَبي بِفِكْرَتي،</span>
+      </div>
+      <div class="story-page" data-pg="1" hidden>
+        <span class="sn">فَأُعْجِبَ بِها، فَبَدَأْنا بِالتَّفْكيرِ في كِتابَةِ ميثاقِ الْأُسْرَةِ.</span>
+        <span class="sn">ميثاقُ أُسْرَتي يُشْبِهُ ميثاقَ أُسْرَةِ جَدّي.</span>
+        <span class="sn">عَلَيْنا الِالْتِزامُ بِهِ، وَالْحِفاظُ عَلَيْهِ، كَما حافَظَتْ عَلَيْهِ جَدَّتي في <button class="gloss" type="button">مَنْدوسِها</button> الْعُمانِيِّ الْجَميلِ.</span>
+      </div>
+      <div class="story-ctl">
+        <button class="btn blue" id="storyPlay" type="button">▶ استمع</button>
+        <button class="btn" id="storyNext" type="button">الصفحة التالية ◀</button>
+        <span id="storyNote" class="story-note"></span>
+      </div>
+    </div>
+    <div class="story-pic">
+      <img id="storyImg" src="story-56.jpg" alt="المندوس العُماني مفتوحًا وفيه ورقة الميثاق القديمة">
+      <div class="gloss-card hidden-r" id="glossCard"><b>المَنْدوس:</b> صندوق خشبي عُماني تقليدي، تحفظ فيه الأسرة أشياءها الثمينة.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 4b story questions -->
+<section class="slide" data-t="أسئلة القصة" hidden>
+  <div class="banner"><h2>ناقش: ميثاق أسرة شمساء</h2></div>
   <div style="display:flex;gap:50px;margin-top:40px;align-items:flex-start">
     <div style="width:520px;flex:none;text-align:center">
-      <svg viewBox="0 0 520 360" width="520" aria-hidden="true">
-        <path d="M260 40 Q140 0 20 30 V330 Q140 300 260 340Z" fill="#fffdf6" stroke="#2f8fd8" stroke-width="8"/>
-        <path d="M260 40 Q380 0 500 30 V330 Q380 300 260 340Z" fill="#fffdf6" stroke="#2f8fd8" stroke-width="8"/>
-        <g stroke="#cfd6ea" stroke-width="6" stroke-linecap="round"><path d="M60 100h160M60 140h160M60 180h130M60 220h160M60 260h110"/><path d="M300 100h160M300 140h160M300 180h130M300 220h160M300 260h110"/></g>
-        <text x="140" y="70" text-anchor="middle" font-family="Tajawal, Tahoma" font-size="30" font-weight="800" fill="#e6587e">٥٦</text>
-        <text x="380" y="70" text-anchor="middle" font-family="Tajawal, Tahoma" font-size="30" font-weight="800" fill="#e6587e">٥٧</text>
-      </svg>
-      <div class="bigcard" style="padding:14px 20px;font:800 40px var(--display);color:var(--navy)">افتح كتابك ص (٥٦ – ٥٧)<div style="font:700 28px var(--body);color:var(--ink-soft)">واستمع إلى النص من رمز QR</div></div>
+      <img src="story-57.jpg" alt="شمساء تكتب ميثاق الأسرة مع أبيها" style="width:520px;border-radius:30px;border:8px solid #fff;box-shadow:0 14px 30px rgba(29,43,92,.25);transform:rotate(-1.5deg)">
+      <div class="bigcard" style="padding:12px 20px;margin-top:18px;font:800 36px var(--display);color:var(--navy)">كتاب التلميذ ص (٥٦ – ٥٧)</div>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;gap:24px">
       <div class="flip" data-n="١" tabindex="0"><div class="in"><div class="f" data-n="١">ما المقصود بميثاق الأسرة؟</div><div class="b">وثيقة مكتوبة تنظّم العلاقات بين أفراد الأسرة، ويلتزمون بها.</div></div></div>
@@ -414,7 +457,7 @@ function shake(el){el.classList.remove('shake');void el.offsetWidth;el.classList
 /* ---------- slides ---------- */
 const slides=$$('.slide');let cur=0;
 const dots=$('#dots');slides.forEach((s,i)=>{const b=document.createElement('button');b.setAttribute('aria-label',s.dataset.t);b.onclick=()=>go(i);dots.appendChild(b);});
-function go(i){if(i<0||i>=slides.length||i===cur&&slides[i].dataset.seen)return;
+function go(i){if(i<0||i>=slides.length||i===cur&&slides[i].dataset.seen)return;try{speechSynthesis.cancel();}catch(e){}
   slides[cur].hidden=true;cur=i;const s=slides[i];s.hidden=false;s.classList.remove('enter');void s.offsetWidth;s.classList.add('enter');s.dataset.seen=1;
   $$('#dots button').forEach((b,k)=>b.classList.toggle('on',k===i));$('#stitle').textContent=s.dataset.t;play('whoosh');}
 $('#next').onclick=()=>step(1);$('#prev').onclick=()=>step(-1);
@@ -443,6 +486,29 @@ $('#playcar').onclick=()=>{const car=$('#car');play('engine');car.style.transiti
     if(p<1)requestAnimationFrame(f);else{play('screech');setTimeout(()=>{play('crash');flash();shake(stage);$('#boom').setAttribute('opacity','1');$('#lesson1').classList.add('show-r');},250);}}
   requestAnimationFrame(f);};
 $('#lesson1').onclick=()=>{play('ding');$('#tq').classList.add('show-r');};
+
+/* ---------- story reader ---------- */
+let pg=0,reading=false,tok=0;
+const pages=$$('.story-page'),imgs=['story-56.jpg','story-57.jpg'];
+function showPage(n){stopRead();pg=n;pages.forEach((x,k)=>x.hidden=k!==n);$$('.stab').forEach((b,k)=>b.classList.toggle('on',k===n));
+  const im=$('#storyImg');im.style.opacity=0;setTimeout(()=>{im.src=imgs[n];im.alt=n?'شمساء تكتب ميثاق الأسرة مع أبيها':'المندوس العُماني مفتوحًا وفيه ورقة الميثاق القديمة';im.style.opacity=1;},250);
+  $('#storyNext').textContent=n?'أسئلة القصة ◀':'الصفحة التالية ◀';$('#glossCard').classList.remove('show-r');play('flip');}
+function arVoice(){try{return speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith('ar'));}catch(e){return null;}}
+function stopRead(){reading=false;tok++;try{speechSynthesis.cancel();}catch(e){}$$('.sn.reading').forEach(x=>x.classList.remove('reading'));$('#storyPlay').textContent='▶ استمع';}
+function readList(list,i,t){if(t!==tok)return;if(!reading||i>=list.length){stopRead();return;}
+  $$('.sn.reading').forEach(x=>x.classList.remove('reading'));const el=list[i];el.classList.add('reading');
+  let u;try{u=new SpeechSynthesisUtterance(el.textContent);}catch(e){stopRead();return;}
+  u.lang='ar-SA';u.rate=.8;const v=arVoice();if(v)u.voice=v;
+  u.onend=()=>setTimeout(()=>readList(list,i+1,t),250);u.onerror=()=>{if(t===tok)stopRead();};speechSynthesis.speak(u);}
+function startRead(list){if(!('speechSynthesis' in window)){$('#storyNote').textContent='المتصفح لا يدعم القراءة الصوتية';return;}
+  if(!arVoice())$('#storyNote').textContent='إن لم تسمع صوتًا فلا يوجد صوت عربي في هذا الجهاز؛ اقرأ القصة أنت أو استخدم رمز QR في الكتاب.';
+  stopRead();reading=true;const t=++tok;$('#storyPlay').textContent='■ إيقاف';readList([...list],0,t);}
+$('#storyPlay').onclick=()=>{ctx();reading?stopRead():startRead(pages[pg].querySelectorAll('.sn'));};
+$$('.sn').forEach(el=>el.addEventListener('click',e=>{if(e.target.closest('.gloss'))return;startRead([el]);}));
+$$('.stab').forEach(b=>b.onclick=()=>showPage(+b.dataset.pg));
+$('#storyNext').onclick=()=>{if(pg===0)showPage(1);else go(cur+1);};
+$$('.gloss').forEach(g=>g.onclick=()=>{play('sparkle');const c=$('#glossCard');c.classList.remove('show-r');void c.offsetWidth;c.classList.add('show-r');});
+try{speechSynthesis.getVoices();}catch(e){}
 
 /* ---------- story flips ---------- */
 $$('.flip').forEach(f=>{f.onclick=()=>{f.classList.toggle('open');play('flip');};f.onkeydown=e=>{if(e.key==='Enter')f.onclick();};});

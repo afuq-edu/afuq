@@ -87,9 +87,9 @@ body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overf
 .hand{font-size:150px;line-height:1;display:block}
 .bigcard{background:var(--cream);border:8px solid var(--pink-soft);border-radius:40px;box-shadow:0 14px 30px rgba(29,43,92,.2);padding:28px 40px;text-align:center}
 
-.chip{display:inline-block;font:800 40px var(--display);padding:10px 30px;border-radius:999px;background:var(--white);border:4px solid var(--blue);color:var(--navy);cursor:pointer;margin:8px;transition:all .2s}
+.chip{display:inline-block;font:800 36px var(--display);padding:8px 26px;border-radius:999px;background:var(--white);border:4px solid var(--blue);color:var(--navy);cursor:pointer;margin:0;transition:all .2s}
 .chip.used{opacity:.25;pointer-events:none;transform:scale(.9)}
-.blank{display:inline-block;min-width:170px;border-bottom:6px dashed var(--pink);color:var(--pink);text-align:center;margin:0 6px;padding:0 6px}
+.blank{display:inline-block;min-width:140px;border-bottom:6px dashed var(--pink);color:var(--pink);text-align:center;margin:0 6px;padding:0 6px}
 .blank.next{background:rgba(246,195,67,.35);border-radius:10px}
 .blank.done{border-bottom-style:solid;color:var(--green)}
 
@@ -271,10 +271,10 @@ body{margin:0;background:#173b63;color:var(--navy);font-family:var(--body);overf
 <!-- 5 concept builder -->
 <section class="slide" data-t="المفهوم" hidden>
   <div class="banner"><h2>أكمل المفهوم</h2><div class="sub blue">اختر الكلمة المناسبة للفراغ الملوّن</div></div>
-  <div class="bigcard" id="defcard" style="margin:40px auto 0;width:1300px;box-sizing:border-box;font:800 54px/1.9 var(--display)">
+  <div class="bigcard" id="defcard" style="margin:30px auto 0;width:1400px;box-sizing:border-box;font:800 46px/1.8 var(--display);padding:20px 36px">
     <span style="color:var(--pink)">ميثاق الأسرة:</span> وثيقة <span class="blank" data-a="مكتوبة">؟</span> تنظّم <span class="blank" data-a="العلاقات">؟</span> بين أفراد الأسرة، وتوضّح <span class="blank" data-a="حقوقهم">؟</span> و<span class="blank" data-a="واجباتهم">؟</span>، ويلتزم بها <span class="blank" data-a="الجميع">؟</span>.
   </div>
-  <div id="chips" style="text-align:center;margin-top:28px"></div>
+  <div id="chips" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px 14px;margin-top:22px"></div>
 </section>
 
 <!-- 6 activity 58 -->
